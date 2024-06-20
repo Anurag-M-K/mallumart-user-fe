@@ -71,13 +71,13 @@ export default function HeaderNew() {
   return (
     <header className=" text-white">
       <div className="bg-white py-2 px-6 md:px-8 flex items-center justify-between text-black">
-        <div className="flex items-center gap-2">
+        <div className="flex justify-center text-center items-center gap-2">
           <InboxIcon className="h-4 w-4 text-gray-500" />
-          <span className="text-sm text-gray-500">
-            Mallumartindia@gmail.com
+          <span className="text-sm  text-gray-500">
+            mallumartindia@gmail.com
           </span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className=" hidden sm:flex items-center gap-4">
           <Link
             href="#"
             className="text-gray-500 hover:text-gray-700"
@@ -140,7 +140,7 @@ export default function HeaderNew() {
                 onChange={handleSearch}
                 type="text"
                 placeholder="Search products..."
-                className="placeholder-white w-full  text-gray-600 border-gray-700  rounded-md px-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                className="placeholder-white w-full text-gray-600 border-gray-700  rounded-md sm:px-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
               />
               
             </div>
@@ -148,20 +148,22 @@ export default function HeaderNew() {
           </form>
           
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-2">
-                {/* <IoMdMenu  className="h-5 w-5 hover:" /> */}
-                <span className="text-white">Shop by Category</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              {data?.map((item: TCategories) => (
-                <DropdownMenuItem key={item._id}>
-                  <Link href={`/category?category=${item._id}`}>{item.name}</Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-2 w-full md:w-auto">
+          {/* <IoMdMenu className="h-5 w-5 hover:" /> */}
+          <span className="text-white">Shop by Category</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-full md:w-56">
+        {data?.map((item: TCategories) => (
+          <DropdownMenuItem key={item._id} className="w-full">
+            <Link href={`/category?category=${item._id}`} className="w-full text-black">
+              {item.name}
+            </Link>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-4">
 

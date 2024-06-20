@@ -20,18 +20,17 @@ export default function Footer() {
 
   const filteredCategories = data?.filter((item:TCategories)=>item?.isShowOnHomePage === true).slice(0,5)
   return (
-    <footer className="bg-[#0077b6] text-white py-12 dark:bg-gray-800">
-      <div className="container max-w-[1380px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+    <footer className="bg-[#193b4e] text-white py-12 dark:bg-gray-800">
+      <div className="container max-w-[1380px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div className="grid gap-4">
           <Link href="#" className="flex items-center gap-2" prefetch={false}>
             <MountainIcon className="h-6 w-6" />
             <span className="text-lg font-semibold">Mallu Store</span>
           </Link>
-          <p className="text-white dark:text-gray-400">
-            Discover the best products from top vendors in our vibrant
-            marketplace.
+          <p className="text-white dark:text-gray-400 text-justify">
+          MalluMart is an e-commerce company with a website and application designed to connect customers with nearby registered shops and services. The application aims to be a website for all.
           </p>
-          <div className="grid gap-2">
+          {/* <div className="grid gap-2">
             <div className="flex items-center gap-2">
               <PhoneIcon className="h-4 w-4 text-white dark:text-gray-400" />
               <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
@@ -57,12 +56,14 @@ export default function Footer() {
               </div>
               
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="grid gap-2">
-          <h3 className="text-lg font-semibold">Customer Service</h3>
-          <ul className="grid gap-1">
-            <li>
+
+
+        <div className="flex flex-col  items-center ">
+          <h3 className="text-lg mb-2 font-semibold">Quick Links</h3>
+          {/* <ul className="grid "> */}
+            <div>
               <Link
                 href="/policy/terms-of-use"
                 className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -70,8 +71,8 @@ export default function Footer() {
               >
                 Terms of Use
               </Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <Link
                 href="/policy/privacy-policy"
                 className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -79,17 +80,17 @@ export default function Footer() {
               >
                 Privacy Policy
               </Link>
-            </li>
-            {/* <li>
+            </div>
+            <div>
               <Link
                 href="#"
                 className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
                 prefetch={false}
               >
-                FAQs
+                About Us
               </Link>
-            </li> */}
-            <li>
+            </div>
+            <div>
               <Link
                 href="/help/contact-us"
                 className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -97,14 +98,17 @@ export default function Footer() {
               >
                 Contact Us
               </Link>
-            </li>
-          </ul>
+            </div>
+          
+          {/* </ul> */}
         </div>
-        <div className="grid gap-2">
+
+
+        {/* <div className="grid gap-2">
           <h3 className="text-lg font-semibold">Popular Categories</h3>
           <ul className="grid gap-1">
       {filteredCategories?.map((item:TCategories)=>(
-              <li key={item._id}>
+              <div key={item._id}>
               <Link
                 href={`/category/${item.name}`}
                 className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -112,12 +116,14 @@ export default function Footer() {
               >
                {item.name}
               </Link>
-            </li>
+            </div>
       ))}
           
           </ul>
-        </div>
-        <div className="flex flex-col gap-2">
+        </div> */}
+
+
+        <div className="flex items-center flex-col gap-2">
           <h3 className="text-lg font-semibold">Follow Us</h3>
           <div className="flex items-center gap-2">
             <Link
