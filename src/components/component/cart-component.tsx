@@ -30,7 +30,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
-export function Cart-component() {
+export function Cartcomponent() {
   const [cart, setCart] = useState([
     {
       id: 1,
@@ -51,10 +51,10 @@ export function Cart-component() {
       quantity: 1,
     },
   ])
-  const removeFromCart = (id) => {
+  const removeFromCart = (id:any) => {
     setCart(cart.filter((item) => item.id !== id))
   }
-  const updateQuantity = (id, quantity) => {
+  const updateQuantity = (id:any, quantity:any) => {
     setCart(cart.map((item) => (item.id === id ? { ...item, quantity } : item)))
   }
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
@@ -79,7 +79,7 @@ export function Cart-component() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {cart.map((item) => (
+              {cart.map((item:any) => (
                 <TableRow key={item.id}>
                   <TableCell>
                     <div className="flex items-center gap-4">

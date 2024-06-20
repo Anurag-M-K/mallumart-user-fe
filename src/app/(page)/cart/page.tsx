@@ -25,10 +25,10 @@ export default function Component() {
       quantity: 1,
     },
   ])
-  const removeFromCart = (id) => {
+  const removeFromCart = (id:any) => {
     setCart(cart.filter((item) => item.id !== id))
   }
-  const updateQuantity = (id, quantity) => {
+  const updateQuantity = (id:any, quantity:any) => {
     setCart(cart.map((item) => (item.id === id ? { ...item, quantity } : item)))
   }
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
@@ -53,7 +53,7 @@ export default function Component() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {cart.map((item) => (
+              {cart.map((item:any) => (
                 <TableRow key={item.id} className="border-t border-gray-200 dark:border-gray-800">
                   <TableCell className="p-4">
                     <div className="flex items-center gap-4">
