@@ -20,107 +20,107 @@ export default function Footer() {
 
   const filteredCategories = data?.filter((item:TCategories)=>item?.isShowOnHomePage === true).slice(0,5)
   return (
-    <footer className="bg-[#193b4e] text-white py-12 dark:bg-gray-800">
+    <><footer className="bg-[#193b4e] text-white py-12 dark:bg-gray-800">
       <div className="container max-w-[1380px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div className="grid gap-4">
-          <Link href="#" className="flex items-center gap-2" prefetch={false}>
+          <Link href="#" className="flex items-center justify-center gap-2" prefetch={false}>
             <MountainIcon className="h-6 w-6" />
-            <span className="text-lg font-semibold">Mallu Store</span>
+            <span className="text-lg font-semibold text-center">Mallu Mart</span>
           </Link>
           <p className="text-white dark:text-gray-400 text-justify">
-          MalluMart is an e-commerce company with a website and application designed to connect customers with nearby registered shops and services. The application aims to be a website for all.
+            MalluMart is an e-commerce company with a website and application designed to connect customers with nearby registered shops and services. The application aims to be a website for all.
           </p>
           {/* <div className="grid gap-2">
-            <div className="flex items-center gap-2">
-              <PhoneIcon className="h-4 w-4 text-white dark:text-gray-400" />
-              <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-                +91 9747411113
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <MailIcon className="h-4 w-4 text-white dark:text-gray-400" />
-              <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-                Mallumartindia@gmail.com
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <FaRegAddressCard color="" className="h-4 w-4  text-white dark:text-gray-400" />
-              <div className="">
+      <div className="flex items-center gap-2">
+        <PhoneIcon className="h-4 w-4 text-white dark:text-gray-400" />
+        <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+          +91 9747411113
+        </p>
+      </div>
+      <div className="flex items-center gap-2">
+        <MailIcon className="h-4 w-4 text-white dark:text-gray-400" />
+        <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+          Mallumartindia@gmail.com
+        </p>
+      </div>
+      <div className="flex items-center gap-2">
+        <FaRegAddressCard color="" className="h-4 w-4  text-white dark:text-gray-400" />
+        <div className="">
 
-              <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-              2nd floor, Hayle complex,
-              </p>
-              <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-              puthiyatheru, kannur, kerala, 670011
-              </p>
-              </div>
-              
-            </div>
-          </div> */}
+        <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+        2nd floor, Hayle complex,
+        </p>
+        <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+        puthiyatheru, kannur, kerala, 670011
+        </p>
+        </div>
+        
+      </div>
+    </div> */}
         </div>
 
 
         <div className="flex flex-col  items-center ">
           <h3 className="text-lg mb-2 font-semibold">Quick Links</h3>
           {/* <ul className="grid "> */}
-            <div>
-              <Link
-                href="/policy/terms-of-use"
-                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                Terms of Use
-              </Link>
-            </div>
-            <div>
-              <Link
-                href="/policy/privacy-policy"
-                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                Privacy Policy
-              </Link>
-            </div>
-            <div>
-              <Link
-                href="#"
-                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                About Us
-              </Link>
-            </div>
-            <div>
-              <Link
-                href="/help/contact-us"
-                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-                Contact Us
-              </Link>
-            </div>
-          
+          <div>
+            <Link
+              href="/policy/terms-of-use"
+              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              prefetch={false}
+            >
+              Terms of Use
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/policy/privacy-policy"
+              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              prefetch={false}
+            >
+              Privacy Policy
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="#"
+              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              prefetch={false}
+            >
+              About Us
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/help/contact-us"
+              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              prefetch={false}
+            >
+              Contact Us
+            </Link>
+          </div>
+
           {/* </ul> */}
         </div>
 
 
         {/* <div className="grid gap-2">
-          <h3 className="text-lg font-semibold">Popular Categories</h3>
-          <ul className="grid gap-1">
-      {filteredCategories?.map((item:TCategories)=>(
-              <div key={item._id}>
-              <Link
-                href={`/category/${item.name}`}
-                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                prefetch={false}
-              >
-               {item.name}
-              </Link>
-            </div>
-      ))}
-          
-          </ul>
-        </div> */}
+      <h3 className="text-lg font-semibold">Popular Categories</h3>
+      <ul className="grid gap-1">
+  {filteredCategories?.map((item:TCategories)=>(
+          <div key={item._id}>
+          <Link
+            href={`/category/${item.name}`}
+            className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            prefetch={false}
+          >
+           {item.name}
+          </Link>
+        </div>
+  ))}
+      
+      </ul>
+    </div> */}
 
 
         <div className="flex items-center flex-col gap-2">
@@ -161,7 +161,12 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </footer><div className="bg-gray-600 text-white"> <div className="container mx-auto text-center">
+    <p className="text-sm">
+      <span className="inline-block    px-2 py-1 mr-1">©</span>
+      2024 Mallu Mart. All rights reserved.
+    </p>
+  </div></div></>
   );
 }
 
