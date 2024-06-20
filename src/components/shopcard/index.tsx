@@ -8,19 +8,19 @@ import Link from "next/link";
 
 export default function ShopCard(shop: any) {
   return (
-    <Card className="w-full max-w-sm p-6 grid  gap-6">
+    <Card className="w-full max-w-sm px-2 py-6 grid  gap-6">
       <div className="flex flex-col  items-between gap-4">
         <div className="w-full h-66">
           <img
             src={shop.shop.shopImgUrl}
             alt="helo"
-            className="object-cover w-full h-60 group-hover:scale-105 transition-transform duration-300"
+            className="object-cover sm:w-full h-40 w-60 sm:h-60 group-hover:scale-105 transition-transform duration-300"
           />
         </div>
         <div className="grid gap-2">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold">{shop.shop.storeName}</h3>
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <span className="text-[10px] border px-2 rounded-full border-gray-400 text-gray-600 sh font-medium">
                 {shop.shop.wholeSale && shop.shop.retail
                   ? "Wholesale & Retail"
@@ -30,7 +30,7 @@ export default function ShopCard(shop: any) {
                   ? "Retail"
                   : ""}
               </span>
-            </div>
+            </div> */}
           </div>
           <div
             className="text-sm text-gray-500 dark:text-gray-400"
@@ -54,7 +54,7 @@ export default function ShopCard(shop: any) {
             />
             <span>{shop.shop.category.name}</span>
           </div>
-          <div className="flex gap-x-2 my-2">
+          <div className=" sm:flex gap-y-2 gap-x-2 my-2">
             <Link
               className="w-full"
               target="_blank"
@@ -74,7 +74,7 @@ export default function ShopCard(shop: any) {
             <Link href={`/shop/${shop.shop._id}`}>
               <Button
                 size="sm"
-                className="bg-white text-black hover:bg-gray-100 border-black border w-full"
+                className="bg-white mt-2 sm:mt-0 text-black hover:bg-gray-100 border-black border w-full"
               >
                 View Shop
               </Button>

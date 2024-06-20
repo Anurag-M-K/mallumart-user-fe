@@ -24,8 +24,8 @@ export default async function Landing() {
     {img:"/slider3.png",_id:3},
   ]
   const mbcCrousalItem = [
-    {img:"/mbslider.png",_id:1},
-    {img:"/mbslider2.png",_id:2},
+    {img:"/mbslider1.png",_id:1},
+    {img:"/mbslider1.png",_id:2},
     {img:"/mbslider3.png",_id:3},
   ]
   return (
@@ -39,7 +39,7 @@ export default async function Landing() {
         >
             <CarouselContent className="md:hidden flex h-[500px] mt-4 relative bg-black">
             {/* {advertisement?.map((item: TAdvertisement) => ( */}
-            {carousalItem?.map((item: any) => (
+            {mbcCrousalItem?.map((item: any) => (
               <CarouselItem key={item._id} className="relative w-full h-full">
                 {/* <Image
                   src={item.image}
@@ -95,12 +95,15 @@ export default async function Landing() {
             </h2>
           </div>
 
-          <section className=" py-12 md:py-16  lg:py-20">
-            <div className="container ">
+          <section className="  ">
+            <div className=" ">
               <div className="flex flex-col  gap-6">
                 <div className="flex snap-x  snap-mandatory no-scrollbar overflow-x-auto gap-6 pb-4">
                   {categories?.categories?.map((category: any, index: any) => (
+                    // <div className="">
                     <CategorySlide key={category?._id} category={category} index={index} />
+                    // <p>{category?.name}</p>
+                    // </div>
                   ))}
                 </div>
               </div>

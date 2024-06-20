@@ -35,7 +35,7 @@ function ShopsNearByYou() {
   //   }
   // }, []);
   return (
-    <section className="w-full py-12 md:py-16 lg:py-20 bg-gray-100 dark:bg-gray-800">
+    <section className="w-full py-12 md:py-16 lg:py-2 bg-gray-100 dark:bg-gray-800">
       <div className="container px-4 md:px-6">
         <div className="flex items-center justify-between mb-6 md:mb-8">
           <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
@@ -51,7 +51,7 @@ function ShopsNearByYou() {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {shopsNearBy
               ?.slice(0, viewAll ? shopsNearBy.length : 8)
               .map((shop: any) => (
