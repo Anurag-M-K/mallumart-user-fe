@@ -18,6 +18,16 @@ export default async function Landing() {
   const { advertisement } = await getAdvertisementData();
   const categories = await getCategoriesData();
 
+  const carousalItem = [
+    {img:"/slider.png",_id:1},
+    {img:"/slider2.png",_id:2},
+    {img:"/slider3.png",_id:3},
+  ]
+  const mbcCrousalItem = [
+    {img:"/mbslider.png",_id:1},
+    {img:"/mbslider2.png",_id:2},
+    {img:"/mbslider3.png",_id:3},
+  ]
   return (
     <div className="w-full ">
       <section className="w-full">
@@ -27,11 +37,19 @@ export default async function Landing() {
           }}
           className="w-full h-auto max-w-[1340px] mx-auto relative"
         >
-          <CarouselContent className=" h-[500px] relative bg-black">
-            {advertisement?.map((item: TAdvertisement) => (
+            <CarouselContent className="md:hidden flex h-[500px] mt-4 relative bg-black">
+            {/* {advertisement?.map((item: TAdvertisement) => ( */}
+            {carousalItem?.map((item: any) => (
               <CarouselItem key={item._id} className="relative w-full h-full">
-                <Image
+                {/* <Image
                   src={item.image}
+                  alt={`Advertisement ${item._id}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="w-full h-full overflow-hidden object-cover group-hover:scale-105 transition-transform duration-300"
+                /> */}
+                <Image
+                  src={item.img}
                   alt={`Advertisement ${item._id}`}
                   layout="fill"
                   objectFit="cover"
@@ -40,6 +58,28 @@ export default async function Landing() {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselContent className="hidden md:flex h-[500px] relative bg-black">
+            {/* {advertisement?.map((item: TAdvertisement) => ( */}
+            {carousalItem?.map((item: any) => (
+              <CarouselItem key={item._id} className="relative w-full h-full">
+                {/* <Image
+                  src={item.image}
+                  alt={`Advertisement ${item._id}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="w-full h-full overflow-hidden object-cover group-hover:scale-105 transition-transform duration-300"
+                /> */}
+                <Image
+                  src={item.img}
+                  alt={`Advertisement ${item._id}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="w-full h-full overflow-hidden object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        
           <div className="absolute bottom-7 left-1/2 transform -translate-x-1/2 flex items-center gap-2">
             <CarouselPrevious className="bg-white/50 hover:bg-white/75 text-gray-900 rounded-full p-2 cursor-pointer transition-colors" />
             <CarouselNext className="bg-white/50 hover:bg-white/75 text-gray-900 rounded-full p-2 cursor-pointer transition-colors" />

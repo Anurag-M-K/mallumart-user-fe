@@ -23,6 +23,7 @@ import { searchStoreByProductName } from "@/data/shops";
 import { useState } from "react";
 import { useStoreContext } from "@/utils/StoreContext";
 import { useRouter } from "next/navigation";
+import { IoMdMenu } from "react-icons/io";
 
 export default function HeaderNew() {
   const { logout, user } = useAuth();
@@ -68,7 +69,7 @@ export default function HeaderNew() {
     }
   };
   return (
-    <header className="bg-[#0077b6] text-white">
+    <header className=" text-white">
       <div className="bg-white py-2 px-6 md:px-8 flex items-center justify-between text-black">
         <div className="flex items-center gap-2">
           <InboxIcon className="h-4 w-4 text-gray-500" />
@@ -108,8 +109,26 @@ export default function HeaderNew() {
             Mallu Mart
           </Typography> */}
         </Link>
-        <div className="flex-1 max-w-md">
-          <form onSubmit={handleOnSubmit}>
+        {!user && (
+            <div className="md:hidden flex items-center gap-2">
+              <Link
+                href="/auth/login"
+                className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                prefetch={false}
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth/register"
+                className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                prefetch={false}
+              >
+                Signup
+              </Link>
+            </div>
+          )}
+        <div className="flex flex-row gap-x-3 max-w-md">
+          <form className="" onSubmit={handleOnSubmit}>
             <div className="relative">
               <button
                 className="absolute top-1/2 -translate-y-1/2 h-4 w-4"
@@ -121,17 +140,18 @@ export default function HeaderNew() {
                 onChange={handleSearch}
                 type="text"
                 placeholder="Search products..."
-                className="placeholder-white w-full bg-[#0067a2] text-white  rounded-md px-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                className="placeholder-white w-full  text-gray-600 border-gray-700  rounded-md px-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
               />
+              
             </div>
+
           </form>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+          
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center gap-2">
-                <MenuIcon className="h-5 w-5" />
-                <span>Shop by Category</span>
+              <Button variant="ghost" className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-2">
+                {/* <IoMdMenu  className="h-5 w-5 hover:" /> */}
+                <span className="text-white">Shop by Category</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -142,19 +162,21 @@ export default function HeaderNew() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center gap-4">
 
           {!user && (
-            <div className="flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-2">
               <Link
                 href="/auth/login"
-                className="inline-flex items-center justify-center rounded-md bg-[#00a0f0] px-4 py-2 text-sm font-medium transition-colors hover:bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
                 prefetch={false}
               >
                 Login
               </Link>
               <Link
                 href="/auth/register"
-                className="inline-flex items-center justify-center rounded-md bg-[#00a0f0] px-4 py-2 text-sm font-medium transition-colors hover:bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
                 prefetch={false}
               >
                 Signup
