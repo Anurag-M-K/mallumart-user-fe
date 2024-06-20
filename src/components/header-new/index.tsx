@@ -191,8 +191,8 @@ export default function HeaderNew() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="flex justify-center items-center">
-                <FaRegUserCircle size={24} className="cursor-pointer" />
-              </Avatar>
+                <FaRegUserCircle size={24} className="text-gray-700 cursor-pointer" />
+              </Avatar> 
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               {/* <DropdownMenuLabel>Account</DropdownMenuLabel> */}
