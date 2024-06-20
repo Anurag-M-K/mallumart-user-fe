@@ -203,26 +203,24 @@ export default function HeaderNew() {
                   <span>{user?.name}</span>
                 </p>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              {/* <DropdownMenuItem>
                 <Link
                   href="/profile"
                   className="flex w-full items-center"
                   prefetch={false}
                 >
-                  {/* <UserIcon className="mr-2 h-4 w-4" /> */}
                   <span>Profile</span>
                 </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
+              </DropdownMenuItem> */}
+              {/* <DropdownMenuItem>
                 <Link
                   href="/whishlist"
                   className="flex w-full items-center"
                   prefetch={false}
                 >
-                  {/* <UserIcon className="mr-2 h-4 w-4" /> */}
                   <span className="flex items-center"> Whishlist</span>
                 </Link>
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
 
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-red-600">
