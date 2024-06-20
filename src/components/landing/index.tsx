@@ -24,7 +24,7 @@ export default async function Landing() {
     {img:"/slider3.png",_id:3},
   ]
   const mbcCrousalItem = [
-    {img:"/mbslider1.png",_id:1},
+    {img:"/mbslider3.png",_id:1},
     {img:"/mbslider1.png",_id:2},
     {img:"/mbslider3.png",_id:3},
   ]

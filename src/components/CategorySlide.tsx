@@ -7,7 +7,7 @@ import { DynamicIcon } from "./landing/DynamicIcon";
 import Image from "next/image";
 
 function CategorySlide({ category, index }: { category: any; index: any }) {
-  console.log("category ",category)
+  console.log("category ", category);
   return (
     <>
       <Link
@@ -35,7 +35,6 @@ function CategorySlide({ category, index }: { category: any; index: any }) {
             <Tooltip.Tooltip>
               <Tooltip.TooltipTrigger asChild>
                 <DynamicIcon
-                 
                   className="sm:text-5xl  text-3xl md:text-7xl"
                   iconName={category.icon}
                 />
@@ -45,8 +44,8 @@ function CategorySlide({ category, index }: { category: any; index: any }) {
               </Tooltip.TooltipPortal>
             </Tooltip.Tooltip>
           </Tooltip.TooltipProvider>
+          <p className="text-[10px]">{category?.name}</p>
         </div>
-
       </Link>
     </>
   );
