@@ -29,6 +29,7 @@ import { useAuth } from "@/utils/AuthContext";
 export const LoginForm = () => {
   const router = useRouter();
   const [error, setError] = useState<any>("");
+  const [loading,setLoading] = useState<boolean>(false)
   const { login,user } = useAuth();
   const form = useForm<schemaType>({
     mode: "onChange",
@@ -45,12 +46,15 @@ export const LoginForm = () => {
   } = form;
 
   const onSubmit = async (data: schemaType) => {
-    const res = await signIn(data.email, data.password);
+    setLoading(true)
+    const res:any = await signIn(data.email, data.password);
     login(res);
-    if (res.statusText === "ok") {
+    if (res?.statusText === "ok") {
       localStorage.setItem("accessToken", res.token);
       router.push("/");
+      setLoading(false)
     } else if (res.login === false) {
+      setLoading(false)
       setError(res.message);
     }
   };
@@ -75,7 +79,7 @@ export const LoginForm = () => {
         )}
         <CardFooter className="flex flex-col">
           <Button type="submit" className="w-full">
-            Login
+           {loading ? "Loading..." : "Login"}
           </Button>
           {/* <button
             type="submit"

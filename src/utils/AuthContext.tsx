@@ -13,12 +13,16 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [user, setUser] = useState<any | null>(null);
 
 
-    useEffect(()=>{
+   useEffect(() => {
         const storedUser = localStorage.getItem("user");
-        if(storedUser){
-            setUser(JSON.parse(storedUser))
+        if (storedUser) {
+            try {
+                setUser(JSON.parse(storedUser));
+            } catch (error) {
+                console.error("Failed to parse stored user data:", error);
+            }
         }
-    },[])
+    }, []);
 
     const login = (user: any) => {
         setUser(user);
