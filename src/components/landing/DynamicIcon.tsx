@@ -11,6 +11,7 @@ import {
   FaAppleAlt,
   FaGem,
 } from 'react-icons/fa';
+import { MdOutlineMiscellaneousServices } from "react-icons/md";
 
 export const DynamicIcon = ({className, iconName }: {className:string, iconName: string }) => {
   let IconComponent;
@@ -46,6 +47,8 @@ export const DynamicIcon = ({className, iconName }: {className:string, iconName:
     case 'jewelry':
       IconComponent = FaGem;
       break;
+    case 'service':
+      IconComponent = MdOutlineMiscellaneousServices ;
     default:
       IconComponent = FaMobileAlt; // Default icon
   }

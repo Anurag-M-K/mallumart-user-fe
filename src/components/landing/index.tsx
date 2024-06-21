@@ -16,8 +16,9 @@ import CategorySlide from "../CategorySlide";
 
 export default async function Landing() {
   const { advertisement } = await getAdvertisementData();
-  const categories = await getCategoriesData();
-
+  const categories:any  = await getCategoriesData();
+console.log("categories ",categories.categories)
+  
   const carousalItem = [
     {img:"/slider.png",_id:1},
     {img:"/slider2.png",_id:2},
@@ -28,6 +29,8 @@ export default async function Landing() {
     {img:"/mbslider1.png",_id:2},
     {img:"/mbslider3.png",_id:3},
   ]
+
+  const mainCategories = categories?.categories?.filter((item:any)=>item.isShowOnHomePage === true)
   return (
     <div className="w-full ">
       <section className="w-full">
@@ -99,7 +102,7 @@ export default async function Landing() {
             <div className=" ">
               <div className="flex flex-col  gap-6">
                 <div className="flex snap-x  snap-mandatory no-scrollbar overflow-x-auto gap-6 pb-4">
-                  {categories?.categories?.map((category: any, index: any) => (
+                  {mainCategories?.map((category: any, index: any) => (
                     // <div className="">
                     <CategorySlide key={category?._id} category={category} index={index} />
                     // <p>{category?.name}</p>
