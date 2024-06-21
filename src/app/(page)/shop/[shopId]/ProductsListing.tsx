@@ -4,7 +4,6 @@ import Image from "next/image";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -27,21 +26,35 @@ import { fetchProducts } from "@/data/shops";
 import { PiCurrencyInrBold } from "react-icons/pi";
 import { IoSearch } from "react-icons/io5";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/utils/AuthContext";
+import { addToCart } from "@/data/cart";
+import { useQueryClient } from "@tanstack/react-query";
+import { useToast } from "@/components/ui/use-toast";
 
 function ProductsListing({ store }: { store: TShop }) {
+  const queryClient = useQueryClient();
+
   const [filters, setFilters] = useState<TFilters>({
     category: "",
     sort: "",
     search: "",
   });
   const [products, setProducts] = useState<any>([]); // Add proper type
+  console.log("🚀 ~ ProductsListing ~ products:", products);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-  const [whoelReponse,setWholeResponse] = useState<any>()
+  const [whoelReponse, setWholeResponse] = useState<any>();
   const handleCategoryChange = (id: string) => {
     setFilters({ ...filters, category: id });
   };
+
+  const { user } = useAuth();
+
+  const router = useRouter();
+
+  const { toast } = useToast();
 
   const sortOptions = [
     { label: "Newest", value: "newest" },
@@ -64,7 +77,7 @@ function ProductsListing({ store }: { store: TShop }) {
       const res = await fetchProducts({ filters, storeId, page: currentPage });
       setProducts(res.products);
       setTotalPages(res.totalPages);
-      setWholeResponse(res.totalProducts)
+      setWholeResponse(res.totalProducts);
     } catch (error) {
       console.log(error);
     }
@@ -82,6 +95,18 @@ function ProductsListing({ store }: { store: TShop }) {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
+  async function addToCartHandler(productId: string) {
+    if (!user) return router.push("/auth/login");
+    await addToCart(productId);
+    toast({
+      description: "Product added to cart.",
+    });
+    await queryClient.invalidateQueries({
+      queryKey: ["cart", store.store._id],
+    });
+  }
+
   return (
     <div>
       <section className="py-12 md:py-16">
@@ -107,7 +132,10 @@ function ProductsListing({ store }: { store: TShop }) {
               <div className="flex items-center gap-4 relative z-50">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      className="flex items-center gap-2"
+                    >
                       <FilterIcon className="w-4 h-4" />
                       Filter
                     </Button>
@@ -117,28 +145,38 @@ function ProductsListing({ store }: { store: TShop }) {
                       Filter by Subcategory
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    {store?.productCategories?.map((item: TProductCategories) => (
-                      <DropdownMenuCheckboxItem
-                        onClick={() => handleCategoryChange(item._id)}
-                        className="mx-3 hover:bg-gray-200 cursor-pointer"
-                        key={item._id}
-                      >
-                        {item?.name}
-                      </DropdownMenuCheckboxItem>
-                    ))}
+                    {store?.productCategories?.map(
+                      (item: TProductCategories) => (
+                        <DropdownMenuCheckboxItem
+                          onClick={() => handleCategoryChange(item._id)}
+                          className="mx-3 hover:bg-gray-200 cursor-pointer"
+                          key={item._id}
+                        >
+                          {item?.name}
+                        </DropdownMenuCheckboxItem>
+                      )
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      className="flex items-center gap-2"
+                    >
                       <ListOrderedIcon className="w-4 h-4" />
                       Sort
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-56 bg-white z-50">
-                    <DropdownMenuLabel className="mx-3 mt-2">Sort by</DropdownMenuLabel>
+                    <DropdownMenuLabel className="mx-3 mt-2">
+                      Sort by
+                    </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuRadioGroup className="" defaultValue="featured">
+                    <DropdownMenuRadioGroup
+                      className=""
+                      defaultValue="featured"
+                    >
                       {sortOptions?.map((item) => (
                         <DropdownMenuRadioItem
                           onClick={() => handleSortChange(item.value)}
@@ -166,17 +204,18 @@ function ProductsListing({ store }: { store: TShop }) {
                 key={product.id}
                 className="bg-white flex flex-col justify-between dark:bg-gray-950 rounded-lg shadow-sm hover:shadow-lg overflow-hidden"
               >
-                <Link href={`/shop/${store.store._id}/single-product-view/${product._id}`}>
-                <div className="relative cursor-pointer w-full h-72">
-                
-                  <Image
-                    src={product.images[0]}
-                    alt={product.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+                <Link
+                  href={`/shop/${store.store._id}/single-product-view/${product._id}`}
+                >
+                  <div className="relative cursor-pointer w-full h-72">
+                    <Image
+                      src={product.images[0]}
+                      alt={product.name}
+                      layout="fill"
+                      objectFit="cover"
+                      className="hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </Link>
 
                 <div className="p-4 mt-4">
@@ -189,7 +228,12 @@ function ProductsListing({ store }: { store: TShop }) {
                       <PiCurrencyInrBold size={20} />
                       {product.price.toFixed(2)}
                     </span>
-                    <Button size="sm">Add to Cart</Button>
+                    <Button
+                      size="sm"
+                      onClick={() => addToCartHandler(product._id)}
+                    >
+                      Add to Cart
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -202,7 +246,6 @@ function ProductsListing({ store }: { store: TShop }) {
                 {currentPage > 1 && (
                   <PaginationItem>
                     <PaginationPrevious
-                  
                       onClick={() => handlePageChange(currentPage - 1)}
                     />
                   </PaginationItem>
@@ -210,7 +253,6 @@ function ProductsListing({ store }: { store: TShop }) {
                 {Array.from({ length: totalPages }, (_, index) => (
                   <PaginationItem key={index}>
                     <PaginationLink
-                     
                       isActive={index + 1 === currentPage}
                       onClick={() => handlePageChange(index + 1)}
                     >
@@ -221,7 +263,6 @@ function ProductsListing({ store }: { store: TShop }) {
                 {currentPage < totalPages && (
                   <PaginationItem>
                     <PaginationNext
-                    
                       onClick={() => handlePageChange(currentPage + 1)}
                     />
                   </PaginationItem>

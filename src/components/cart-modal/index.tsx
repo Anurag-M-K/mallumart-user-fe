@@ -5,7 +5,7 @@
  */
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import placeholder from "/public/placeholder.svg";
 import Image from "next/image";
@@ -20,42 +20,91 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "../ui/card";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/utils/AuthContext";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCartByStoreId, removeCartByStoreId } from "@/data/cart";
 
-export default function CartModal() {
-  const [cart, setCart] = useState([
+export default function CartModal({
+  storeId,
+  storeWhatsapp,
+}: {
+  storeId: string;
+  storeWhatsapp: any;
+}) {
+  const router = useRouter();
+  const { user } = useAuth();
+  const [cart, setCart] = useState<
     {
-      id: 1,
-      name: "Cozy Blanket",
-      price: 29.99,
-      quantity: 2,
-    },
-  ]);
-  const handleQuantityChange = (id:any, quantity:any) => {
+      productId: {
+        _id: string;
+        name: string;
+        images: string[];
+        description: string;
+        price: number;
+        offerPrice: number;
+        category: string;
+        isActive: boolean;
+        isPending: boolean;
+        store: string;
+        createdAt: string;
+        updatedAt: string;
+        __v: number;
+      };
+      quantity: number;
+      _id: string;
+    }[]
+  >([]);
+
+  const { data, isPending } = useQuery({
+    queryKey: ["cart", storeId],
+    queryFn: () => fetchCartByStoreId(storeId),
+  });
+
+  useEffect(() => {
+    if (!isPending && data) {
+      setCart(data);
+    }
+  }, [data, isPending]);
+
+  const handleQuantityChange = (id: any, quantity: any) => {
     setCart(
-      cart.map((item) => (item.id === id ? { ...item, quantity } : item))
+      cart.map((item) => (item._id === id ? { ...item, quantity } : item))
     );
   };
 
-  const handleRemoveItem = (id:any) => {
-    setCart(cart.filter((item) => item.id !== id));
+  const handleRemoveItem = (id: any) => {
+    setCart(cart.filter((item) => item._id !== id));
   };
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     const cartItems = cart
-      .map((item) => `*${item.name}* - Quantity: ${item.quantity}`)
+      .map((item) => `*${item.productId.name}* - Quantity: ${item.quantity}`)
       .join("\n");
     const total = cart.reduce(
-      (acc, item) => acc + item.price * item.quantity,
+      (acc, item) =>
+        acc +
+        (item.productId.offerPrice ?? item.productId.price) * item.quantity,
       0
     );
-    const message = `Here is your cart:\n\n${cartItems}\n\nTotal: $${total.toFixed(
+    const message = `Hello, I would like to order following products:\n\n${cartItems}\n\nTotal: ₹${total.toFixed(
       2
-    )}\n\nClick the link to complete your purchase: https://wa.me/9995278914`;
-    window.open(`https://wa.me/9995278914?text=${encodeURIComponent(message)}`);
+    )}`;
+    window.open(`https://wa.me/${storeWhatsapp}?text=${encodeURIComponent(message)}`);
+
+    await removeCartByStoreId(storeId);
   };
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">View Cart</Button>
+      <DialogTrigger
+        onClick={() => {
+          if (!user) router.push("/auth/login");
+        }}
+        asChild
+      >
+        <Button size="lg" variant="outline" className="bg-blue-600 text-white">
+          <ShoppingCartIcon className="w-4 h-4 mr-2" />
+          Checkout
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
@@ -67,22 +116,26 @@ export default function CartModal() {
         <div className="grid gap-4 py-4">
           {cart.length > 0 ? (
             <div className="grid gap-4">
-              {cart.map((item) => (
+              {cart.map((item, index) => (
                 <Card
-                  key={item.id}
+                  key={item._id}
                   className="grid grid-cols-[auto_1fr_auto] items-center gap-4"
                 >
                   <Image
-                    src={placeholder}
-                    alt="helo"
+                    src={
+                      index === 1 ? item.productId?.images?.[0] : placeholder
+                    }
+                    alt="product image"
                     width={80}
                     height={80}
-                    className="w-full overflow-hidden  object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-20 h-20 overflow-hidden object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="grid gap-1">
-                    <h3 className="font-medium">{item.name}</h3>
+                    <h3 className="font-medium">{item.productId.name}</h3>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                      ${item.price.toFixed(2)}
+                      &#x20b9;
+                      {item.productId.offerPrice.toFixed(2) ??
+                        item.productId.price.toFixed(2)}
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -90,7 +143,7 @@ export default function CartModal() {
                       size="icon"
                       variant="ghost"
                       onClick={() =>
-                        handleQuantityChange(item.id, item.quantity - 1)
+                        handleQuantityChange(item._id, item.quantity - 1)
                       }
                       disabled={item.quantity === 1}
                     >
@@ -101,7 +154,7 @@ export default function CartModal() {
                       size="icon"
                       variant="ghost"
                       onClick={() =>
-                        handleQuantityChange(item.id, item.quantity + 1)
+                        handleQuantityChange(item._id, item.quantity + 1)
                       }
                     >
                       <PlusIcon className="w-4 h-4" />
@@ -109,7 +162,7 @@ export default function CartModal() {
                     <Button
                       size="icon"
                       variant="ghost"
-                      onClick={() => handleRemoveItem(item.id)}
+                      onClick={() => handleRemoveItem(item._id)}
                     >
                       <XIcon className="w-4 h-4" />
                     </Button>
@@ -136,7 +189,7 @@ export default function CartModal() {
   );
 }
 
-function MinusIcon(props:any) {
+function MinusIcon(props: any) {
   return (
     <svg
       {...props}
@@ -155,7 +208,7 @@ function MinusIcon(props:any) {
   );
 }
 
-function PlusIcon(props:any) {
+function PlusIcon(props: any) {
   return (
     <svg
       {...props}
@@ -175,7 +228,7 @@ function PlusIcon(props:any) {
   );
 }
 
-function ShoppingCartIcon(props:any) {
+function ShoppingCartIcon(props: any) {
   return (
     <svg
       {...props}
@@ -196,7 +249,7 @@ function ShoppingCartIcon(props:any) {
   );
 }
 
-function XIcon(props:any) {
+function XIcon(props: any) {
   return (
     <svg
       {...props}

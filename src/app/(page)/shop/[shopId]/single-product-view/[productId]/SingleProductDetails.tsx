@@ -1,11 +1,28 @@
 "use client";
-import { TProduct } from "@/app/type";
 import React, { useState } from "react";
+import { useRouter } from 'next/navigation'
+import { TProduct } from "@/app/type";
 import { PiCurrencyInrBold } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
+import { addToCart } from "@/data/cart";
+import { useAuth } from "@/utils/AuthContext";
+import { useToast } from "@/components/ui/use-toast";
 
 function SingleProductDetails({ product }: { product: TProduct }) {
+  const { user } = useAuth()
+  const router = useRouter()
+  const { toast } = useToast()
+
   const [currentImage, setCurrentImage] = useState(product.images[0]);
+
+  async function addToCartHandler() {
+    if(!user) return router.push('/auth/login')
+    await addToCart(product._id)
+    toast({
+      description: "Product added to cart.",
+    })
+  }
+
   return (
     <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div className="grid gap-4">
@@ -57,7 +74,7 @@ function SingleProductDetails({ product }: { product: TProduct }) {
         </div>
         <div className="text-sm leading-loose text-gray-500 dark:text-gray-400"></div>
         <div className="flex gap-x-2">
-          <Button size="lg" className=" w-full">
+          <Button size="lg" onClick={addToCartHandler} className=" w-full">
             Add to Cart
           </Button>
         </div>

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import CartModal from "@/components/cart-modal";
 import { TShop } from "@/app/type";
-import DOMPurify from "dompurify";
 import { getDirectionUrl } from "@/lib/utils";
 
 export default function ShopDetails({ store }: { store: TShop }) {
@@ -25,15 +24,16 @@ export default function ShopDetails({ store }: { store: TShop }) {
               <h2 className="text-2xl md:text-3xl font-bold">
                 {store?.store?.storeName}
                 <div className="mt-4">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex items-center gap-2"
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={getDirectionUrl(
+                      store?.store?.location?.coordinates[1],
+                      store?.store?.location?.coordinates[0]
+                    )}
                   >
-                    <ShoppingCartIcon className="w-4 h-4" />
-                    Go to Cart (0)
-                  </Button>
-                  <CartModal />
+                    <Button size="sm">Get Directions</Button>
+                  </a>
                 </div>
               </h2>
 
@@ -57,19 +57,12 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   <p>{store?.store?.phone}</p>
                 </div>
                 <div className="grid gap-1">
-                  <span className="text-gray-500 dark:text-gray-400">
-                    Directions
-                  </span>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={getDirectionUrl(
-                      store?.store?.location?.coordinates[1],
-                      store?.store?.location?.coordinates[0]
-                    )}
-                  >
-                    <Button size="sm">Get Directions</Button>
-                  </a>
+                  <span className="text-gray-500 dark:text-gray-400"></span>
+                  {/* TODO: need to update the phone with whatsapp, once added */}
+                  <CartModal
+                    storeId={store.store._id}
+                    storeWhatsapp={store.store.phone}
+                  />
                 </div>
               </div>
             </div>
@@ -77,26 +70,5 @@ export default function ShopDetails({ store }: { store: TShop }) {
         </div>
       </section>
     </div>
-  );
-}
-
-function ShoppingCartIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="8" cy="21" r="1" />
-      <circle cx="19" cy="21" r="1" />
-      <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-    </svg>
   );
 }
