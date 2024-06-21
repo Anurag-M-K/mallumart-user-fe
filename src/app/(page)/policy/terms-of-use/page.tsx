@@ -147,7 +147,10 @@ function page() {
           <span className="text-yellow-400">Mallumart.com</span>, you could
           contact us by visiting:{" "}
           <span className="text-yellow-400">
-            <Link target="_blank" href="www.Mallumart.com/help/contact-us">
+            <Link
+              target="_blank"
+              href="https://www.Mallumart.com/help/contact-us"
+            >
               www.Mallumart.com/help/contact-us
             </Link>
           </span>
