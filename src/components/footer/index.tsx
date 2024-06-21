@@ -23,8 +23,9 @@ export default function Footer() {
     <><footer className="bg-[#193b4e] text-white py-12 dark:bg-gray-800">
       <div className="container max-w-[1380px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div className="grid gap-4">
-          <Link href="#" className="flex items-center justify-center gap-2" prefetch={false}>
-            <MountainIcon className="h-6 w-6" />
+          <Link href="/" className="flex items-center justify-center gap-2" prefetch={false}>
+            {/* <MountainIcon className="h-6 w-6" /> */}
+            <img src="/logo-mallumart.png" className="w-10 h-10 bg-white rounded-full p-1" alt="" />
             <span className="text-lg font-semibold text-center">Mallu Mart</span>
           </Link>
           <p className="text-white dark:text-gray-400 text-justify">
