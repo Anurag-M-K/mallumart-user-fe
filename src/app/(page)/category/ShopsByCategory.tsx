@@ -96,7 +96,7 @@ export default function ShopsByCategory({
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6">
           {/* {isLoading && <p>Loading...</p>}
           {isError && <p>Error loading shops</p>} */}
           {state?.stores?.length > 0 ? (
@@ -105,7 +105,7 @@ export default function ShopsByCategory({
                 key={product?._id}
                 className="group bg-white dark:bg-gray-950 rounded-lg shadow-sm hover:shadow-md transition-shadow"
               >
-                <Card className="w-full max-w-sm p-6 grid gap-6">
+                <Card className="w-full max-w-sm px-6 py-2 grid gap-6">
                   <div className="grid h-full gap-4">
                     <img
                       src={product?.shopImgUrl}
@@ -140,8 +140,8 @@ export default function ShopsByCategory({
                         <MdOutlinePhoneAndroid className="w-4 h-4" />
                         <span>{product?.phone}</span>
                       </div>
-                      <div className="flex gap-x-2 my-2">
-                        <a
+                      <div className="gap-y-2 sm:gap-y-0 flex-col flex sm:flex-row  gap-x-2 my-2">
+                        <Link
                           className="w-full"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -156,7 +156,7 @@ export default function ShopsByCategory({
                           >
                             Get Directions
                           </Button>
-                        </a>
+                        </Link>
                         <Link href={`/shop/${product._id}`}>
                           <Button
                             size="sm"

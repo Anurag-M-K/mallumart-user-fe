@@ -43,6 +43,7 @@ export default function HeaderNew() {
   });
 
   const logoutUser = () => {
+    console.log("reached logout fun")
     localStorage.removeItem("accessToken");
     logout();
   };
