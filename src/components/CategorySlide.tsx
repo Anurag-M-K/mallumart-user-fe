@@ -7,7 +7,6 @@ import { DynamicIcon } from "./landing/DynamicIcon";
 import Image from "next/image";
 
 function CategorySlide({ category, index }: { category: any; index: any }) {
-  console.log("category ", category);
   return (
     <>
       <Link

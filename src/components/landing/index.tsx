@@ -14,20 +14,23 @@ import { fetchAdvertisements, fetchCategories } from "@/data/advertisement";
 import { TAdvertisement } from "@/app/type";
 import CategorySlide from "../CategorySlide";
 
+type TCarousalItem = {
+  img:string;
+  _id:number;
+}
 export default async function Landing() {
   const { advertisement } = await getAdvertisementData();
   const categories:any  = await getCategoriesData();
-console.log("categories ",categories.categories)
   
-  const carousalItem = [
+  const carousalItem:TCarousalItem[] = [
     {img:"/slider.png",_id:1},
     {img:"/slider2.png",_id:2},
     {img:"/slider3.png",_id:3},
   ]
-  const mbcCrousalItem = [
-    {img:"/mbslider3.png",_id:1},
-    {img:"/mbslider1.png",_id:2},
-    {img:"/mbslider3.png",_id:3},
+  const mbcCrousalItem:TCarousalItem[] = [
+    {img:"/slider-img.png",_id:1},
+    {img:"/slider-img2.png",_id:2},
+    {img:"/slider-img3.png",_id:3},
   ]
 
   const mainCategories = categories?.categories?.filter((item:any)=>item.isShowOnHomePage === true)
@@ -40,17 +43,9 @@ console.log("categories ",categories.categories)
           }}
           className="w-full h-auto max-w-[1340px] mx-auto relative"
         >
-            <CarouselContent className="md:hidden flex h-[500px] mt-4 relative bg-black">
-            {/* {advertisement?.map((item: TAdvertisement) => ( */}
-            {mbcCrousalItem?.map((item: any) => (
-              <CarouselItem key={item._id} className="relative w-full h-full">
-                {/* <Image
-                  src={item.image}
-                  alt={`Advertisement ${item._id}`}
-                  layout="fill"
-                  objectFit="cover"
-                  className="w-full h-full overflow-hidden object-cover group-hover:scale-105 transition-transform duration-300"
-                /> */}
+            <CarouselContent className="md:hidden flex h-[500px] mt-4 relative bg-black overflow-x-auto snap-x snap-mandatory">
+            {mbcCrousalItem?.map((item: TCarousalItem) => (
+              <CarouselItem key={item._id} className="relative w-full h-full flex-shrink-0 snap-center">
                 <Image
                   src={item.img}
                   alt={`Advertisement ${item._id}`}
