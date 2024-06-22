@@ -51,7 +51,7 @@ function ShopsNearByYou() {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-2">
             {shopsNearBy
               ?.slice(0, viewAll ? shopsNearBy.length : 8)
               .map((shop: any) => (

@@ -7,8 +7,9 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 
 export default function ShopCard(shop: any) {
+  console.log("shop ",shop)
   return (
-    <Card className="w-full max-w-sm px-2 py-6 grid  gap-6">
+    <Card className="w-full max-w-sm px-4 py-2  grid  gap-6">
       <div className="flex flex-col  items-between gap-4">
         <div className="w-full h-66">
           <img
@@ -19,7 +20,11 @@ export default function ShopCard(shop: any) {
         </div>
         <div className="grid gap-2">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold">{shop.shop.storeName}</h3>
+            <h3     style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }} className="text-lg font-semibold">{shop.shop.storeName}</h3>
             {/* <div className="flex items-center gap-2">
               <span className="text-[10px] border px-2 rounded-full border-gray-400 text-gray-600 sh font-medium">
                 {shop.shop.wholeSale && shop.shop.retail
@@ -50,11 +55,11 @@ export default function ShopCard(shop: any) {
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <DynamicIcon
               className="w-4 h-4"
-              iconName={shop.shop.category.icon}
+              iconName={shop.shop.category.icon }
             />
-            <span>{shop.shop.category.name}</span>
+            <span>{shop.shop.category.name || shop.shop.phone}</span>
           </div>
-          <div className=" sm:flex gap-y-2 gap-x-2 my-2">
+          <div className=" sm:flex  gap-x-2 my-2">
             <Link
               className="w-full"
               target="_blank"
@@ -66,7 +71,7 @@ export default function ShopCard(shop: any) {
             >
               <Button
                 size="sm"
-                className="w-full bg-gray-700 hover:bg-gray-600"
+                className="w-full bg-gray-700 rounded-full hover:bg-gray-600"
               >
                 Get Directions
               </Button>
@@ -74,7 +79,7 @@ export default function ShopCard(shop: any) {
             <Link href={`/shop/${shop.shop._id}`}>
               <Button
                 size="sm"
-                className="bg-white mt-2 sm:mt-0 text-black hover:bg-gray-100 border-black border w-full"
+                className="rounded-full bg-white mt-2 sm:mt-0 text-black hover:bg-gray-100 border-black border w-full"
               >
                 View Shop
               </Button>

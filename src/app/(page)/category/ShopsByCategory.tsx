@@ -12,6 +12,7 @@ import { MdOutlinePhoneAndroid } from "react-icons/md";
 import { useStoreContext } from "@/utils/StoreContext";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import ShopCard from "@/components/shopcard";
 
 export default function ShopsByCategory({
   categories,
@@ -105,7 +106,7 @@ export default function ShopsByCategory({
                 key={product?._id}
                 className="group bg-white dark:bg-gray-950 rounded-lg shadow-sm hover:shadow-md transition-shadow"
               >
-                <Card className="w-full max-w-sm px-6 py-2 grid gap-6">
+                {/* <Card className="w-full max-w-sm px-6 py-2 grid gap-6">
                   <div className="grid h-full gap-4">
                     <img
                       src={product?.shopImgUrl}
@@ -114,7 +115,11 @@ export default function ShopsByCategory({
                     />
                     <div className="grid gap-2">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold">
+                        <h3   style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }} className="text-lg font-semibold">
                           {product?.storeName}
                         </h3>
                         <div className="flex items-center gap-2">
@@ -129,7 +134,11 @@ export default function ShopsByCategory({
                           </span>
                         </div>
                       </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
+                      <div   style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }} className="text-sm text-gray-500 dark:text-gray-400">
                         {product?.address}
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -168,7 +177,8 @@ export default function ShopsByCategory({
                       </div>
                     </div>
                   </div>
-                </Card>
+                </Card> */}
+                 <ShopCard shop={product} />
               </div>
             ))
           ) : (
