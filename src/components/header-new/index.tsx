@@ -41,13 +41,6 @@ export default function HeaderNew() {
     queryKey: ["category"],
     queryFn: () => fetchingCategories(),
   });
-
-  const logoutUser = () => {
-    console.log("reached logout fun")
-    localStorage.removeItem("accessToken");
-    logout();
-  };
-
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
@@ -111,23 +104,23 @@ export default function HeaderNew() {
           </Typography> */}
         </Link>
         {!user && (
-            <div className="md:hidden flex items-center gap-2">
-              <Link
-                href="/auth/login"
-                className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
-                prefetch={false}
-              >
-                Login
-              </Link>
-              <Link
-                href="/auth/register"
-                className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
-                prefetch={false}
-              >
-                Signup
-              </Link>
-            </div>
-          )}
+          <div className="md:hidden flex items-center gap-2">
+            <Link
+              href="/auth/login"
+              className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+              prefetch={false}
+            >
+              Login
+            </Link>
+            <Link
+              href="/auth/register"
+              className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+              prefetch={false}
+            >
+              Signup
+            </Link>
+          </div>
+        )}
         <div className="flex flex-row gap-x-3 max-w-md">
           <form className="" onSubmit={handleOnSubmit}>
             <div className="relative">
@@ -143,31 +136,34 @@ export default function HeaderNew() {
                 placeholder="Search products..."
                 className="placeholder-white w-full text-gray-600 border-gray-700  rounded-md sm:px-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
               />
-              
             </div>
-
           </form>
-          
+
           <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-2 w-full md:w-auto">
-          {/* <IoMdMenu className="h-5 w-5 hover:" /> */}
-          <span className="text-white">Shop by Category</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-full md:w-56">
-        {data?.map((item: TCategories) => (
-          <DropdownMenuItem key={item._id} className="w-full">
-            <Link href={`/category?category=${item._id}`} className="w-full text-black">
-              {item.name}
-            </Link>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-2 w-full md:w-auto"
+              >
+                {/* <IoMdMenu className="h-5 w-5 hover:" /> */}
+                <span className="text-white">Shop by Category</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-full md:w-56">
+              {data?.map((item: TCategories) => (
+                <DropdownMenuItem key={item._id} className="w-full">
+                  <Link
+                    href={`/category?category=${item._id}`}
+                    className="w-full text-black"
+                  >
+                    {item.name}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-4">
-
           {!user && (
             <div className="hidden md:flex items-center gap-2">
               <Link
@@ -192,8 +188,11 @@ export default function HeaderNew() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="flex justify-center items-center">
-                <FaRegUserCircle size={24} className="text-gray-700 cursor-pointer" />
-              </Avatar> 
+                <FaRegUserCircle
+                  size={24}
+                  className="text-gray-700 cursor-pointer"
+                />
+              </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               {/* <DropdownMenuLabel>Account</DropdownMenuLabel> */}
@@ -227,7 +226,7 @@ export default function HeaderNew() {
               <DropdownMenuItem className="text-red-600">
                 <div className="flex cursor-pointer w-full items-center">
                   <LogOutIcon className="mr-2 h-4 w-4" />
-                  <span onClick={logoutUser}>Logout</span>
+                  <span onClick={() => logout()}>Logout</span>
                 </div>
               </DropdownMenuItem>
             </DropdownMenuContent>

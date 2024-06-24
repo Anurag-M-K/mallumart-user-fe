@@ -29,8 +29,8 @@ import { useAuth } from "@/utils/AuthContext";
 export const LoginForm = () => {
   const router = useRouter();
   const [error, setError] = useState<any>("");
-  const [loading,setLoading] = useState<boolean>(false)
-  const { login,user } = useAuth();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { login, user } = useAuth();
   const form = useForm<schemaType>({
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -40,21 +40,19 @@ export const LoginForm = () => {
     },
   });
 
-    console.log("user from login page ",user)
   const {
     formState: { isValid, errors, dirtyFields },
   } = form;
 
   const onSubmit = async (data: schemaType) => {
-    setLoading(true)
-    const res:any = await signIn(data.email, data.password);
+    setLoading(true);
+    const res: any = await signIn(data.email, data.password);
     login(res);
     if (res?.statusText === "ok") {
       localStorage.setItem("accessToken", res.token);
       router.push("/");
-      setLoading(false)
     } else if (res.login === false) {
-      setLoading(false)
+      setLoading(false);
       setError(res.message);
     }
   };
@@ -79,7 +77,7 @@ export const LoginForm = () => {
         )}
         <CardFooter className="flex flex-col">
           <Button type="submit" className="w-full">
-           {loading ? "Loading..." : "Login"}
+            {loading ? "Loading..." : "Login"}
           </Button>
           {/* <button
             type="submit"
