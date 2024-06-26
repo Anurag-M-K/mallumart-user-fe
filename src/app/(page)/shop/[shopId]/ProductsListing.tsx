@@ -116,7 +116,7 @@ function ProductsListing({ store }: { store: TShop }) {
               <form onSubmit={handleOnSubmit} action="">
                 <div className="relative flex items-center sm:w-full">
                   <Input
-                    type="search"
+                    type="text"
                     onChange={handleSearch}
                     placeholder="Search products..."
                     className="pl-8 w-full sm:w-full"
@@ -125,7 +125,7 @@ function ProductsListing({ store }: { store: TShop }) {
                     type="submit"
                     className="absolute right-2.5 cursor-pointer"
                   >
-                    <IoSearch size={24} color="gray" />
+                    <IoSearch size={24}  color="gray" />
                   </button>
                 </div>
               </form>
