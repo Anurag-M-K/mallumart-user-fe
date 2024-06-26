@@ -52,7 +52,7 @@ type TShop = {
       name: string;
       _id: string;
     };
-    district: StringValidation;
+    district: string;
     addedProducts: any; //add here type
     createdAt: string;
     bio: string;

@@ -42,7 +42,7 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   <span className="text-gray-500 dark:text-gray-400">
                     Address
                   </span>
-                  <p>{store?.store?.address}</p>
+                  <p>{store?.store?.address}, {store?.store?.district}</p>
                 </div>
                 <div className="grid gap-1">
                   <span className="text-gray-500 dark:text-gray-400">
