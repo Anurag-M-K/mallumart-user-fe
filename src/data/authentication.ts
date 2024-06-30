@@ -12,11 +12,11 @@ export const register = async (values: any) => {
   }
 };
 
-export const otpVerify = async (email: string, otp: any) => {
+export const otpVerify = async (phone:string, otp: any) => {
   try {
     const res = await clientFetch(`user/verify-otp`, {
       method: "POST",
-      body: { email, otp },
+      body: { phone, otp },
     });
     return res;
   } catch (error) {

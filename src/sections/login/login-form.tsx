@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "@/data/authentication";
 import { useState } from "react";
 import { useAuth } from "@/utils/AuthContext";
+import { Spinner } from "flowbite-react";
 
 // ----------------------------------------------------------------------------------------
 
@@ -59,10 +60,10 @@ export const LoginForm = () => {
 
   return (
     <FormProvider onSubmit={onSubmit} form={form}>
-      <Card className="w-full max-w-md p-6 space-y-4">
+      <Card className="w-full shadow-md max-w-md p-6 space-y-4">
         <CardHeader>
           <CardTitle>Login</CardTitle>
-          <CardDescription>Enter your credentials.</CardDescription>
+          {/* <CardDescription>Enter your credentials.</CardDescription> */}
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-2">
@@ -77,7 +78,7 @@ export const LoginForm = () => {
         )}
         <CardFooter className="flex flex-col">
           <Button type="submit" className="w-full">
-            {loading ? "Loading..." : "Login"}
+            {loading ? <Spinner/> : "Login"}
           </Button>
           {/* <button
             type="submit"

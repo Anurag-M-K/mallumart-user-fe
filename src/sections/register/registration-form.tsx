@@ -13,11 +13,10 @@ import { Typography } from "@/components/Typography/Typography";
 import Link from "next/link";
 import { otpVerify, register } from "@/data/authentication";
 import { useRouter } from "next/navigation";
+import { Spinner } from "flowbite-react";
 
 export const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
-  const [otpSent, setOtpSent] = useState(false);
-  const [email, setEmail] = useState("");
   const router = useRouter();
 
   const form = useForm<schemaType>({
@@ -28,7 +27,6 @@ export const RegistrationForm = () => {
       email: "",
       phone: 0,
       password: "",
-      otp: "",
     },
   });
 
@@ -43,12 +41,9 @@ export const RegistrationForm = () => {
     const password = form.getValues("password");
     try {
      const res =  await register({ phone, email, fullName, password });
-     console.log("res ",res)
-    //  if(res.status===201){
-      router.push("/auth/login")
-    //  }
-      // setOtpSent(true);
-      // setEmail(email);
+     if(res.otpSend){
+      router.push(`/auth/${phone}`)
+     }
     } catch (error) {
       console.error("Error sending OTP:", error);
     }
@@ -57,22 +52,21 @@ export const RegistrationForm = () => {
   const onSubmit = async (data: schemaType) => {
     try {
       setLoading(true);
-      console.log("Data", data);
-     const res =  await sendOtp();  // Ensure sendOtp is awaited
-     console.log("res ",res)
+     const res:any =  await sendOtp(); 
+     
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.log("error while submiting ",error);
     }
   };
 
   return (
     <FormProvider onSubmit={form.handleSubmit(onSubmit)} form={form}>
-      <Card className="w-full max-w-md p-6 space-y-4">
+      <Card className="w-full shadow-md max-w-md p-6 space-y-4">
         <CardHeader>
           <CardTitle>Create an Account</CardTitle>
-          <CardDescription>Enter your information to get started.</CardDescription>
+          {/* <CardDescription>Enter your information to get started.</CardDescription> */}
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-2">
@@ -114,19 +108,10 @@ export const RegistrationForm = () => {
               />
             </div>
           </div>
-          {/* {otpSent && (
-            <div className="grid gap-2">
-              <RHFOTPField
-                name="otp"
-                label="One-Time Password"
-                helperText="Please enter the one-time password sent to your number"
-              />
-            </div>
-          )} */}
         </CardContent>
         <CardFooter className="flex flex-col">
           <Button type="submit" className="w-full">
-            {loading ? "Saving..." : "Create Account"}
+            {loading ? <Spinner/> :  "Create Account"}
           </Button>
           <p className="text-sm font-light mt-3 text-gray-500 dark:text-gray-400">
             Already have an account?{" "}
