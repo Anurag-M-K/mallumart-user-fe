@@ -41,7 +41,6 @@ function ProductsListing({ store }: { store: TShop }) {
     search: "",
   });
   const [products, setProducts] = useState<any>([]); // Add proper type
-  console.log("🚀 ~ ProductsListing ~ products:", products);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -125,7 +124,7 @@ function ProductsListing({ store }: { store: TShop }) {
                     type="submit"
                     className="absolute right-2.5 cursor-pointer"
                   >
-                    <IoSearch size={24}  color="gray" />
+                    <IoSearch size={24} color="gray" />
                   </button>
                 </div>
               </form>
@@ -226,7 +225,14 @@ function ProductsListing({ store }: { store: TShop }) {
                   <div className="flex items-center justify-between">
                     <span className="text-lg flex items-center mx-2 font-semibold">
                       <PiCurrencyInrBold size={20} />
-                      {product.price.toFixed(2)}
+                      {product?.offerPrice !== 0 ? (
+                        <>
+                          {product.offerPrice}
+                          <small className="ml-2"><del>{product.price}</del></small>
+                        </>
+                      ) : (
+                        <small>{product.price}</small>
+                      )}
                     </span>
                     <Button
                       size="sm"
