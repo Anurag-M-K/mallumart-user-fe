@@ -12,8 +12,8 @@ export const fetchCategories = async (top?:boolean) => {
     })
 }
 
-export const fetchStoreById = async (id:string) =>{
-    return await serverFetch(`store/${id}`,false, {
+export const fetchStoreByUniqueName = async (uniqueName:string) =>{
+    return await serverFetch(`store/${uniqueName}`,false, {
         cache:"no-store"
     })
 }

@@ -76,7 +76,7 @@ export default function ShopCard(shop: any) {
                 Get Directions
               </Button>
             </Link>
-            <Link href={`/shop/${shop.shop._id}`}>
+            <Link href={`/shop/${shop.shop.uniqueName}`}>
               <Button
                 size="sm"
                 className="rounded-full bg-white mt-2 sm:mt-0 text-black hover:bg-gray-100 border-black border w-full"
