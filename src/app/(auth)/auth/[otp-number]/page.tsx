@@ -51,7 +51,7 @@ export default function Component() {
       } else {
         setErrorMessage(res.message);
       }
-      setLoading(false);
+      // setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log(error);

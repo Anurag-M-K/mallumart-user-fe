@@ -54,7 +54,7 @@ export const RegistrationForm = () => {
       setLoading(true);
      const res:any =  await sendOtp(); 
      
-      setLoading(false);
+      // setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log("error while submiting ",error);
