@@ -48,7 +48,7 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   <span className="text-gray-500 dark:text-gray-400">
                     Category
                   </span>
-                  <p>{store?.store?.category.name}</p>
+                  <p>{store?.store?.category?.name}</p>
                 </div>
                 <div className="grid gap-1">
                   <span className="text-gray-500 dark:text-gray-400">
@@ -60,8 +60,8 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   <span className="text-gray-500 dark:text-gray-400"></span>
                   {/* TODO: need to update the phone with whatsapp, once added */}
                   <CartModal
-                    storeId={store.store._id}
-                    storeWhatsapp={store.store.phone}
+                    storeId={store?.store?._id}
+                    storeWhatsapp={store?.store?.phone}
                   />
                 </div>
               </div>
