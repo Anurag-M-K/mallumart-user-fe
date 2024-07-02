@@ -24,6 +24,8 @@ import { useState } from "react";
 import { useStoreContext } from "@/utils/StoreContext";
 import { useRouter } from "next/navigation";
 import { IoMdMenu } from "react-icons/io";
+import { ButtonGroup } from "flowbite-react";
+import { BiCategory } from "react-icons/bi";
 
 export default function HeaderNew() {
   const { logout, user } = useAuth();
@@ -95,7 +97,7 @@ export default function HeaderNew() {
           </Link>
         </div>
       </div>
-      <div className="container mx-auto flex items-center justify-between flex-wrap gap-4  px-6 md:px-8">
+      <div className="container  mx-auto flex items-center justify-between flex-wrap gap-4  px-6 md:px-8">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
           {/* <MountainIcon className="h-6 w-6" /> */}
           <Image alt="lOGO" src={"/logo-no-bg.png"} width={80} height={80} />
@@ -121,32 +123,19 @@ export default function HeaderNew() {
             </Link>
           </div>
         )}
-        <div className="flex flex-row gap-x-3 max-w-md">
-          <form className="" onSubmit={handleOnSubmit}>
-            <div className="relative">
-              <button
-                className="absolute top-1/2 -translate-y-1/2 h-4 w-4"
-                type="submit"
-              >
-                <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" />
-              </button>
-              <Input
-                onChange={handleSearch}
-                type="text"
-                placeholder="Search products..."
-                className="placeholder-white w-full text-gray-600 border-gray-700  rounded-md sm:px-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
-              />
-            </div>
-          </form>
 
-          <DropdownMenu>
+
+
+        <div className="flex flex-row  gap-x-2 w-screen  max-w-md">
+          
+        <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                variant="ghost"
-                className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-2 w-full md:w-auto"
+                
+                className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-x-2  md:w-auto"
               >
-                {/* <IoMdMenu className="h-5 w-5 hover:" /> */}
-                <span className="text-white">Shop by Category</span>
+                <BiCategory className="h-5 w-5 hover:white" />
+                <span className="text-white">All</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-full md:w-56">
@@ -162,7 +151,26 @@ export default function HeaderNew() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+          <form className="w-full" onSubmit={handleOnSubmit}>
+            <div className="relative w-full">
+              <Input
+                onChange={handleSearch}
+                type="text"
+                placeholder="Search products..."
+                className="placeholder-white w-full text-gray-600 border-gray-700  rounded-md  py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+              />
+              <button
+                className="absolute right-5 top-1/2  -translate-y-1/2 h-4 w-4"
+                type="submit"
+              >
+                <SearchIcon className="absolute text-gray-700 left-3 top-1/2 -translate-y-1/2 h-4 w-4" />
+              </button>
+            </div>
+          </form>
+
         </div>
+
+
         <div className="flex flex-col sm:flex-row items-center gap-4">
           {!user && (
             <div className="hidden md:flex items-center gap-2">
