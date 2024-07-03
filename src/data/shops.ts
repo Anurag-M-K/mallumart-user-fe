@@ -54,13 +54,14 @@ export const fetchProducts = async ({
 
 export const fetchShopsByCategory = async ({
   categoryId,
+  currentLocation
 }: {
   categoryId: any;
+  currentLocation:any;
 }) => {
-console.log("category id ===================> ",categoryId)
   try {
     const res = await clientFetch(
-      `store/fetch-store-by-category?categoryId=${categoryId}`
+      `store/fetch-store-by-category?categoryId=${categoryId}&latitude=${currentLocation?.latitude}&longitude=${currentLocation?.longitude}`
     );
     return res;
   } catch (error) {

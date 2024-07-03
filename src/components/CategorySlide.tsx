@@ -1,16 +1,29 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import placeholder from "/public/placeholder.svg";
 import * as Tooltip from "../components/ui/tooltip";
 import { DynamicIcon } from "./landing/DynamicIcon";
 import Image from "next/image";
 
 function CategorySlide({ category, index }: { category: any; index: any }) {
+  const [currentLocation, setCurrentLocation] = useState<any>();
+  
+  const getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      setCurrentLocation({ latitude, longitude });
+    });
+  };
+
+  useEffect(() => {
+    getCurrentLocation();
+  }, []);
+
   return (
     <>
       <Link
-        href={`/category/?category=${category._id}`}
+        href={`/category/?category=${category?._id}&latitude=${currentLocation?.latitude}&longitude=${currentLocation?.longitude}`}
         className="group flex-none  snap-x w-20 md:w-44 relative rounded-lg overflow-hidden"
         prefetch={false}
       >

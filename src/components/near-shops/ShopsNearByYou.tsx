@@ -6,8 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchShopsByCoordinates } from "@/data/shops";
 
 function ShopsNearByYou() {
-  const [currentLocation, setCurrentLocation] = useState<any>();
   const [viewAll, setViewAll] = useState<boolean>(false);
+  const [currentLocation, setCurrentLocation] = useState<any>();
   
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
