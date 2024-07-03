@@ -2,11 +2,9 @@
 import { Icon } from "@iconify/react";
 
 import { ICustomIconfiyIconProps } from "@/interfaces/CustomIconifyIcon/CustomIconifyIcon";
-import { listIcons } from '@iconify/react';
 
 const CustomIconifyIcon = ({ name, className }: ICustomIconfiyIconProps) => {
- console.log("listIcons listIcons ",listIcons())
-  return <Icon icon={"mdi:tshirt-crew"} className={className} />;
+  return <Icon icon={name} className={className} />;
 };
 // mdi:lipstick  -> lipstick
 // mdi:soccer   -> football

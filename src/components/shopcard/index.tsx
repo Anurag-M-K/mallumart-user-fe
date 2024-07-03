@@ -1,13 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import { DynamicIcon } from "../landing/DynamicIcon";
 import { getDirectionUrl } from "@/lib/utils";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import CustomIconifyIcon from "../CustomIconifyIcon/CustomIconifyIcon";
 
 export default function ShopCard(shop: any) {
-  console.log("shop ",shop)
   return (
     <Card className="w-full max-w-sm px-4 py-2  grid  gap-6">
       <div className="flex flex-col  items-between gap-4">
@@ -53,10 +52,7 @@ export default function ShopCard(shop: any) {
             <span>{shop?.shop?.district}</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-            <DynamicIcon
-              className="w-4 h-4"
-              iconName={shop.shop.category.icon }
-            />
+            <CustomIconifyIcon className="w-4 h-4" name={shop.shop.category.icon} />
             <span>{shop.shop.category.name || shop.shop.phone}</span>
           </div>
           <div className=" sm:flex  gap-x-2 my-2">

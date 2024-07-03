@@ -3,8 +3,8 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import placeholder from "/public/placeholder.svg";
 import * as Tooltip from "../components/ui/tooltip";
-import { DynamicIcon } from "./landing/DynamicIcon";
 import Image from "next/image";
+import CustomIconifyIcon from "./CustomIconifyIcon/CustomIconifyIcon";
 
 function CategorySlide({ category, index }: { category: any; index: any }) {
   const [currentLocation, setCurrentLocation] = useState<any>();
@@ -46,9 +46,9 @@ function CategorySlide({ category, index }: { category: any; index: any }) {
           <Tooltip.TooltipProvider key={category._id}>
             <Tooltip.Tooltip>
               <Tooltip.TooltipTrigger asChild>
-                <DynamicIcon
-                  className="sm:text-5xl  text-3xl md:text-7xl"
-                  iconName={category.icon}
+                <CustomIconifyIcon
+                  className="sm:text-5xl text-3xl md:text-7xl"
+                  name={category.icon}
                 />
               </Tooltip.TooltipTrigger>
               <Tooltip.TooltipPortal>
