@@ -32,6 +32,7 @@ export const LoginForm = () => {
   const [error, setError] = useState<any>("");
   const [loading, setLoading] = useState<boolean>(false);
   const { login, user } = useAuth();
+  
   const form = useForm<schemaType>({
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -52,7 +53,7 @@ export const LoginForm = () => {
     if (res?.statusText === "ok") {
       localStorage.setItem("accessToken", res.token);
       router.push("/");
-    } else if (res.login === false) {
+    } else if (res?.login === false) {
       setLoading(false);
       setError(res.message);
     }

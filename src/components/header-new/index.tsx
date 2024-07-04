@@ -26,6 +26,9 @@ import { useRouter } from "next/navigation";
 import { IoMdMenu } from "react-icons/io";
 import { ButtonGroup } from "flowbite-react";
 import { BiCategory } from "react-icons/bi";
+import { MdAccountCircle } from "react-icons/md";
+import { ImProfile } from "react-icons/im";
+import { MdOutlineManageAccounts } from "react-icons/md";
 
 export default function HeaderNew() {
   const { logout, user } = useAuth();
@@ -124,16 +127,10 @@ export default function HeaderNew() {
           </div>
         )}
 
-
-
         <div className="flex flex-row  gap-x-2 w-screen  max-w-md">
-          
-        <DropdownMenu>
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                
-                className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-x-2  md:w-auto"
-              >
+              <Button className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-x-2  md:w-auto">
                 <BiCategory className="h-5 w-5 hover:white" />
                 <span className="text-white">All</span>
               </Button>
@@ -167,9 +164,7 @@ export default function HeaderNew() {
               </button>
             </div>
           </form>
-
         </div>
-
 
         <div className="flex flex-col sm:flex-row items-center gap-4">
           {!user && (
@@ -203,34 +198,23 @@ export default function HeaderNew() {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
-              {/* <DropdownMenuLabel>Account</DropdownMenuLabel> */}
-              {/* <DropdownMenuSeparator /> */}
+             
               <DropdownMenuItem>
                 <p className="flex font-medium w-full items-center">
-                  {/* <UserIcon className="mr-2 h-4 w-4" /> */}
                   <span>{user?.name}</span>
                 </p>
               </DropdownMenuItem>
-              {/* <DropdownMenuItem>
-                <Link
-                  href="/profile"
-                  className="flex w-full items-center"
-                  prefetch={false}
-                >
-                  <span>Profile</span>
-                </Link>
-              </DropdownMenuItem> */}
-              {/* <DropdownMenuItem>
-                <Link
-                  href="/whishlist"
-                  className="flex w-full items-center"
-                  prefetch={false}
-                >
-                  <span className="flex items-center"> Whishlist</span>
-                </Link>
-              </DropdownMenuItem> */}
 
               <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Link href={"/profile"}>
+                  <div className="flex cursor-pointer w-full items-center">
+                    <MdOutlineManageAccounts  className="mr-2 h-4 w-4" />
+
+                    <span>Account</span>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem className="text-red-600">
                 <div className="flex cursor-pointer w-full items-center">
                   <LogOutIcon className="mr-2 h-4 w-4" />

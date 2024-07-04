@@ -5,6 +5,8 @@ interface AuthContextType {
     user: any | null;
     login: (user: any) => void;
     logout: () => void;
+    setUser: React.Dispatch<React.SetStateAction<any | null >>;
+   
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -38,7 +40,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout ,setUser}}>
             {children}
         </AuthContext.Provider>
     );

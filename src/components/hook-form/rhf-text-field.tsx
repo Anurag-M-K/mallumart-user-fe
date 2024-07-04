@@ -17,9 +17,11 @@ type Props = InputProps & {
   name: string;
   label: string;
   helperText?: string;
+  placeholder?:string;
+  disabled?:boolean;
 };
 
-export default function RHFTextField({ name, label, type, helperText }: Props) {
+export default function RHFTextField({ name, label, type, helperText, placeholder,disabled }: Props) {
   const { control } = useFormContext();
 
   return (
@@ -37,7 +39,8 @@ export default function RHFTextField({ name, label, type, helperText }: Props) {
             <Input
               {...field}
               type={type}
-              placeholder=""
+              placeholder={placeholder}
+              disabled={disabled || false}
               value={type === "number" && field.value === 0 ? "" : field.value}
               onChange={(event) => {
                 if (type === "number") {

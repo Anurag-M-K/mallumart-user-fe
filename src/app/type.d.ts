@@ -110,3 +110,12 @@ productCategories?: TProductCategories;
 type THashMap = {
   [key: string]: any;
 };
+
+type TUser = {
+  fullName:string;
+  email:string;
+  phone:string;
+  password:string;
+  token?:string;
+  
+}
