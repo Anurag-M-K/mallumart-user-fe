@@ -32,7 +32,7 @@ export const LoginForm = () => {
   const [error, setError] = useState<any>("");
   const [loading, setLoading] = useState<boolean>(false);
   const { login, user } = useAuth();
-  
+
   const form = useForm<schemaType>({
     mode: "onChange",
     resolver: zodResolver(schema),
@@ -66,7 +66,7 @@ export const LoginForm = () => {
           <CardTitle>Login</CardTitle>
           {/* <CardDescription>Enter your credentials.</CardDescription> */}
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-t-4">
           <div className="grid gap-2">
             <RHFTextField label="Email" type="text" name="email" />
           </div>
@@ -78,15 +78,16 @@ export const LoginForm = () => {
           <p className="text-red-500 text-center text-sm">{error}</p>
         )}
         <CardFooter className="flex flex-col">
-          <Button type="submit" className="w-full">
-            {loading ? <Spinner/> : "Login"}
-          </Button>
-          {/* <button
-            type="submit"
-            className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          {/* <Link
+            className="font-medium text-primary-600 mb-2  text-start hover:underline dark:text-primary-500"
+            href={"/auth/forget-password"}
           >
-            Create an account
-          </button> */}
+            Forget password?
+          </Link> */}
+          <Button type="submit" className="w-full">
+            {loading ? <Spinner /> : "Login"}
+          </Button>
+       
           <p className="text-sm mt-2 font-light text-gray-500 dark:text-gray-400">
             Dont have an account ?{" "}
             <Link

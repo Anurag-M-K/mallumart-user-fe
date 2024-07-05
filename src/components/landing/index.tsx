@@ -28,9 +28,9 @@ export default async function Landing() {
     {img:"/slider3.png",_id:3},
   ]
   const mbcCrousalItem:TCarousalItem[] = [
-    {img:"/slider-img.png",_id:1},
-    {img:"/slider-img2.png",_id:2},
-    {img:"/slider-img3.png",_id:3},
+    {img:"/slide1.jpg",_id:1},
+    {img:"/slide2.jpg",_id:2},
+    {img:"/slide3.jpg",_id:3},
   ]
 
   const mainCategories = categories?.categories?.filter((item:any)=>item.isShowOnHomePage === true)
@@ -43,7 +43,7 @@ export default async function Landing() {
           }}
           className="w-full h-auto max-w-[1340px] mx-auto relative"
         >
-            <CarouselContent className="md:hidden flex h-[500px] mt-4 relative bg-black overflow-x-auto snap-x snap-mandatory">
+            <CarouselContent className="md:hidden flex h-[230px] mt-4 relative bg-black overflow-x-auto snap-x snap-mandatory">
             {mbcCrousalItem?.map((item: TCarousalItem) => (
               <CarouselItem key={item._id} className="relative w-full h-full flex-shrink-0 snap-center">
                 <Image

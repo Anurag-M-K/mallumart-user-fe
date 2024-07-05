@@ -58,7 +58,6 @@ export default function Component() {
     }
   }
 
-  console.log("erorr message  ", errorMessage);
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="bg-card p-8 rounded-lg shadow-lg w-full max-w-md">
