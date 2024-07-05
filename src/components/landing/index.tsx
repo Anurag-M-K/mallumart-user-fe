@@ -26,11 +26,13 @@ export default async function Landing() {
     {img:"/slider.png",_id:1},
     {img:"/slider2.png",_id:2},
     {img:"/slider3.png",_id:3},
+    {img:"/slider4.jpg",_id:4},
   ]
   const mbcCrousalItem:TCarousalItem[] = [
     {img:"/slide1.jpg",_id:1},
     {img:"/slide2.jpg",_id:2},
     {img:"/slide3.jpg",_id:3},
+    {img:"/slide4.jpg",_id:4},
   ]
 
   const mainCategories = categories?.categories?.filter((item:any)=>item.isShowOnHomePage === true)
