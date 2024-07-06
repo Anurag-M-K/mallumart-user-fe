@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { TCategories } from "@/app/type";
 import { fetchCategories } from "@/data/advertisement";
 import { useQuery } from "@tanstack/react-query";
@@ -11,163 +11,132 @@ export default function Footer() {
     const categories = response.json();
     return categories;
   };
-  
 
   const { data, isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: () => fetchingCategories(),
   });
 
-  const filteredCategories = data?.filter((item:TCategories)=>item?.isShowOnHomePage === true).slice(0,5)
+  const filteredCategories = data
+    ?.filter((item: TCategories) => item?.isShowOnHomePage === true)
+    .slice(0, 5);
   return (
-    <><footer className="bg-[#193b4e] text-white py-12 dark:bg-gray-800">
-      <div className="container max-w-[1380px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <div className="grid gap-4">
-          <Link href="/" className="flex items-center justify-center gap-2" prefetch={false}>
-            {/* <MountainIcon className="h-6 w-6" /> */}
-            <img src="/mallu-mart-logo.jpg" className="w-12 h-12  rounded-full p-1" alt="" />
-            <span className="text-lg font-semibold text-center">Mallu Mart</span>
-          </Link>
-          <p className="text-white dark:text-gray-400 text-justify">
-            MalluMart is an e-commerce company with a website and application designed to connect customers with nearby registered shops and services. The application aims to be a website for all.
+    <>
+      <footer className="bg-[#193b4e] text-white py-12 dark:bg-gray-800">
+        <div className="container max-w-[1380px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid gap-4">
+            <Link
+              href="/"
+              className="flex items-center justify-center gap-2"
+              prefetch={false}
+            >
+              <img
+                src="/mallu-mart-logo.jpg"
+                className="w-12 h-12  rounded-full p-1"
+                alt=""
+              />
+              <span className="text-lg font-semibold text-center">
+                Mallu Mart
+              </span>
+            </Link>
+            <p className="text-white dark:text-gray-400 text-justify">
+              MalluMart is an e-commerce company with a website and application
+              designed to connect customers with nearby registered shops and
+              services. The application aims to be a website for all.
+            </p>
+          </div>
+
+          <div className="flex flex-col  items-center ">
+            <h3 className="text-lg mb-2 font-semibold">Quick Links</h3>
+            <div>
+              <Link
+                href="/policy/terms-of-use"
+                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                prefetch={false}
+              >
+                Terms of Use
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/policy/privacy-policy"
+                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                prefetch={false}
+              >
+                Privacy Policy
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="#"
+                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                prefetch={false}
+              >
+                About Us
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/help/contact-us"
+                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                prefetch={false}
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex items-center flex-col gap-2">
+            <h3 className="text-lg font-semibold">Follow Us</h3>
+            <div className="flex items-center gap-2">
+              <Link
+                  target="_blank"
+                href="https://www.facebook.com/profile.php?id=61562217655958"
+                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                prefetch={false}
+              >
+                <FacebookIcon className="h-5 w-5" />
+                <span className="sr-only">Facebook</span>
+              </Link>
+              {/* <Link
+                href="#"
+                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                prefetch={false}
+              >
+                <TwitterIcon className="h-5 w-5" />
+                <span className="sr-only">Twitter</span>
+              </Link> */}
+              <Link
+              target="_blank"
+                href="http://instagram.com/mallumart_india"
+                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                prefetch={false}
+              >
+                <InstagramIcon className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
+              </Link>
+              {/* <Link
+                href="#"
+                className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                prefetch={false}
+              >
+                <LinkedinIcon className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </Link> */}
+            </div>
+          </div>
+        </div>
+      </footer>
+      <div className="bg-gray-600 text-white">
+        {" "}
+        <div className="container mx-auto text-center">
+          <p className="text-sm">
+            <span className="inline-block    px-2 py-1 mr-1">©</span>
+            2024 Mallu Mart. All rights reserved.
           </p>
-          {/* <div className="grid gap-2">
-      <div className="flex items-center gap-2">
-        <PhoneIcon className="h-4 w-4 text-white dark:text-gray-400" />
-        <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-          +91 9747411113
-        </p>
-      </div>
-      <div className="flex items-center gap-2">
-        <MailIcon className="h-4 w-4 text-white dark:text-gray-400" />
-        <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-          Mallumartindia@gmail.com
-        </p>
-      </div>
-      <div className="flex items-center gap-2">
-        <FaRegAddressCard color="" className="h-4 w-4  text-white dark:text-gray-400" />
-        <div className="">
-
-        <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-        2nd floor, Hayle complex,
-        </p>
-        <p className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-        puthiyatheru, kannur, kerala, 670011
-        </p>
-        </div>
-        
-      </div>
-    </div> */}
-        </div>
-
-
-        <div className="flex flex-col  items-center ">
-          <h3 className="text-lg mb-2 font-semibold">Quick Links</h3>
-          {/* <ul className="grid "> */}
-          <div>
-            <Link
-              href="/policy/terms-of-use"
-              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              prefetch={false}
-            >
-              Terms of Use
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="/policy/privacy-policy"
-              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              prefetch={false}
-            >
-              Privacy Policy
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="#"
-              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              prefetch={false}
-            >
-              About Us
-            </Link>
-          </div>
-          <div>
-            <Link
-              href="/help/contact-us"
-              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              prefetch={false}
-            >
-              Contact Us
-            </Link>
-          </div>
-
-          {/* </ul> */}
-        </div>
-
-
-        {/* <div className="grid gap-2">
-      <h3 className="text-lg font-semibold">Popular Categories</h3>
-      <ul className="grid gap-1">
-  {filteredCategories?.map((item:TCategories)=>(
-          <div key={item._id}>
-          <Link
-            href={`/category/${item.name}`}
-            className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-            prefetch={false}
-          >
-           {item.name}
-          </Link>
-        </div>
-  ))}
-      
-      </ul>
-    </div> */}
-
-
-        <div className="flex items-center flex-col gap-2">
-          <h3 className="text-lg font-semibold">Follow Us</h3>
-          <div className="flex items-center gap-2">
-            <Link
-              href="#"
-              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              prefetch={false}
-            >
-              <FacebookIcon className="h-5 w-5" />
-              <span className="sr-only">Facebook</span>
-            </Link>
-            <Link
-              href="#"
-              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              prefetch={false}
-            >
-              <TwitterIcon className="h-5 w-5" />
-              <span className="sr-only">Twitter</span>
-            </Link>
-            <Link
-              href="#"
-              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              prefetch={false}
-            >
-              <InstagramIcon className="h-5 w-5" />
-              <span className="sr-only">Instagram</span>
-            </Link>
-            <Link
-              href="#"
-              className="text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              prefetch={false}
-            >
-              <LinkedinIcon className="h-5 w-5" />
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-          </div>
         </div>
       </div>
-    </footer><div className="bg-gray-600 text-white"> <div className="container mx-auto text-center">
-    <p className="text-sm">
-      <span className="inline-block    px-2 py-1 mr-1">©</span>
-      2024 Mallu Mart. All rights reserved.
-    </p>
-  </div></div></>
+    </>
   );
 }
 
