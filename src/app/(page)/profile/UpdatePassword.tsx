@@ -48,7 +48,7 @@ export default function UpdatePassword() {
     try {
       isLoading(true);
       const res: any = await changePassword(user?.token, values);
-      if (res.passwordUpdated) {
+      if (res?.passwordUpdated) {
         toast({
           variant: "default",
           description: (
@@ -69,6 +69,7 @@ export default function UpdatePassword() {
         });
         isLoading(false);
       } else {
+        isLoading(false);
         setError(res?.message);
       }
     } catch (error) {
