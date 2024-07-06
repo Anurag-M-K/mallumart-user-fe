@@ -103,7 +103,7 @@ export default function HeaderNew() {
       <div className="container  mx-auto flex items-center justify-between flex-wrap gap-4  px-6 md:px-8">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
           {/* <MountainIcon className="h-6 w-6" /> */}
-          <Image alt="lOGO" src={"/logo-no-bg.png"} width={80} height={80} />
+          <Image alt="lOGO" src={"/mallu-mart-logo.jpg"} width={80} height={80} />
           {/* <Typography variant="heading-2" className="font">
             Mallu Mart
           </Typography> */}
