@@ -19,40 +19,37 @@ export default function ShopCard(shop: any) {
         </div>
         <div className="grid gap-2">
           <div className="flex items-center justify-between">
-            <h3     style={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }} className="text-lg font-semibold">{shop.shop.storeName}</h3>
-            {/* <div className="flex items-center gap-2">
-              <span className="text-[10px] border px-2 rounded-full border-gray-400 text-gray-600 sh font-medium">
-                {shop.shop.wholeSale && shop.shop.retail
-                  ? "Wholesale & Retail"
-                  : shop.shop.wholeSale
-                  ? "Wholesale"
-                  : shop.shop.retail
-                  ? "Retail"
-                  : ""}
-              </span>
-            </div> */}
-          </div>
-          <div
-            className="text-sm text-gray-500 dark:text-gray-400"
-            style={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {shop?.shop.address}
+            <h3
+              style={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+              className="text-lg font-semibold"
+            >
+              {shop.shop.storeName}
+            </h3>
           </div>
 
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <MapPinIcon className="w-4 h-4" />
-            <span>{shop?.shop?.district}</span>
+            <span
+              style={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {shop?.shop?.address.length > 15
+                ? `${shop?.shop?.address?.substring(0, 15)}...`
+                : shop?.shop?.address}
+            </span>
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-            <CustomIconifyIcon className="w-4 h-4" name={shop.shop.category.icon} />
+            <CustomIconifyIcon
+              className="w-4 h-4"
+              name={shop.shop.category.icon}
+            />
             <span>{shop.shop.category.name || shop.shop.phone}</span>
           </div>
           <div className=" sm:flex  gap-x-2 my-2">
