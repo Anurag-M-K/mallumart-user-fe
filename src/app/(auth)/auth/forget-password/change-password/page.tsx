@@ -52,6 +52,7 @@ const page = () => {
       setLoading(true);
       const res = await updatePassword(token, data.confirmPassword);
       if (res?.updated) {
+        localStorage.clear()
         router.push(`/auth/login`);
         toast({
           variant: "default",
@@ -68,7 +69,7 @@ const page = () => {
       } else {
         setError(res.message);
       }
-      setLoading(false);
+      // setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log(error);

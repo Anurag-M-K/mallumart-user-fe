@@ -44,15 +44,19 @@ const page = () => {
   } = form;
 
   const onSubmit = async (data: schemaType) => {
-    setLoading(true);
-    const res: any = await verifyPhoneAndSendingOtp(data?.phone);
-    localStorage.setItem("password-reset-token", res?.token);
-    if (res?.otpSend) {
-      router.push(`/auth/forget-password/${res?.token}`);
-    } else {
-      setError(res?.message);
+    try {
+      setLoading(true);
+      const res: any = await verifyPhoneAndSendingOtp(data?.phone);
+      localStorage.setItem("password-reset-token", res?.token);
+      if (res?.otpSend) {
+        router.push(`/auth/forget-password/${res?.token}`);
+      } else {
+        setError(res?.message);
+      }
+    } catch (error) {
+      setLoading(false);
+      
     }
-    setLoading(false);
   };
 
   return (

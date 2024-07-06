@@ -35,7 +35,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setUser(null);
         localStorage.removeItem("accessToken")
         localStorage.removeItem("user")
-        window.location.reload()
+        window.location.href = "/"
+        // window.location.reload()
     };
     
 

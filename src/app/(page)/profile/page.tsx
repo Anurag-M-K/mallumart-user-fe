@@ -23,11 +23,16 @@ import { TUser } from "@/app/type";
 import { profileUpdate } from "@/data/profile";
 import { useToast } from "@/components/ui/use-toast";
 import { CheckIcon } from "lucide-react";
+import { RiLockPasswordFill } from "react-icons/ri";
+import UpdatePassword from "./UpdatePassword";
+import { FaRegUser } from "react-icons/fa";
+
 
 export default function Component() {
   const { user, setUser } = useAuth();
   const [loading, isLoading] = useState<boolean>();
   const [error, setError] = useState<any>("");
+  const [ passwordForm, setPasswordForm] = useState(false)
   const { toast } = useToast();
 
   const form = useForm<schemaType>({
@@ -96,11 +101,28 @@ export default function Component() {
               <MailIcon className="w-5 h-5" />
               <span>{user?.email}</span>
             </div>
+            <div onClick={()=>setPasswordForm(!passwordForm)} className="flex cursor-pointer items-center gap-2">
+             {!passwordForm ?  ( 
+              <>
+               <RiLockPasswordFill  className="w-5 h-5" />
+               <span>Update password</span>
+              </>
+             ) : (
+              <>
+              <FaRegUser  className="w-5 h-5" />
+              <span>Account Info</span>
+             </>
+             )}
+             
+            </div>
           </div>
         </div>
       </div>
       <Separator className="my-6" />
       <div className=" w-full ">
+        {passwordForm ? 
+        <UpdatePassword/> : (
+
         <FormProvider onSubmit={onSubmit} form={form}>
           <Card className="w-full">
             <CardHeader>
@@ -144,6 +166,7 @@ export default function Component() {
             </CardFooter>
           </Card>
         </FormProvider>
+        )}
       </div>
     </div>
   );
