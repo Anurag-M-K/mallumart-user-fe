@@ -70,7 +70,7 @@ export default function HeaderNew() {
   };
   return (
     <header className=" text-white">
-      <div className="bg-white py-2 px-6 md:px-8 flex items-center justify-between text-black">
+      {/* <div className="bg-white py-2 px-6 md:px-8 flex items-center justify-between text-black">
         <div className="flex justify-center text-center items-center gap-2">
           <InboxIcon className="h-4 w-4 text-gray-500" />
           <span className="text-sm  text-gray-500">
@@ -103,14 +103,16 @@ export default function HeaderNew() {
             <InstagramIcon className="h-5 w-5" />
           </Link>
         </div>
-      </div>
+      </div> */}
       <div className="container  mx-auto flex items-center justify-between flex-wrap gap-4  px-6 md:px-8">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
-          {/* <MountainIcon className="h-6 w-6" /> */}
           <Image alt="lOGO" src={"/mallu-mart-logo.jpg"} width={80} height={80} />
-          {/* <Typography variant="heading-2" className="font">
-            Mallu Mart
-          </Typography> */}
+        </Link>
+          <Link rel="noopener noreferrer"  href={'https://admin.mallumart.com/store/login'} target="_blank" >
+        <Button className="flex items-center border-gray-600 border hover:bg-transparent  bg-transparent  text-sm rounded text-black  px-2 ">
+            <LiaStoreAltSolid className="me-2"/>
+        Store Login
+          </Button>
         </Link>
         {!user && (
           <div className="md:hidden flex items-center gap-2">
