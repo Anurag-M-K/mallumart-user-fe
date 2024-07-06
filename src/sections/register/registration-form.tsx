@@ -18,6 +18,7 @@ import { Spinner } from "flowbite-react";
 export const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [error, setError] = useState<any>("");
 
   const form = useForm<schemaType>({
     mode: "onChange",
@@ -37,15 +38,21 @@ export const RegistrationForm = () => {
   const sendOtp = async () => {
     const phone = form.getValues("phone");
     const email = form.getValues("email");
+
     const fullName = form.getValues("fullName");
     const password = form.getValues("password");
     try {
      const res =  await register({ phone, email, fullName, password });
-     if(res.otpSend){
+     if(res?.otpSend){
       router.push(`/auth/${phone}`)
+     }else{
+      setError(res?.message || `Failed to register`)
+      setLoading(false)
      }
     } catch (error) {
       console.error("Error sending OTP:", error);
+      setError('An error occurred while sending OTP.');
+    setLoading(false);  // Stop loading on error
     }
   };
 
@@ -109,6 +116,9 @@ export const RegistrationForm = () => {
             </div>
           </div>
         </CardContent>
+        {error !== "" && (
+          <p className="text-red-500 text-center text-sm">{error}</p>
+        )}
         <CardFooter className="flex flex-col">
           <Button type="submit" className="w-full">
             {loading ? <Spinner/> :  "Create Account"}

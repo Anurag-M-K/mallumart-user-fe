@@ -35,3 +35,39 @@ export const signIn = async (email: string, password: string) => {
     console.log(err);
   }
 };
+
+export const verifyPhoneAndSendingOtp = async (phone: string) => {
+
+  try {
+    const res = await clientFetch(`user/forget-password`, {
+      method: "POST",
+      body: {phone},
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const otpVerifyForPasswordReset = async (token:string| null, otp: any) => {
+  try {
+    const res = await clientFetch(`user/verify-otp-for-password-reset`, {
+      method: "POST",
+      body: { token, otp },
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const changePassword = async (token:string|null, password: string) => {
+  try {
+    const res = await clientFetch(`user/change-password`, {
+      method: "POST",
+      body: { token, password },
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

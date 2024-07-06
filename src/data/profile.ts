@@ -15,3 +15,15 @@ export const profileUpdate = async (values: any, token: string) => {
       throw error;
     }
   };
+export const updatePassword = async (token: any, newPassword: string) => {
+    try {
+      const res = await clientFetch(`user/update-password`, {
+        method: "PUT",
+        body: {token,newPassword},
+      });
+      return res;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };

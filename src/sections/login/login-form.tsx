@@ -70,20 +70,23 @@ export const LoginForm = () => {
           <div className="grid gap-2">
             <RHFTextField label="Email" type="text" name="email" />
           </div>
-          <div className="grid gap-2">
+          <div className="grid ">
+        
             <RHFTextField label="Password" name="password" type="password" />
           </div>
+          <Link
+            className="font-medium text-blue-500 text-primary-600 text-[13px] hover:underline dark:text-primary-500"
+            href={"/auth/forget-password"}
+            >
+            Forgot password?
+          </Link>
         </CardContent>
         {error !== "" && (
           <p className="text-red-500 text-center text-sm">{error}</p>
         )}
         <CardFooter className="flex flex-col">
-          {/* <Link
-            className="font-medium text-primary-600 mb-2  text-start hover:underline dark:text-primary-500"
-            href={"/auth/forget-password"}
-          >
-            Forget password?
-          </Link> */}
+
+         
           <Button type="submit" className="w-full">
             {loading ? <Spinner /> : "Login"}
           </Button>

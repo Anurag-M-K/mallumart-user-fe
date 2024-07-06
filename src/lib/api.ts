@@ -72,6 +72,7 @@ export const clientFetch = async (
   // if (isAuthenticated) {
   //   allOptions.headers.Authorization = `Bearer ${await getClientAccessToken()}`;
   // }
+  console.log("alloptions ",allOptions)
   const response = await fetch(finalUrl, allOptions);
   // if (!response.ok) {
   //   if (
