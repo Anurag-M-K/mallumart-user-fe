@@ -14,9 +14,8 @@ export const schema = z.object({
     }
   ),
   password: z.string().min(6, { message: "minimum 6 value" }),
-  email:z.string().trim().min(1, {
-    message: "Email is required",
-  }),
+  email: z.string().trim().email({ message: "Invalid email format" }).optional().or(z.literal('')),
+
   // otp: z.string().min(6, {
   //   message: "Your one-time password must be 6 characters.",
   // }),
