@@ -24,11 +24,11 @@ export const otpVerify = async (phone:string, otp: any) => {
   }
 };
 
-export const signIn = async (email: string, password: string) => {
+export const signIn = async (username: string, password: string) => {
   try {
     const res = await clientFetch(`user/login`, {
       method: "POST",
-      body: { email, password },
+      body: { username, password },
     });
     return res;
   } catch (err) {

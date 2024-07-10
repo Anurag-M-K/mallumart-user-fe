@@ -25,7 +25,7 @@ export const RegistrationForm = () => {
     resolver: zodResolver(schema),
     defaultValues: {
       fullName: "",
-      email: "",
+      email: null,
       phone: 0,
       password: "",
     },
@@ -36,13 +36,17 @@ export const RegistrationForm = () => {
   } = form;
 
   const sendOtp = async () => {
-    const phone = form.getValues("phone");
-    const email = form.getValues("email");
+    const { phone, email, fullName, password } = form.getValues(); // Destructure values from form
 
-    const fullName = form.getValues("fullName");
-    const password = form.getValues("password");
+    // Remove email from data if it's an empty string
+    const userData = {
+      fullName,
+      password,
+      phone,
+      ...(email && { email }), // Include email only if it exists
+    };
     try {
-     const res =  await register({ phone, email, fullName, password });
+     const res =  await register(userData);
      if(res?.otpSend){
       router.push(`/auth/${phone}`)
      }else{

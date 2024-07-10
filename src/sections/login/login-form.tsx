@@ -37,7 +37,7 @@ export const LoginForm = () => {
     mode: "onChange",
     resolver: zodResolver(schema),
     defaultValues: {
-      email: "",
+      identifier: "",
       password: "",
     },
   });
@@ -46,9 +46,11 @@ export const LoginForm = () => {
     formState: { isValid, errors, dirtyFields },
   } = form;
 
+  console.log("errors ",errors)
+
   const onSubmit = async (data: schemaType) => {
     setLoading(true);
-    const res: any = await signIn(data.email, data.password);
+    const res: any = await signIn(data.identifier, data.password);
     login(res);
     if (res?.statusText === "ok") {
       localStorage.setItem("accessToken", res.token);
@@ -68,7 +70,7 @@ export const LoginForm = () => {
         </CardHeader>
         <CardContent className="space-t-4">
           <div className="grid gap-2">
-            <RHFTextField label="Email" type="text" name="email" />
+            <RHFTextField label="Email or Phone" type="text" name="identifier" />
           </div>
           <div className="grid ">
         
