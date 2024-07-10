@@ -24,7 +24,7 @@ export const otpVerify = async (phone:string, otp: any) => {
   }
 };
 
-export const signIn = async (username: string, password: string) => {
+export const signIn = async (username: any, password: string) => {
   try {
     const res = await clientFetch(`user/login`, {
       method: "POST",

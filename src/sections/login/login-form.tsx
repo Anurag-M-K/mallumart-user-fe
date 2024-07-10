@@ -50,7 +50,7 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: schemaType) => {
     setLoading(true);
-    const res: any = await signIn(data.identifier, data.password);
+    const res: any = await signIn(data?.identifier, data.password);
     login(res);
     if (res?.statusText === "ok") {
       localStorage.setItem("accessToken", res.token);

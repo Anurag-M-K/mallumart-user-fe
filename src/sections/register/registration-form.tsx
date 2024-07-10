@@ -25,7 +25,7 @@ export const RegistrationForm = () => {
     resolver: zodResolver(schema),
     defaultValues: {
       fullName: "",
-      email: null,
+      email: "",
       phone: 0,
       password: "",
     },
