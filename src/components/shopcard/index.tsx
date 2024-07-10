@@ -8,11 +8,11 @@ import CustomIconifyIcon from "../CustomIconifyIcon/CustomIconifyIcon";
 
 export default function ShopCard(shop: any) {
   return (
-    <Card className="w-full max-w-sm px-4 py-2  grid  gap-6">
+    <Card className="w-full max-w-sm px-2 py-2  grid  gap-6">
       <div className="flex flex-col  items-between gap-4">
         <div className="w-full h-66">
           <img
-            src={shop.shop.shopImgUrl}
+            src={shop?.shop?.shopImgUrl}
             alt="helo"
             className="object-cover sm:w-full h-40 w-60 sm:h-60 group-hover:scale-105 transition-transform duration-300"
           />
@@ -27,7 +27,7 @@ export default function ShopCard(shop: any) {
               }}
               className="text-lg font-semibold"
             >
-              {shop.shop.storeName}
+              {shop?.shop?.storeName}
             </h3>
           </div>
 
@@ -48,9 +48,9 @@ export default function ShopCard(shop: any) {
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <CustomIconifyIcon
               className="w-4 h-4"
-              name={shop.shop.category.icon}
+              name={shop?.shop?.category.icon}
             />
-            <span>{shop.shop.category.name || shop.shop.phone}</span>
+            <span>{shop?.shop?.category.name || shop?.shop?.phone}</span>
           </div>
           <div className=" sm:flex  gap-x-2 my-2">
             <Link
@@ -58,8 +58,8 @@ export default function ShopCard(shop: any) {
               target="_blank"
               rel="noopener noreferrer"
               href={getDirectionUrl(
-                shop.shop.location.coordinates[1],
-                shop.shop.location.coordinates[0]
+                shop?.shop?.location.coordinates[1],
+                shop?.shop?.location.coordinates[0]
               )}
             >
               <Button
@@ -69,7 +69,7 @@ export default function ShopCard(shop: any) {
                 Get Directions
               </Button>
             </Link>
-            <Link href={`/shop/${shop.shop.uniqueName}`}>
+            <Link href={`/shop/${shop?.shop?.uniqueName}`}>
               <Button
                 size="sm"
                 className="rounded-full bg-white mt-2 sm:mt-0 text-black hover:bg-gray-100 border-black border w-full"
