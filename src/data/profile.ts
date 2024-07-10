@@ -42,3 +42,18 @@ export const updatePassword = async (token: any, newPassword: string) => {
       throw error;
     }
   };
+export const fetchUser = async (token: string) => {
+    try {
+      const res = await clientFetch(`user/fetch-user-details`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        
+      });
+      return res;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };

@@ -46,7 +46,6 @@ export const LoginForm = () => {
     formState: { isValid, errors, dirtyFields },
   } = form;
 
-  console.log("errors ",errors)
 
   const onSubmit = async (data: schemaType) => {
     setLoading(true);

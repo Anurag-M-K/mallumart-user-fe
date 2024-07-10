@@ -17,10 +17,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { schema, schemaType } from "@/schemas/profile-form";
 import { RHFTextField } from "@/components/hook-form";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "flowbite-react";
 import { TUser } from "@/app/type";
-import { profileUpdate } from "@/data/profile";
+import { fetchUser, profileUpdate } from "@/data/profile";
 import { useToast } from "@/components/ui/use-toast";
 import { CheckIcon } from "lucide-react";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -29,30 +29,44 @@ import { FaRegUser } from "react-icons/fa";
 
 
 export default function Component() {
-  const { user, setUser } = useAuth();
-  const [loading, isLoading] = useState<boolean>();
+  const { user, setUser, loading } = useAuth();
+  const [loadingState, isLoading] = useState<boolean>();
   const [error, setError] = useState<any>("");
   const [ passwordForm, setPasswordForm] = useState(false)
   const { toast } = useToast();
 
   const form = useForm<schemaType>({
     mode: "onChange",
-    // resolver: zodResolver(schema),
-    // defaultValues: {
-    //   email: "",
-    //   phone:"",
-    //   name:"",
-    // },
   });
 
   const {
     formState: { isValid, errors, dirtyFields },
   } = form;
+
+  const fetchUserDetails  = async ()=>{
+    const res = await fetchUser(user?.token)
+    setUser((pre: TUser) => ({
+      ...pre,
+      name: res?.fullName,
+      email: res?.email,
+      token: user?.token,
+    }));
+  }
+
+  // laoding added - initially user object doesn't having the value. it is taking some time to take the value from localstorage and parse to the user obje1ct.
+  useEffect(()=>{
+    if(!loading){
+      fetchUserDetails()
+    }
+  },[loading])
+
   const onSubmit = async (values: TUser) => {
     try {
       if (values?.email || values?.fullName) {
         isLoading(true);
         const res = await profileUpdate(values, user?.token);
+        fetchUserDetails()
+        
         if (res) {
           setUser((pre: TUser) => ({
             ...pre,
@@ -79,13 +93,24 @@ export default function Component() {
       isLoading(false);
     }
   };
+
+  if (loading) {
+
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner  />
+      </div>
+    );
+}
+
+
   return (
     <div className="container mx-auto px-4 md:px-6 max-w-3xl py-8">
       <div className="flex justify-center flex-col md:flex-row  sm:items-start md:items-center gap-6">
         <div className="flex justify-center sm:justify-start">
           <Avatar className="w-20 h-20 md:w-24 md:h-24 border-2 border-primary">
             <AvatarImage src="/placeholder-user.jpg" />
-            <AvatarFallback>{user?.name[0]}</AvatarFallback>
+            <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
           </Avatar>
         </div>
         <div className=" grid gap-2">
@@ -97,10 +122,13 @@ export default function Component() {
               <PhoneIcon className="w-5 h-5" />
               <span>+91 {user?.phone}</span>
             </div>
-            <div className="flex items-center gap-2">
+            {user?.email && (
+
+              <div className="flex items-center gap-2">
               <MailIcon className="w-5 h-5" />
               <span>{user?.email}</span>
             </div>
+            )}
             <div onClick={()=>setPasswordForm(!passwordForm)} className="flex cursor-pointer items-center gap-2">
              {!passwordForm ?  ( 
               <>
@@ -161,7 +189,7 @@ export default function Component() {
             )}
             <CardFooter className="flex flex-col">
               <Button type="submit" className="w-full">
-                {loading ? <Spinner /> : "Update"}
+                {loadingState ? <Spinner /> : "Update"}
               </Button>
             </CardFooter>
           </Card>

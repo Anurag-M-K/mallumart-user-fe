@@ -6,6 +6,7 @@ interface AuthContextType {
     login: (user: any) => void;
     logout: () => void;
     setUser: React.Dispatch<React.SetStateAction<any | null >>;
+    loading:boolean;
    
 }
 
@@ -13,6 +14,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<any | null>(null);
+    const [loading,setLoading] = useState<boolean>(true)
 
 
    useEffect(() => {
@@ -24,6 +26,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 console.error("Failed to parse stored user data:", error);
             }
         }
+        setLoading(false)
     }, []);
 
     const login = (user: any) => {
@@ -41,7 +44,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     
 
     return (
-        <AuthContext.Provider value={{ user, login, logout ,setUser}}>
+        <AuthContext.Provider value={{ user, login, logout ,setUser,loading}}>
             {children}
         </AuthContext.Provider>
     );
