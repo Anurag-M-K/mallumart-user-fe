@@ -58,7 +58,7 @@ export default function ShopCard(shop: any) {
               className="w-4 h-4"
               name={shop?.shop?.category?.icon}
             />
-            <span>{shop?.shop?.category.name || shop?.shop?.phone}</span>
+            <span>{shop?.shop?.category?.name || shop?.shop?.phone}</span>
           </div>
           <div className=" sm:flex  gap-x-2 my-2">
             <Link
