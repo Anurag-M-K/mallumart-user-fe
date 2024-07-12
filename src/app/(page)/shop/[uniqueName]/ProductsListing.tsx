@@ -106,6 +106,7 @@ function ProductsListing({ store }: { store: TShop }) {
     });
   }
 
+
   return (
     <div>
       <section className="py-12 md:py-16">

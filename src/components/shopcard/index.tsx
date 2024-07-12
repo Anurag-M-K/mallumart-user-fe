@@ -12,7 +12,7 @@ export default function ShopCard(shop: any) {
       <div className="flex flex-col  items-between gap-4">
         <div className="w-full h-66">
           <img
-            src={shop?.shop?.shopImgUrl}
+            src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${shop?.shop?.shopImgUrl}`}
             alt="helo"
             className="object-cover sm:w-full h-40 w-60 sm:h-60 group-hover:scale-105 transition-transform duration-300"
           />
