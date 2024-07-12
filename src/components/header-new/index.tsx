@@ -36,6 +36,7 @@ export default function HeaderNew() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { dispatch } = useStoreContext();
   const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   const fetchingCategories = async () => {
     const response = await fetchCategories();
@@ -70,40 +71,6 @@ export default function HeaderNew() {
   };
   return (
     <header className=" text-white">
-      {/* <div className="bg-white py-2 px-6 md:px-8 flex items-center justify-between text-black">
-        <div className="flex justify-center text-center items-center gap-2">
-          <InboxIcon className="h-4 w-4 text-gray-500" />
-          <span className="text-sm  text-gray-500">
-            mallumartindia@gmail.com
-          </span>
-        
-          <Link rel="noopener noreferrer"  href={'https://admin.mallumart.com/store/login'} target="_blank" className="flex items-center  h-6 bg-[#0089d4] hover:bg-[#61acd4] text-sm rounded text-white px-2 ">  <LiaStoreAltSolid className="me-2"/>
-           Store Login</Link>
-        </div>
-        <div className=" hidden sm:flex items-center gap-4">
-          <Link
-            href="#"
-            className="text-gray-500 hover:text-gray-700"
-            prefetch={false}
-          >
-            <FacebookIcon className="h-5 w-5" />
-          </Link>
-          <Link
-            href="#"
-            className="text-gray-500 hover:text-gray-700"
-            prefetch={false}
-          >
-            <TwitterIcon className="h-5 w-5" />
-          </Link>
-          <Link
-            href="#"
-            className="text-gray-500 hover:text-gray-700"
-            prefetch={false}
-          >
-            <InstagramIcon className="h-5 w-5" />
-          </Link>
-        </div>
-      </div> */}
       <div className="container  mx-auto flex items-center justify-between flex-wrap gap-4  px-6 md:px-8">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <Image alt="lOGO" src={"/mallu-mart-logo.jpg"} width={80} height={80} />
@@ -134,7 +101,7 @@ export default function HeaderNew() {
         )}
         {user && (
           <div className="md:hidden">
-          <DropdownMenu>
+          <DropdownMenu open={open} onOpenChange={setOpen}>
           <DropdownMenuTrigger asChild>
           <div className="flex justify-center items-center">
 

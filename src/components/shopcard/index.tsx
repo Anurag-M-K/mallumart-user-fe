@@ -56,7 +56,7 @@ export default function ShopCard(shop: any) {
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <CustomIconifyIcon
               className="w-4 h-4"
-              name={shop?.shop?.category.icon}
+              name={shop?.shop?.category?.icon}
             />
             <span>{shop?.shop?.category.name || shop?.shop?.phone}</span>
           </div>
@@ -66,8 +66,8 @@ export default function ShopCard(shop: any) {
               target="_blank"
               rel="noopener noreferrer"
               href={getDirectionUrl(
-                shop?.shop?.location.coordinates[1],
-                shop?.shop?.location.coordinates[0]
+                shop?.shop?.location?.coordinates[1],
+                shop?.shop?.location?.coordinates[0]
               )}
             >
               <Button
