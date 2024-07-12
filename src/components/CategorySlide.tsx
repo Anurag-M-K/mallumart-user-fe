@@ -8,7 +8,7 @@ import CustomIconifyIcon from "./CustomIconifyIcon/CustomIconifyIcon";
 
 function CategorySlide({ category, index }: { category: any; index: any }) {
   const [currentLocation, setCurrentLocation] = useState<any>();
-  
+
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
@@ -43,16 +43,16 @@ function CategorySlide({ category, index }: { category: any; index: any }) {
               : "bg-[#652c92]"
           } flex flex-col items-center justify-center text-white font-medium text-lg transition-colors duration-300 group-hover:bg-black/30`}
         >
-          <Tooltip.TooltipProvider key={category._id}>
+          <Tooltip.TooltipProvider key={category?._id}>
             <Tooltip.Tooltip>
               <Tooltip.TooltipTrigger asChild>
                 <CustomIconifyIcon
                   className="sm:text-5xl text-3xl md:text-7xl"
-                  name={category.icon}
+                  name={category?.icon}
                 />
               </Tooltip.TooltipTrigger>
               <Tooltip.TooltipPortal>
-                <Tooltip.TooltipContent>{category.name}</Tooltip.TooltipContent>
+                <Tooltip.TooltipContent>{category?.name}</Tooltip.TooltipContent>
               </Tooltip.TooltipPortal>
             </Tooltip.Tooltip>
           </Tooltip.TooltipProvider>

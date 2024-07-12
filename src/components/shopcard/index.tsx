@@ -7,7 +7,10 @@ import Link from "next/link";
 import CustomIconifyIcon from "../CustomIconifyIcon/CustomIconifyIcon";
 
 export default function ShopCard(shop: any) {
+  console.log("shops ",shop)
   return (
+    <Link href={`/shop/${shop?.shop?.uniqueName}`}>
+
     <Card className="w-full max-w-sm px-2 py-2  grid  gap-6">
       <div className="flex flex-col items-between gap-4">
         <div className="w-full h-64 relative">
@@ -48,7 +51,7 @@ export default function ShopCard(shop: any) {
                 textOverflow: "ellipsis",
               }}
             >
-              {shop?.shop?.address.length > 15
+              {shop?.shop?.address?.length > 15
                 ? `${shop?.shop?.address?.substring(0, 15)}...`
                 : shop?.shop?.address}
             </span>
@@ -60,7 +63,7 @@ export default function ShopCard(shop: any) {
             />
             <span>{shop?.shop?.category?.name || shop?.shop?.phone}</span>
           </div>
-          <div className=" sm:flex  gap-x-2 my-2">
+          {/* <div className=" sm:flex  gap-x-2 my-2">
             <Link
               className="w-full"
               target="_blank"
@@ -70,7 +73,7 @@ export default function ShopCard(shop: any) {
                 shop?.shop?.location?.coordinates[0]
               )}
             >
-              <Button
+            <Button
                 size="sm"
                 className="w-full bg-gray-700 rounded-full hover:bg-gray-600"
               >
@@ -81,14 +84,15 @@ export default function ShopCard(shop: any) {
               <Button
                 size="sm"
                 className="rounded-full bg-white mt-2 sm:mt-0 text-black hover:bg-gray-100 border-black border w-full"
-              >
+                >
                 View Shop
-              </Button>
-            </Link>
-          </div>
+                </Button>
+                </Link>
+                </div> */}
         </div>
       </div>
     </Card>
+                </Link>
   );
 }
 
