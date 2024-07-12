@@ -7,13 +7,17 @@ import Link from "next/link";
 import CustomIconifyIcon from "../CustomIconifyIcon/CustomIconifyIcon";
 import { IoMdCall } from "react-icons/io";
 import { FaDirections } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function ShopCard(shop: any) {
+  const router = useRouter();
+  const handleCardClick = () => {
+    router.push(`/shop/${shop?.shop?.uniqueName}`);
+  };
   console.log("shops ",shop)
   return (
-    <Link href={`/shop/${shop?.shop?.uniqueName}`}>
 
-    <Card className="w-full max-w-sm px-2 py-2  grid  gap-6">
+    <Card onClick={handleCardClick}  className="w-full cursor-pointer max-w-sm px-2 py-2  grid  gap-6">
       <div className="flex flex-col items-between gap-4">
         <div className="w-full h-64 relative">
           <Image
@@ -100,7 +104,6 @@ export default function ShopCard(shop: any) {
         </div>
       </div>
     </Card>
-                </Link>
   );
 }
 
