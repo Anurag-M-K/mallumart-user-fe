@@ -3,7 +3,7 @@ import { FaRegAddressCard } from "react-icons/fa";
 
 function page() {
   return (
-    <div className="px-44 ">
+    <div className="sm:px-44 ">
       <div className=" min-w-44">
         <div className="textTop p-5">
           <h2 className="text-2xl font-bold text-center my-2">Contact Us</h2>
@@ -13,8 +13,8 @@ function page() {
         </div>
         <div className=" py-8 w-auto flex-col gap-y-4 flex items-center justify-center">
           <div className="flex gap-x-2 items-center">
-            <FaRegAddressCard size={25} />
-            <p>
+            <FaRegAddressCard className="hidden sm:flex" size={25} />
+            <p className="text-center">
               2nd floor, Hayle complex, puthiyatheru, kannur, kerala, 670011
             </p>
           </div>
