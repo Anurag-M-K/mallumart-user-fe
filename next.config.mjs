@@ -8,15 +8,22 @@ const nextConfig = {
         pathname: "**",
       },
       {
+        protocol: "http",
+        hostname: "res.cloudinary.com",
+        pathname: "**",
+      },
+      {
         protocol: "https",
+        hostname: "sin1.contabostorage.com",
+        pathname: "**",
+      },
+      {
+        protocol: "http",
         hostname: "sin1.contabostorage.com",
         pathname: "**",
       },
     ],
   },
-  // images:{
-  //     domains:['res.cloudinary.com','sin1.contabostorage.com']
-  // }
 };
 
 export default nextConfig;
