@@ -13,7 +13,7 @@ export default function ShopDetails({ store }: { store: TShop }) {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <Image
-                src={store?.store?.shopImgUrl}
+                src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${store?.store?.shopImgUrl}`}
                 alt="helo"
                 width={400}
                 height={300}
