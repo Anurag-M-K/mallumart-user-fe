@@ -9,13 +9,21 @@ import CustomIconifyIcon from "../CustomIconifyIcon/CustomIconifyIcon";
 export default function ShopCard(shop: any) {
   return (
     <Card className="w-full max-w-sm px-2 py-2  grid  gap-6">
-      <div className="flex flex-col  items-between gap-4">
-        <div className="w-full h-66">
-          <img
-            src={shop?.shop?.shopImgUrl}
-            alt="helo"
-            className="object-cover sm:w-full h-40 w-60 sm:h-60 group-hover:scale-105 transition-transform duration-300"
+      <div className="flex flex-col items-between gap-4">
+        <div className="w-full h-64 relative">
+          <Image
+            src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${shop?.shop?.shopImgUrl}`}
+            alt="shop image"
+            style={{ objectFit: "cover" }}
+            fill
+            priority={false}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="w-full h-full"
+            loading="lazy"
           />
+          {/* <img
+            className="object-cover sm:w-full h-40 w-60 sm:h-60 group-hover:scale-105 transition-transform duration-300"
+          /> */}
         </div>
         <div className="grid gap-2">
           <div className="flex items-center justify-between">
