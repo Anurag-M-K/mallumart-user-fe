@@ -5,6 +5,8 @@ import { getDirectionUrl } from "@/lib/utils";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import CustomIconifyIcon from "../CustomIconifyIcon/CustomIconifyIcon";
+import { IoMdCall } from "react-icons/io";
+import { FaDirections } from "react-icons/fa";
 
 export default function ShopCard(shop: any) {
   console.log("shops ",shop)
@@ -63,7 +65,7 @@ export default function ShopCard(shop: any) {
             />
             <span>{shop?.shop?.category?.name || shop?.shop?.phone}</span>
           </div>
-          {/* <div className=" sm:flex  gap-x-2 my-2">
+          <div className=" flex  gap-x-1 my-2">
             <Link
               className="w-full"
               target="_blank"
@@ -72,23 +74,29 @@ export default function ShopCard(shop: any) {
                 shop?.shop?.location?.coordinates[1],
                 shop?.shop?.location?.coordinates[0]
               )}
+              onClick={(e)=>e.stopPropagation()}
             >
             <Button
                 size="sm"
                 className="w-full bg-gray-700 rounded-full hover:bg-gray-600"
               >
-                Get Directions
+                <FaDirections size={18} className="me-2 left-0" />
+
+              <span className="hidden sm:flex sm:me-2">Get</span> Directions
               </Button>
             </Link>
-            <Link href={`/shop/${shop?.shop?.uniqueName}`}>
               <Button
+              onClick={(e)=>{
+                e.stopPropagation()
+                window.location.href = `tel:${shop?.Shop?.phone}`
+              }}
                 size="sm"
-                className="rounded-full bg-white mt-2 sm:mt-0 text-black hover:bg-gray-100 border-black border w-full"
+                className="rounded-full bg-white  sm:mt-0 text-black hover:bg-gray-100 border-black border "
                 >
-                View Shop
+               <IoMdCall size={18} className="" />
+               <span className="hidden sm:flex ms-1">Call</span>
                 </Button>
-                </Link>
-                </div> */}
+                </div>
         </div>
       </div>
     </Card>
