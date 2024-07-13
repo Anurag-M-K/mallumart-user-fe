@@ -17,9 +17,9 @@ export default function ShopCard(shop: any) {
   console.log("shops ",shop)
   return (
 
-    <Card onClick={handleCardClick}  className="w-full cursor-pointer max-w-sm px-2 py-2  grid  gap-6">
+    <Card onClick={handleCardClick}  className="sm:w-full cursor-pointer max-w-sm px-2 py-2  grid  gap-6">
       <div className="flex flex-col items-between gap-4">
-        <div className="w-full h-64 relative">
+        <div className="sm:w-full h-44   sm:h-64 relative">
           <Image
             src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${shop?.shop?.shopImgUrl}`}
             alt="shop image"
@@ -82,7 +82,7 @@ export default function ShopCard(shop: any) {
             >
             <Button
                 size="sm"
-                className="w-full bg-gray-700 rounded-full hover:bg-gray-600"
+                className="w-full text-sm bg-gray-700 rounded-full hover:bg-gray-600"
               >
                 <FaDirections size={18} className="me-2 left-0" />
 
@@ -95,9 +95,9 @@ export default function ShopCard(shop: any) {
                 window.location.href = `tel:${shop?.Shop?.phone}`
               }}
                 size="sm"
-                className="rounded-full bg-white  sm:mt-0 text-black hover:bg-gray-100 border-black border "
+                className="text-sm rounded-full bg-white  sm:mt-0 text-black hover:bg-gray-100 border-black border "
                 >
-               <IoMdCall size={18} className="" />
+               <IoMdCall className="w-4 h-4" />
                <span className="hidden sm:flex ms-1">Call</span>
                 </Button>
                 </div>
