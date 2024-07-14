@@ -14,7 +14,6 @@ export default function ShopCard(shop: any) {
   const handleCardClick = () => {
     router.push(`/shop/${shop?.shop?.uniqueName}`);
   };
-  console.log("shops ",shop)
   return (
 
     <Card onClick={handleCardClick}  className="sm:w-full cursor-pointer max-w-sm px-2 py-2  grid  gap-6">
@@ -84,7 +83,7 @@ export default function ShopCard(shop: any) {
                 size="sm"
                 className="w-full text-sm bg-gray-700 rounded-full hover:bg-gray-600"
               >
-                <FaDirections size={18} className="me-2 left-0" />
+                <FaDirections  size={18} className="hidden sm:flex me-2 left-0" />
 
               <span className="hidden sm:flex sm:me-2">Get</span> Directions
               </Button>

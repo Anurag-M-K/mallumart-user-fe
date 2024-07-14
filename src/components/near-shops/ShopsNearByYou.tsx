@@ -5,7 +5,7 @@ import ShopCard from "../shopcard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchShopsByCoordinates } from "@/data/shops";
 
-function ShopsNearByYou() {
+function    ShopsNearByYou() {
   const [viewAll, setViewAll] = useState<boolean>(false);
   const [currentLocation, setCurrentLocation] = useState<any>();
   
