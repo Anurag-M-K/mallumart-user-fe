@@ -27,7 +27,7 @@ export default function ShopCard(shop: any) {
             fill
             priority={false}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="w-full h-full"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
           />
           {/* <img
@@ -44,7 +44,7 @@ export default function ShopCard(shop: any) {
               }}
               className="text-lg font-semibold"
             >
-              {shop?.shop?.storeName}
+              { shop?.shop?.storeName?.length > 15 ? `${shop?.shop?.storeName?.substring(0, 13)}...` : shop?.shop?.storeName?.substring(0,15)}
             </h3>
           </div>
 
