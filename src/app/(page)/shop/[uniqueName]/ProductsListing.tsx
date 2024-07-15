@@ -209,7 +209,7 @@ function ProductsListing({ store }: { store: TShop }) {
                 >
                   <div className="relative cursor-pointer w-full h-72">
                     <Image
-                      src={product.images[0]}
+                      src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${product.images[0]}`}
                       alt={product.name}
                       layout="fill"
                       objectFit="cover"
