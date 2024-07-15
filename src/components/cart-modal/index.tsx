@@ -89,7 +89,9 @@ export default function CartModal({
     const message = `Hello, I would like to order following products:\n\n${cartItems}\n\nTotal: ₹${total.toFixed(
       2
     )}`;
-    window.open(`https://wa.me/${storeWhatsapp}?text=${encodeURIComponent(message)}`);
+    window.open(
+      `https://wa.me/${storeWhatsapp}?text=${encodeURIComponent(message)}`
+    );
 
     await removeCartByStoreId(storeId);
   };
@@ -122,9 +124,7 @@ export default function CartModal({
                   className="grid grid-cols-[auto_1fr_auto] items-center gap-4"
                 >
                   <Image
-                    src={
-                      index === 1 ? item.productId?.images?.[0] : placeholder
-                    }
+                    src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${item.productId.images[0]}`}
                     alt="product image"
                     width={80}
                     height={80}
@@ -133,9 +133,14 @@ export default function CartModal({
                   <div className="grid gap-1">
                     <h3 className="font-medium">{item.productId.name}</h3>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                      &#x20b9;
-                      {item.productId.offerPrice.toFixed(2) ??
-                        item.productId.price.toFixed(2)}
+                      {(item.productId.offerPrice || item.productId.price) ? (
+                        <>
+                          &#x20b9;
+                          {item.productId.offerPrice
+                            ? item.productId.offerPrice.toFixed(2)
+                            : item.productId.price.toFixed(2)}
+                        </>
+                      ) : null}
                     </div>
                   </div>
                   <div className="flex items-center gap-2">

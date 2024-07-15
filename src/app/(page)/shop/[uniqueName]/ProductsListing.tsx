@@ -106,7 +106,6 @@ function ProductsListing({ store }: { store: TShop }) {
     });
   }
 
-
   return (
     <div>
       <section className="py-12 md:py-16">
@@ -225,14 +224,20 @@ function ProductsListing({ store }: { store: TShop }) {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-lg flex items-center mx-2 font-semibold">
-                      <PiCurrencyInrBold size={20} />
-                      {product?.offerPrice !== 0 ? (
+                      {+product.price !== 0 && (
                         <>
-                          {product?.offerPrice}
-                          <small className="ml-2"><del>{product?.price}</del></small>
+                          <PiCurrencyInrBold size={20} />
+                          {+product?.offerPrice !== 0 ? (
+                            <>
+                              {product.offerPrice}
+                              <small className="ml-2">
+                                <del>{product.price}</del>
+                              </small>
+                            </>
+                          ) : (
+                            product.price
+                          )}
                         </>
-                      ) : (
-                        <small>{product?.price}</small>
                       )}
                     </span>
                     <Button
