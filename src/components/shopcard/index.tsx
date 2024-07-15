@@ -15,7 +15,6 @@ export default function ShopCard(shop: any) {
     router.push(`/shop/${shop?.shop?.uniqueName}`);
   };
 
-  console.log("shop?.Shop?.phone ",shop?.shop?.phone)
   return (
 
     <Card onClick={handleCardClick}  className="sm:w-full cursor-pointer max-w-sm px-2 py-2  grid  gap-6">
