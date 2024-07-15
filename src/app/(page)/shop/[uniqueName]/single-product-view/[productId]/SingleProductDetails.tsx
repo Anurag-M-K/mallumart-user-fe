@@ -22,14 +22,14 @@ function SingleProductDetails({ product }: { product: TProduct }) {
       description: "Product added to cart.",
     })
   }
-
+console.log("currnet image ",currentImage)
   return (
     <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div className="grid gap-4">
         <div className="grid grid-cols-5 gap-4">
           <div className="col-span-5 md:col-span-4">
             <img
-              src={currentImage}
+              src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${currentImage}`}
               alt="Product Image"
               width={800}
               height={800}
@@ -59,15 +59,15 @@ function SingleProductDetails({ product }: { product: TProduct }) {
       </div>
       <div className="grid ">
         <div>
-          <h1 className="text-3xl font-bold">{product.name}</h1>
-          <p>{product.description}.</p>{" "}
+          <h1 className="text-3xl font-bold">{product?.name}</h1>
+          <p>{product?.description}.</p>{" "}
           <div className="flex my-4 items-center">
             <PiCurrencyInrBold size={20} />
-            <h2 className="text-xl font-bold">{product.offerPrice}</h2>
-            {product.price && (
+            <h2 className="text-xl font-bold">{product?.offerPrice}</h2>
+            {product?.price && (
               <span className="flex items-center text-sm text-gray-500 hover:text-gray-100 line-through ml-2">
                 <PiCurrencyInrBold size={14} />
-                {product.price}
+                {product?.price}
               </span>
             )}
           </div>

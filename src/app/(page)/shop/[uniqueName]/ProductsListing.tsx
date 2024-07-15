@@ -179,12 +179,12 @@ function ProductsListing({ store }: { store: TShop }) {
                     >
                       {sortOptions?.map((item) => (
                         <DropdownMenuRadioItem
-                          onClick={() => handleSortChange(item.value)}
-                          key={item.value}
+                          onClick={() => handleSortChange(item?.value)}
+                          key={item?.value}
                           className="mx-3 hover:bg-gray-200 mt-3 cursor-pointer"
-                          value={item.value}
+                          value={item?.value}
                         >
-                          {item.label}
+                          {item?.label}
                         </DropdownMenuRadioItem>
                       ))}
                     </DropdownMenuRadioGroup>
@@ -201,16 +201,16 @@ function ProductsListing({ store }: { store: TShop }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {products?.map((product: any) => (
               <div
-                key={product.id}
+                key={product?.id}
                 className="bg-white flex flex-col justify-between dark:bg-gray-950 rounded-lg shadow-sm hover:shadow-lg overflow-hidden"
               >
                 <Link
-                  href={`/shop/${store.store._id}/single-product-view/${product._id}`}
+                  href={`/shop/${store.store._id}/single-product-view/${product?._id}`}
                 >
                   <div className="relative cursor-pointer w-full h-72">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${product.images[0]}`}
-                      alt={product.name}
+                      src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${product?.images[0]}`}
+                      alt={product?.name}
                       layout="fill"
                       objectFit="cover"
                       className="hover:scale-105 transition-transform duration-300"
@@ -219,25 +219,25 @@ function ProductsListing({ store }: { store: TShop }) {
                 </Link>
 
                 <div className="p-4 mt-4">
-                  <h3 className="text-lg font-semibold">{product.name}</h3>
+                  <h3 className="text-lg font-semibold">{product?.name}</h3>
                   <p className="text-gray-500 dark:text-gray-400 mb-4">
-                    {product.description}
+                    {product?.description}
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-lg flex items-center mx-2 font-semibold">
                       <PiCurrencyInrBold size={20} />
                       {product?.offerPrice !== 0 ? (
                         <>
-                          {product.offerPrice}
-                          <small className="ml-2"><del>{product.price}</del></small>
+                          {product?.offerPrice}
+                          <small className="ml-2"><del>{product?.price}</del></small>
                         </>
                       ) : (
-                        <small>{product.price}</small>
+                        <small>{product?.price}</small>
                       )}
                     </span>
                     <Button
                       size="sm"
-                      onClick={() => addToCartHandler(product._id)}
+                      onClick={() => addToCartHandler(product?._id)}
                     >
                       Add to Cart
                     </Button>
