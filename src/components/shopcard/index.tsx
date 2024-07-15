@@ -14,6 +14,8 @@ export default function ShopCard(shop: any) {
   const handleCardClick = () => {
     router.push(`/shop/${shop?.shop?.uniqueName}`);
   };
+
+  console.log("shop?.Shop?.phone ",shop?.shop?.phone)
   return (
 
     <Card onClick={handleCardClick}  className="sm:w-full cursor-pointer max-w-sm px-2 py-2  grid  gap-6">
@@ -91,14 +93,16 @@ export default function ShopCard(shop: any) {
               <Button
               onClick={(e)=>{
                 e.stopPropagation()
-                window.location.href = `tel:${shop?.Shop?.phone}`
+                window.location.href = `tel:${shop?.shop?.phone}`
               }}
                 size="sm"
                 className="text-sm rounded-full bg-white  sm:mt-0 text-black hover:bg-gray-100 border-black border "
                 >
                <IoMdCall className="w-4 h-4" />
                <span className="hidden sm:flex ms-1">Call</span>
+               
                 </Button>
+                
                 </div>
         </div>
       </div>
