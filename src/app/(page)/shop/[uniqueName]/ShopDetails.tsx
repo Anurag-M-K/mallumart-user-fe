@@ -17,7 +17,7 @@ export default function ShopDetails({ store }: { store: TShop }) {
                 alt="helo"
                 width={400}
                 height={300}
-                className="w-full overflow-hidden h-auto sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full overflow-hidden h-auto  object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="grid gap-4">
