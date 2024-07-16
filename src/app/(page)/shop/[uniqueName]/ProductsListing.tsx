@@ -105,6 +105,7 @@ function ProductsListing({ store }: { store: TShop }) {
       queryKey: ["cart", store.store._id],
     });
   }
+  console.log("product ",products)
 
   return (
     <div>
@@ -201,38 +202,38 @@ function ProductsListing({ store }: { store: TShop }) {
             {products?.map((product: any) => (
               <div
                 key={product?.id}
-                className="border dark:bg-gray-950 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between overflow-hidden"
+                className=" dark:bg-gray-950 rounded-lg shadow-sm hover:shadow-md transition-shadow justify-between border flex flex-col overflow-hidden"
               >
                 <Link
                   href={`/shop/${store?.store?._id}/single-product-view/${product?._id}`}
                 >
-                  <div className="relative cursor-pointer w-auto h-32  sm:h-72">
-                    <Image
+                  <div className="relative cursor-pointer w-auto   sm:h-66">
+                    <img
                       src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${product?.images[0]}`}
                       alt={product?.name}
-                      layout="fill"
+                      // layout="contain"
                       // objectFit="contain"
                       // height={300}
                       // width={300}
-                      className="hover:scale-105 object-contain sm:object-cover mt-2 transition-transform duration-300"
+                      className="hover:scale-105 object-cover sm:object-cover mt-2 transition-transform duration-300"
                     />
                   </div>
                 </Link>
 
-                <div className="p-4 mt-4">
+                <div className="p-4">
                   <h3 className="sm:text-lg font-semibold">{product?.name}</h3>
                   <p className="text-gray-500 dark:text-gray-400 ">
                     {product?.description?.length > 12 ? product?.description?.substring(0,12) + "..." : product?.description }
                   </p>
-                  <div className="flex items-center flex-col sm:flex-row justify-between">
-                    <span className="text-lg flex items-center mx-2 font-semibold">
+                  <div className="flex items-start flex-col sm:flex-row justify-between">
+                    <span className="sm:text-lg flex items-start  font-semibold">
                       {+product.price !== 0 && (
                         <>
                           <PiCurrencyInrBold size={20} />
                           {+product?.offerPrice !== 0 ? (
                             <>
                               {product?.offerPrice}
-                              <small className="ml-2">
+                              <small className="text-red-500 ml-2">
                                 <del>{product?.price}</del>
                               </small>
                             </>
@@ -242,20 +243,23 @@ function ProductsListing({ store }: { store: TShop }) {
                         </>
                       )}
                     </span>
+                    <div className="text-start">
+
                     <Button
                       size="sm"
                       onClick={() => addToCartHandler(product?._id)}
-                      className="w-full sm:w-auto"
-                    >
+                      className=" text-white bg-yellow-300 sm:w-auto"
+                      >
                       Add to Cart
                     </Button>
+                      </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
           {/* pagination here */}
-          <div className="mt-8 flex justify-center">
+          <div className="mt-2 flex justify-center">
             <Pagination>
               <PaginationContent>
                 {currentPage > 1 && (
