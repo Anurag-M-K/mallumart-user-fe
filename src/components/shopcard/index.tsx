@@ -19,14 +19,14 @@ export default function ShopCard(shop: any) {
 
     <Card onClick={handleCardClick}  className="sm:w-full cursor-pointer max-w-sm px-2 py-2  grid  gap-6">
       <div className="flex flex-col items-between gap-4">
-        <div className="sm:w-full h-44   sm:h-64 relative">
+        <div className="sm:w-full h-44   sm:h-72 relative">
           <Image
             src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${shop?.shop?.shopImgUrl}`}
             alt="shop image"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain" }}
             fill
             priority={false}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
           />
