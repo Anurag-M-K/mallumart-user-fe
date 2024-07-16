@@ -211,17 +211,17 @@ function ProductsListing({ store }: { store: TShop }) {
                       src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${product?.images[0]}`}
                       alt={product?.name}
                       layout="fill"
-                      objectFit="cover"
+                      // objectFit="contain"
                       // height={300}
                       // width={300}
-                      className="hover:scale-105 transition-transform duration-300"
+                      className="hover:scale-105 object-contain sm:object-cover mt-2 transition-transform duration-300"
                     />
                   </div>
                 </Link>
 
                 <div className="p-4 mt-4">
-                  <h3 className="text-lg font-semibold">{product?.name}</h3>
-                  <p className="text-gray-500 dark:text-gray-400 mb-4">
+                  <h3 className="sm:text-lg font-semibold">{product?.name}</h3>
+                  <p className="text-gray-500 dark:text-gray-400 ">
                     {product?.description?.length > 12 ? product?.description?.substring(0,12) + "..." : product?.description }
                   </p>
                   <div className="flex items-center flex-col sm:flex-row justify-between">
