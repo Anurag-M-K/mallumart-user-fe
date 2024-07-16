@@ -124,21 +124,21 @@ export default function CartModal({
                   className="grid grid-cols-[auto_1fr_auto] items-center gap-4"
                 >
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${item.productId.images[0]}`}
+                    src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${item?.productId?.images[0]}`}
                     alt="product image"
                     width={80}
                     height={80}
                     className="w-20 h-20 overflow-hidden object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="grid gap-1">
-                    <h3 className="font-medium">{item.productId.name}</h3>
+                    <h3 className="font-medium">{item?.productId?.name}</h3>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                      {(item.productId.offerPrice || item.productId.price) ? (
+                      {(item?.productId?.offerPrice || item?.productId?.price) ? (
                         <>
                           &#x20b9;
-                          {item.productId.offerPrice
-                            ? item.productId.offerPrice.toFixed(2)
-                            : item.productId.price.toFixed(2)}
+                          {item?.productId?.offerPrice
+                            ? item?.productId?.offerPrice.toFixed(2)
+                            : item?.productId?.price.toFixed(2)}
                         </>
                       ) : null}
                     </div>
@@ -148,18 +148,18 @@ export default function CartModal({
                       size="icon"
                       variant="ghost"
                       onClick={() =>
-                        handleQuantityChange(item._id, item.quantity - 1)
+                        handleQuantityChange(item?._id, item?.quantity - 1)
                       }
-                      disabled={item.quantity === 1}
+                      disabled={item?.quantity === 1}
                     >
                       <MinusIcon className="w-4 h-4" />
                     </Button>
-                    <div className="font-medium">{item.quantity}</div>
+                    <div className="font-medium">{item?.quantity}</div>
                     <Button
                       size="icon"
                       variant="ghost"
                       onClick={() =>
-                        handleQuantityChange(item._id, item.quantity + 1)
+                        handleQuantityChange(item?._id, item?.quantity + 1)
                       }
                     >
                       <PlusIcon className="w-4 h-4" />
@@ -167,7 +167,7 @@ export default function CartModal({
                     <Button
                       size="icon"
                       variant="ghost"
-                      onClick={() => handleRemoveItem(item._id)}
+                      onClick={() => handleRemoveItem(item?._id)}
                     >
                       <XIcon className="w-4 h-4" />
                     </Button>
