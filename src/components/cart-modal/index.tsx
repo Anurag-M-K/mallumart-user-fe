@@ -103,7 +103,7 @@ export default function CartModal({
         }}
         asChild
       >
-        <Button size="lg" variant="outline" className="bg-blue-600 text-white">
+        <Button size="lg" variant="outline" className="bg-blue-600 w-full sm:w-auto text-white">
           <ShoppingCartIcon className="w-4 h-4 mr-2" />
           Checkout
         </Button>

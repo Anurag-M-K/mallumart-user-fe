@@ -197,21 +197,23 @@ function ProductsListing({ store }: { store: TShop }) {
           </div>
         </div>
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
             {products?.map((product: any) => (
               <div
                 key={product?.id}
-                className="bg-white flex flex-col justify-between dark:bg-gray-950 rounded-lg shadow-sm hover:shadow-lg overflow-hidden"
+                className="border dark:bg-gray-950 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between overflow-hidden"
               >
                 <Link
-                  href={`/shop/${store.store._id}/single-product-view/${product?._id}`}
+                  href={`/shop/${store?.store?._id}/single-product-view/${product?._id}`}
                 >
-                  <div className="relative cursor-pointer w-full h-72">
+                  <div className="relative cursor-pointer w-auto h-32  sm:h-72">
                     <Image
                       src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${product?.images[0]}`}
                       alt={product?.name}
                       layout="fill"
                       objectFit="cover"
+                      // height={300}
+                      // width={300}
                       className="hover:scale-105 transition-transform duration-300"
                     />
                   </div>
@@ -220,22 +222,22 @@ function ProductsListing({ store }: { store: TShop }) {
                 <div className="p-4 mt-4">
                   <h3 className="text-lg font-semibold">{product?.name}</h3>
                   <p className="text-gray-500 dark:text-gray-400 mb-4">
-                    {product?.description}
+                    {product?.description?.length > 12 ? product?.description?.substring(0,12) + "..." : product?.description }
                   </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center flex-col sm:flex-row justify-between">
                     <span className="text-lg flex items-center mx-2 font-semibold">
                       {+product.price !== 0 && (
                         <>
                           <PiCurrencyInrBold size={20} />
                           {+product?.offerPrice !== 0 ? (
                             <>
-                              {product.offerPrice}
+                              {product?.offerPrice}
                               <small className="ml-2">
-                                <del>{product.price}</del>
+                                <del>{product?.price}</del>
                               </small>
                             </>
                           ) : (
-                            product.price
+                            product?.price
                           )}
                         </>
                       )}
@@ -243,6 +245,7 @@ function ProductsListing({ store }: { store: TShop }) {
                     <Button
                       size="sm"
                       onClick={() => addToCartHandler(product?._id)}
+                      className="w-full sm:w-auto"
                     >
                       Add to Cart
                     </Button>

@@ -10,14 +10,14 @@ export default function ShopDetails({ store }: { store: TShop }) {
     <div className="w-full">
       <section className="bg-gray-100 dark:bg-gray-800 py-12 md:py-16">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
+          <div className="grid grid-cols-2 gap-8">
+            <div className="flex justify-center items-center">
               <Image
                 src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${store?.store?.shopImgUrl}`}
                 alt="helo"
                 width={400}
                 height={300}
-                className="w-full overflow-hidden h-[500px] object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full overflow-hidden h-auto sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="grid gap-4">
@@ -42,7 +42,9 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   <span className="text-gray-500 dark:text-gray-400">
                     Address
                   </span>
-                  <p>{store?.store?.address}, {store?.store?.district}</p>
+                  <p>
+                    {store?.store?.address}, {store?.store?.district}
+                  </p>
                 </div>
                 <div className="grid gap-1">
                   <span className="text-gray-500 dark:text-gray-400">
@@ -59,6 +61,8 @@ export default function ShopDetails({ store }: { store: TShop }) {
                 <div className="grid gap-1">
                   <span className="text-gray-500 dark:text-gray-400"></span>
                   {/* TODO: need to update the phone with whatsapp, once added */}
+                </div>
+                <div className="hidden sm:flex">
                   <CartModal
                     storeId={store?.store?._id}
                     storeWhatsapp={store?.store?.phone}
@@ -66,6 +70,12 @@ export default function ShopDetails({ store }: { store: TShop }) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="sm:hidden">
+            <CartModal
+              storeId={store?.store?._id}
+              storeWhatsapp={store?.store?.phone}
+            />
           </div>
         </div>
       </section>
