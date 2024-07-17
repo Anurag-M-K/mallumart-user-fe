@@ -109,7 +109,7 @@ function ProductsListing({ store }: { store: TShop }) {
 
   return (
     <div>
-      <section className="py-12 md:py-16">
+      <section className="py-2 md:py-16">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between mb-8">
             <div className="grid grid-cols-1 sm:flex items-center gap-4 w-full sm:w-auto">
