@@ -32,7 +32,7 @@ function SingleProductDetails({ product }: { product: TProduct }) {
               alt="Product Image"
               width={800}
               height={800}
-              className="sm:h-2/3 rounded-lg object-cover"
+              className="sm:h-2/3 rounded-lg object-contain"
             />
           </div>
           {product.images.length > 1 && (
@@ -64,7 +64,7 @@ function SingleProductDetails({ product }: { product: TProduct }) {
             <PiCurrencyInrBold size={20} />
             <h2 className="text-xl font-bold">{product?.offerPrice}</h2>
             {product?.price && (
-              <span className="flex items-center text-sm text-gray-500 hover:text-gray-100 line-through ml-2">
+              <span className="flex items-center text-sm text-red-500 hover:text-gray-100 line-through ml-2">
                 <PiCurrencyInrBold size={14} />
                 {product?.price}
               </span>
