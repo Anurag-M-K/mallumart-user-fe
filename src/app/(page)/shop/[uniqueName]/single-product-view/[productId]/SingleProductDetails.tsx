@@ -23,7 +23,7 @@ function SingleProductDetails({ product }: { product: TProduct }) {
     })
   }
   return (
-    <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
       <div className="grid gap-4">
         <div className="grid grid-cols-5 gap-4">
           <div className="col-span-5  md:col-span-4">
@@ -73,7 +73,7 @@ function SingleProductDetails({ product }: { product: TProduct }) {
         </div>
         <div className="text-sm leading-loose text-gray-500 dark:text-gray-400"></div>
         <div className="flex gap-x-2">
-          <Button size="lg" onClick={addToCartHandler} className=" w-full">
+          <Button size="lg" onClick={addToCartHandler} className=" bg-yellow-300 w-full">
             Add to Cart
           </Button>
         </div>
