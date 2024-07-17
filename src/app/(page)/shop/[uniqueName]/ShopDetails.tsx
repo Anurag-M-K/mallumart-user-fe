@@ -7,8 +7,8 @@ import { getDirectionUrl } from "@/lib/utils";
 
 export default function ShopDetails({ store }: { store: TShop }) {
   return (
-    <div className="w-full">
-      <section className="bg-gray-100 dark:bg-gray-800 py-2 md:py-4">
+    <div className="w-full ">
+      <section className="bg-gray-100 sm:p-20 dark:bg-gray-800 py-2 md:py-4">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-2 gap-8">
             <div className="flex justify-center items-center">
@@ -17,13 +17,14 @@ export default function ShopDetails({ store }: { store: TShop }) {
                 alt="helo"
                 width={400}
                 height={300}
-                className="w-full overflow-hidden h-auto  object-cover group-hover:scale-105 transition-transform duration-300"
+                className="h-auto sm:h-1/2 overflow-hidden   object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="grid gap-4">
+            <div className="grid ">
+
               <h2 className="text-2xl md:text-3xl font-bold">
                 {store?.store?.storeName}
-                <div className="mt-4">
+                <div className="">
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -36,8 +37,7 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   </a>
                 </div>
               </h2>
-
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 ">
                 <div className="grid gap-1">
                   <span className="text-gray-500 dark:text-gray-400">
                     Address
