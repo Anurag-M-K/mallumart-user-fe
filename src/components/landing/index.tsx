@@ -87,18 +87,18 @@ export default async function Landing() {
         </Carousel>
       </section>
 
-      <section className="w-full py-12 md:py-16 lg:py-20 bg-gray-100 dark:bg-gray-800">
+      <section className="w-full py-3 md:py-4 lg:py-6 bg-gray-100 dark:bg-gray-800">
         <div className="container px-4 md:px-6">
-          <div className="flex items-center justify-between mb-6 md:mb-8">
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+          <div className="flex items-center justify-between mb-2 md:mb-8">
+            <h2 className="text-xl font-bold tracking-tight md:text-3xl">
               Shop by Category
             </h2>
           </div>
 
-          <section className="  ">
+          <section>
             <div className=" ">
-              <div className="flex flex-col  gap-6">
-                <div className="flex snap-x  snap-mandatory no-scrollbar overflow-x-auto gap-6 pb-4">
+              <div className="flex flex-col  gap-x-6">
+                <div className="flex snap-x  snap-mandatory no-scrollbar overflow-x-auto gap-x-6 ">
                   {mainCategories?.map((category: any, index: any) => (
                     // <div className="">
                     <CategorySlide key={category?._id} category={category} index={index} />

@@ -35,10 +35,10 @@ function    ShopsNearByYou() {
   //   }
   // }, []);  
   return (
-    <section className="w-full py-12 md:py-16 lg:py-2 bg-gray-100 dark:bg-gray-800">
+    <section className="w-full py-2 md:py-16 lg:py-2 bg-gray-100 dark:bg-gray-800">
       <div className="container px-4 md:px-6">
-        <div className="flex items-center justify-between mb-6 md:mb-8">
-          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+        <div className="flex items-center justify-between mb-2 md:mb-8">
+          <h2 className="text-xl font-bold tracking-tight md:text-3xl">
             Shops near by
           </h2>
           <p
