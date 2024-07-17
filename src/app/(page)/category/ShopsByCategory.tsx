@@ -38,12 +38,14 @@ export default function ShopsByCategory({
     });
   };
   const fetchStoreInitially = async () => {
-    const res = await fetchShopsByCategory({
-      categoryId: query,
-      currentLocation,
-    });
-    // Dispatch the data to the store context
-    dispatch({ type: "SET_STORES", payload: res });
+    if (currentLocation?.latitude && currentLocation?.longitude) {
+      const res = await fetchShopsByCategory({
+        categoryId: query,
+        currentLocation,
+      });
+      // Dispatch the data to the store context
+      dispatch({ type: "SET_STORES", payload: res });
+    }
   };
 
   useEffect(() => {
@@ -66,11 +68,11 @@ export default function ShopsByCategory({
     // Update the URL with the selected category
     if (categoryId) {
       router.push(`?category=${categoryId}`);
-      setSelectedCategory(categoryId)
+      setSelectedCategory(categoryId);
     } else {
       router.push(`?`);
-      setSelectedCategory(null)
-      console.log("in onclick")
+      setSelectedCategory(null);
+      console.log("in onclick");
       // fetchStoreInitially()
     }
     // Fetch the shops by category
@@ -92,7 +94,7 @@ export default function ShopsByCategory({
       }
     };
     fetchStoreByCategory();
-  }, [selectedCategory,query,currentLocation,state?.isSearch]);
+  }, [selectedCategory, query, currentLocation, state?.isSearch]);
 
   const categoryTitle =
     categories.find((item: TCategories) => item?._id === selectedCategory)
@@ -130,10 +132,7 @@ export default function ShopsByCategory({
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6">
           {state?.stores?.length > 0 ? (
             state?.stores?.map((product: TStore) => (
-              <div
-                key={product?._id}
-                className="group"
-              >
+              <div key={product?._id} className="group">
                 <ShopCard shop={product} />
               </div>
             ))

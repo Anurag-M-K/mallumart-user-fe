@@ -24,6 +24,7 @@ const StoreContext = createContext<{ state: StoreState; dispatch: Dispatch<Actio
 
 // Reducer
 const storeReducer = (state: StoreState, action: Action): StoreState => {
+  console.log("from reducer ",action.payload)
   switch (action.type) {
     case 'SET_STORES':
       return {

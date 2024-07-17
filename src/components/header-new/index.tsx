@@ -73,16 +73,25 @@ export default function HeaderNew() {
     <header className=" text-white">
       <div className="container  mx-auto flex items-center justify-between flex-wrap gap-4  px-6 md:px-8">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
-          <Image alt="lOGO" src={"/mallu-mart-logo.jpg"} width={80} height={80} />
+          <Image
+            alt="lOGO"
+            src={"/mallu-mart-logo.jpg"}
+            width={80}
+            height={80}
+          />
         </Link>
-          <Link rel="noopener noreferrer"  href={'https://admin.mallumart.com/store/login'} target="_blank" >
-        <Button className="flex items-center border-gray-600 border hover:bg-transparent  bg-transparent  text-sm rounded text-black  px-2 ">
-            <LiaStoreAltSolid className="me-2"/>
-        Store Login
+        <Link
+          rel="noopener noreferrer"
+          href={"https://admin.mallumart.com/store/login"}
+          target="_blank"
+        >
+          <Button className="flex items-center border-gray-600 border hover:bg-transparent  bg-transparent  text-sm rounded text-black  px-2 ">
+            <LiaStoreAltSolid className="me-2" />
+            Store Login
           </Button>
         </Link>
         {!user && (
-          <div className="md:hidden flex items-center gap-2">
+          <div className="sm:hidden flex items-center gap-2">
             <Link
               href="/auth/login"
               className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
@@ -101,50 +110,45 @@ export default function HeaderNew() {
         )}
         {user && (
           <div className="md:hidden">
-          <DropdownMenu open={open} onOpenChange={setOpen}>
-          <DropdownMenuTrigger asChild>
-          <div className="flex justify-center items-center">
-
-                <FaRegUserCircle
-                  size={24}
-                  className="text-gray-700 cursor-pointer"
+            <DropdownMenu open={open} onOpenChange={setOpen}>
+              <DropdownMenuTrigger asChild>
+                <div className="flex justify-center items-center">
+                  <FaRegUserCircle
+                    size={24}
+                    className="text-gray-700 cursor-pointer"
                   />
-                     <p className="text-black ms-2 cursor-pointer" >
-                       {user?.name}
-                      </p>
-              </div>
-          
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-            
-            <DropdownMenuItem>
-            <p className="flex font-medium w-full items-center">
-            <span>{user?.name}</span>
-            </p>
-            </DropdownMenuItem>
-            
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-                <Link href={"/profile"}>
-                <div className="flex cursor-pointer w-full items-center">
-                <MdOutlineManageAccounts  className="mr-2 h-4 w-4" />
-                
-                <span>Account</span>
-                  </div>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="text-red-600">
-                <div className="flex cursor-pointer w-full items-center">
-                  <LogOutIcon className="mr-2 h-4 w-4" />
-                  <span onClick={() => logout()}>Logout</span>
+                  <p className="text-black ms-2 cursor-pointer">{user?.name}</p>
                 </div>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem>
+                  <p className="flex font-medium w-full items-center">
+                    <span>{user?.name}</span>
+                  </p>
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link href={"/profile"}>
+                    <div className="flex cursor-pointer w-full items-center">
+                      <MdOutlineManageAccounts className="mr-2 h-4 w-4" />
+
+                      <span>Account</span>
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-red-600">
+                  <div className="flex cursor-pointer w-full items-center">
+                    <LogOutIcon className="mr-2 h-4 w-4" />
+                    <span onClick={() => logout()}>Logout</span>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         )}
         <div className="flex flex-row  gap-x-2 w-screen  max-w-md">
-        <DropdownMenu>
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button className="bg-[#0089d4] hover:bg-[#61acd4] flex items-center gap-x-2  md:w-auto">
                 <BiCategory className="h-5 w-5 hover:white" />
@@ -184,7 +188,7 @@ export default function HeaderNew() {
 
         <div className="flex flex-col sm:flex-row items-center gap-4">
           {!user && (
-            <div className="hidden sm:flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-2">
               <Link
                 href="/auth/login"
                 className="inline-flex items-center justify-center rounded-md  border px-4 py-2 text-sm font-medium transition-colors bg-[#0089d4] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
@@ -205,47 +209,42 @@ export default function HeaderNew() {
 
         {user && (
           <div className="hidden md:flex">
-          <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-              <div className="flex justify-center items-center">
-
-                <FaRegUserCircle
-                  size={24}
-                  className="text-gray-700 cursor-pointer"
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="flex justify-center items-center">
+                  <FaRegUserCircle
+                    size={24}
+                    className="text-gray-700 cursor-pointer"
                   />
-                     <p className="text-black ms-2 cursor-pointer" >
-                       {user?.name}
-                      </p>
-              </div>
-          
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-             
-              <DropdownMenuItem>
-                <p className="flex font-medium w-full items-center">
-                  <span>{user?.name}</span>
-                </p>
-              </DropdownMenuItem>
-
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link href={"/profile"}>
-                  <div className="flex cursor-pointer w-full items-center">
-                    <MdOutlineManageAccounts  className="mr-2 h-4 w-4" />
-
-                    <span>Account</span>
-                  </div>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="text-red-600">
-                <div className="flex cursor-pointer w-full items-center">
-                  <LogOutIcon className="mr-2 h-4 w-4" />
-                  <span onClick={() => logout()}>Logout</span>
+                  <p className="text-black ms-2 cursor-pointer">{user?.name}</p>
                 </div>
-              </DropdownMenuItem>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem>
+                  <p className="flex font-medium w-full items-center">
+                    <span>{user?.name}</span>
+                  </p>
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link href={"/profile"}>
+                    <div className="flex cursor-pointer w-full items-center">
+                      <MdOutlineManageAccounts className="mr-2 h-4 w-4" />
+
+                      <span>Account</span>
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-red-600">
+                  <div className="flex cursor-pointer w-full items-center">
+                    <LogOutIcon className="mr-2 h-4 w-4" />
+                    <span onClick={() => logout()}>Logout</span>
+                  </div>
+                </DropdownMenuItem>
               </DropdownMenuContent>
-              </DropdownMenu>
-              </div>
+            </DropdownMenu>
+          </div>
         )}
       </div>
     </header>
