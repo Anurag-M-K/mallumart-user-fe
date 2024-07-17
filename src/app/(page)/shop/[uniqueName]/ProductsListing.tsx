@@ -197,7 +197,7 @@ function ProductsListing({ store }: { store: TShop }) {
             </div>
           </div>
         </div>
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-2 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
             {products?.map((product: any) => (
               <div
@@ -215,12 +215,12 @@ function ProductsListing({ store }: { store: TShop }) {
                       // objectFit="contain"
                       // height={300}
                       // width={300}
-                      className="hover:scale-105 object-cover sm:object-cover mt-2 transition-transform duration-300"
+                      className="hover:scale-105 object-cover sm:object-cover  transition-transform duration-300"
                     />
                   </div>
                 </Link>
 
-                <div className="p-4">
+                <div className="p-2">
                   <h3 className="sm:text-lg font-semibold">{product?.name}</h3>
                   <p className="text-gray-500 dark:text-gray-400 ">
                     {product?.description?.length > 12 ? product?.description?.substring(0,12) + "..." : product?.description }
