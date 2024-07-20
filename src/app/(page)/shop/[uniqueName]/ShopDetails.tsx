@@ -54,6 +54,12 @@ export default function ShopDetails({ store }: { store: TShop }) {
                 </div>
                 <div className="grid gap-1">
                   <span className="text-gray-500 dark:text-gray-400">
+                    Bio
+                  </span>
+                  <p>{store?.store?.bio}</p>
+                </div>
+                <div className="grid gap-1">
+                  <span className="text-gray-500 dark:text-gray-400">
                     Phone
                   </span>
                   <p>{store?.store?.phone}</p>
