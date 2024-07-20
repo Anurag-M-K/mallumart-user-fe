@@ -57,7 +57,7 @@ export default function HeaderNew() {
     try {
       const res = await searchStoreByProductName(searchTerm);
       dispatch({ type: "SET_STORES", payload: res });
-      dispatch({ type: "SET_IS_SEARCH", payload: true });
+      dispatch({ type: "SET_IS_SEARCH", payload: true }); 
       // if(res)
 
       if (res.length > 0) {

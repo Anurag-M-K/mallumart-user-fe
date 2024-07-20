@@ -253,7 +253,7 @@ function ProductsListing({ store }: { store: TShop }) {
                       <Button
                         size="sm"
                         onClick={() => addToCartHandler(product?._id)}
-                        className=" text-white bg-yellow-300 sm:w-auto"
+                        className=" text-white bg-blue-600 hover:bg-blue-700 sm:w-auto"
                       >
                         Add to Cart
                       </Button>
