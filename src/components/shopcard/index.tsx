@@ -34,7 +34,7 @@ export default function ShopCard(shop: any) {
             className="object-cover sm:w-full h-40 w-60 sm:h-60 group-hover:scale-105 transition-transform duration-300"
           /> */}
         </div>
-        <div className="grid gap-2">
+        <div className="grid gap-x-2 gap-y-1">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center items-start ">
             <h3
               style={{
@@ -47,16 +47,16 @@ export default function ShopCard(shop: any) {
               { shop?.shop?.storeName?.length > 12 ? `${shop?.shop?.storeName?.substring(0, 12)}...` : shop?.shop?.storeName?.substring(0,15)}
             </h3>
           
-          <div className="flex justify-start sm:justify-end sm:items-end items-start">
+          <div className="flex text-gray-500 dark:text-gray-400 justify-start sm:justify-end sm:items-end items-start">
 
-            <FaDirections  size={16} className="text-gray-500 me-2 left-0" />
+            <FaDirections className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 me-2 left-0" />
 
-          <h1 className=" text-[12px] sm:me-6">{shop?.shop?.distance + " "} KM</h1>
+          <h1 className="text-[10px] sm:me-6">{shop?.shop?.distance + " "} KM</h1>
           </div>
           </div>
 
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-            <MapPinIcon className="w-4 h-4" />
+            <MapPinIcon className="w-3 h-3 sm:w-4 sm:h-4" />
             <span
             className="text-[12px] sm:text-sm"
               style={{
@@ -70,14 +70,14 @@ export default function ShopCard(shop: any) {
                 : shop?.shop?.address}
             </span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-x-2 text-sm text-gray-500 dark:text-gray-400">
             <CustomIconifyIcon
-              className="w-4 h-4"
+              className="sm:w-4 sm:h-4"
               name={shop?.shop?.category?.icon}
             />
             <span className="text-[12px] sm:text-sm">{shop?.shop?.category?.name || shop?.shop?.phone}</span>
           </div>
-          <div className=" flex  gap-x-1 my-2">
+          <div className=" flex  gap-x-1 ">
             <Link
               className="w-full"
               target="_blank"
@@ -90,7 +90,7 @@ export default function ShopCard(shop: any) {
             >
             <Button
                 size="sm"
-                className="w-full text-sm bg-gray-700 rounded-full hover:bg-gray-600"
+                className="w-full  text-sm bg-gray-700 rounded-full hover:bg-gray-600"
               >
                 <FaDirections  size={18} className="hidden sm:flex me-2 left-0" />
 
@@ -102,10 +102,10 @@ export default function ShopCard(shop: any) {
                 e.stopPropagation()
                 window.location.href = `tel:${shop?.shop?.phone}`
               }}
-                size="sm"
-                className="text-sm rounded-full bg-white  sm:mt-0 text-black hover:bg-gray-100 border-black border "
+                // size="sm"
+                className="text-sm rounded-full  bg-white  sm:mt-0 text-black hover:bg-gray-100 border-black border "
                 >
-               <IoMdCall className="w-4 h-4" />
+               <IoMdCall className="sm:w-4 sm:h-4" />
                <span className="hidden sm:flex ms-1">Call</span>
                
                 </Button>
