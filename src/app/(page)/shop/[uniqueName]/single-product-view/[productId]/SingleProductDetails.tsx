@@ -26,13 +26,13 @@ function SingleProductDetails({ product }: { product: TProduct }) {
     <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
       <div className="grid gap-4">
         <div className="grid grid-cols-5 gap-4">
-          <div className="col-span-5  md:col-span-4">
+          <div className="col-span-5   md:col-span-4">
             <img
               src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${currentImage}`}
               alt="Product Image"
               width={800}
               height={800}
-              className="sm:h-2/3 rounded-lg object-contain"
+              className="h-44 sm:h-2/3 rounded-lg object-contain"
             />
           </div>
           {product.images.length > 1 && (
