@@ -51,11 +51,14 @@ type TShop = {
     category: {
       name: string;
       _id: string;
+      icon:string;
     };
     district: string;
     addedProducts: any; //add here type
     createdAt: string;
     bio: string;
+    distance:string;
+    
   };
   productCategories?: TProductCategories;
 };

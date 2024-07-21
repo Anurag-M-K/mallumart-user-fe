@@ -35,7 +35,7 @@ export default function ShopCard(shop: any) {
           /> */}
         </div>
         <div className="grid gap-2">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center items-start ">
             <h3
               style={{
                 whiteSpace: "nowrap",
@@ -46,6 +46,13 @@ export default function ShopCard(shop: any) {
             >
               { shop?.shop?.storeName?.length > 15 ? `${shop?.shop?.storeName?.substring(0, 13)}...` : shop?.shop?.storeName?.substring(0,15)}
             </h3>
+          
+          <div className="flex justify-start sm:justify-end sm:items-end items-start">
+
+            <FaDirections  size={16} className="text-gray-500 me-2 left-0" />
+
+          <h1 className=" text-[12px] sm:me-6">{shop?.shop?.distance + " "} KM</h1>
+          </div>
           </div>
 
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -86,7 +93,7 @@ export default function ShopCard(shop: any) {
               >
                 <FaDirections  size={18} className="hidden sm:flex me-2 left-0" />
 
-              <span className="hidden sm:flex sm:me-2">Get</span> Directions
+              <span className="hidden sm:flex sm:me-2">Get</span> Directions 
               </Button>
             </Link>
               <Button
