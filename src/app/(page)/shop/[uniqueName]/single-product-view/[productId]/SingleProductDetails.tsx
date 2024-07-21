@@ -73,7 +73,7 @@ function SingleProductDetails({ product }: { product: TProduct }) {
         </div>
         <div className="text-sm leading-loose text-gray-500 dark:text-gray-400"></div>
         <div className="flex gap-x-2">
-          <Button size="lg" onClick={addToCartHandler} className=" bg-yellow-300 w-full">
+          <Button size="lg" onClick={addToCartHandler} className=" bg-blue-600 hover:bg-blue-700 w-full">
             Add to Cart
           </Button>
         </div>
