@@ -42,9 +42,9 @@ export default function ShopCard(shop: any) {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
-              className="text-lg font-semibold"
+              className="sm:text-lg font-semibold"
             >
-              { shop?.shop?.storeName?.length > 15 ? `${shop?.shop?.storeName?.substring(0, 13)}...` : shop?.shop?.storeName?.substring(0,15)}
+              { shop?.shop?.storeName?.length > 12 ? `${shop?.shop?.storeName?.substring(0, 12)}...` : shop?.shop?.storeName?.substring(0,15)}
             </h3>
           
           <div className="flex justify-start sm:justify-end sm:items-end items-start">
@@ -58,14 +58,15 @@ export default function ShopCard(shop: any) {
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <MapPinIcon className="w-4 h-4" />
             <span
+            className="text-[12px] sm:text-sm"
               style={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
             >
-              {shop?.shop?.address?.length > 15
-                ? `${shop?.shop?.address?.substring(0, 15)}...`
+              {shop?.shop?.address?.length > 10
+                ? `${shop?.shop?.address?.substring(0, 12)}...`
                 : shop?.shop?.address}
             </span>
           </div>
@@ -74,7 +75,7 @@ export default function ShopCard(shop: any) {
               className="w-4 h-4"
               name={shop?.shop?.category?.icon}
             />
-            <span>{shop?.shop?.category?.name || shop?.shop?.phone}</span>
+            <span className="text-[12px] sm:text-sm">{shop?.shop?.category?.name || shop?.shop?.phone}</span>
           </div>
           <div className=" flex  gap-x-1 my-2">
             <Link
