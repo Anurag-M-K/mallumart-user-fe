@@ -62,11 +62,11 @@ function SingleProductDetails({ product }: { product: TProduct }) {
           <p>{product?.description}.</p>{" "}
           <div className="flex my-4 items-center">
             <PiCurrencyInrBold size={20} />
-            <h2 className="text-xl font-bold">{product?.offerPrice}</h2>
-            {product?.price && (
+            <h2 className="text-xl font-bold">{product?.offerPrice === 0 ? product?.price : product?.offerPrice}</h2>
+            {product?.offerPrice !==0 && (
               <span className="flex items-center text-sm text-red-500 hover:text-gray-100 line-through ml-2">
                 <PiCurrencyInrBold size={14} />
-                {product?.price}
+                {product?.offerPrice === 0 ? null : product?.price}
               </span>
             )}
           </div>
