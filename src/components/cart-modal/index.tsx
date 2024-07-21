@@ -86,11 +86,15 @@ export default function CartModal({
         (item.productId.offerPrice ?? item.productId.price) * item.quantity,
       0
     );
+   
     const message = `Hello, I would like to order following products:\n\n${cartItems}\n\nTotal: ₹${total.toFixed(
       2
     )}`;
+
+    const encodedMessage = encodeURIComponent(message);
+
     window.open(
-      `https://wa.me/${storeWhatsapp}?text=${encodeURIComponent(message)}`
+      `https://wa.me/${storeWhatsapp}?text=${encodedMessage}`
     );
 
     await removeCartByStoreId(storeId);
