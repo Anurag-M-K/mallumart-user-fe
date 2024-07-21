@@ -86,6 +86,7 @@ type TStore = {
     type: string;
     coordinates: [number, number];
   };
+  distance:string;
   _id: string;
   storeName: string;
   uniqueName: string;

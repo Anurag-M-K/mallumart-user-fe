@@ -46,13 +46,15 @@ export default function ShopCard(shop: any) {
             >
               { shop?.shop?.storeName?.length > 12 ? `${shop?.shop?.storeName?.substring(0, 12)}...` : shop?.shop?.storeName?.substring(0,15)}
             </h3>
-          
-          <div className="flex text-gray-500 dark:text-gray-400 justify-start sm:justify-end sm:items-end items-start">
+          {shop?.shop?.distance && (
+
+            <div className="flex text-gray-500 dark:text-gray-400 justify-start sm:justify-end sm:items-end items-start">
 
             <FaDirections className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 me-2 left-0" />
 
           <h1 className="text-[10px] sm:me-6">{shop?.shop?.distance + " "} KM</h1>
           </div>
+          )}
           </div>
 
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
