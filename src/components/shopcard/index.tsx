@@ -8,6 +8,8 @@ import CustomIconifyIcon from "../CustomIconifyIcon/CustomIconifyIcon";
 import { IoMdCall } from "react-icons/io";
 import { FaDirections } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { HiStatusOnline } from "react-icons/hi";
+import { parseHTMLToText } from "@/utils/commonFunctions";
 
 export default function ShopCard(shop: any) {
   const router = useRouter();
@@ -26,13 +28,10 @@ export default function ShopCard(shop: any) {
             style={{ objectFit: "contain" }}
             fill
             priority={false}
-            // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
           />
-          {/* <img
-            className="object-cover sm:w-full h-40 w-60 sm:h-60 group-hover:scale-105 transition-transform duration-300"
-          /> */}
+         
         </div>
         <div className="grid gap-x-2 gap-y-1">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center items-start ">
@@ -57,6 +56,23 @@ export default function ShopCard(shop: any) {
           )}
           </div>
 
+           {shop?.shop?.bio && (
+          <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            <HiStatusOnline  className="w-3 h-3 sm:w-4 sm:h-4" />
+             <span
+             className="text-[12px] sm:text-sm"
+               style={{
+                 whiteSpace: "nowrap",
+                 overflow: "hidden",
+                 textOverflow: "ellipsis",
+               }}
+             >
+               {shop?.shop?.bio?.length > 10
+                 ? `${parseHTMLToText(shop?.shop?.bio?.substring(0, 15))}...`
+                 : parseHTMLToText(shop?.shop?.bio)}
+             </span>
+          </div>
+           )}
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <MapPinIcon className="w-3 h-3 sm:w-4 sm:h-4" />
             <span

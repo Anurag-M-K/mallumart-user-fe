@@ -5,7 +5,7 @@ import ShopCard from "../shopcard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchShopsByCoordinates } from "@/data/shops";
 
-function    ShopsNearByYou() {
+function ShopsNearByYou() {
   const [viewAll, setViewAll] = useState<boolean>(false);
   const [currentLocation, setCurrentLocation] = useState<any>();
   
@@ -29,11 +29,7 @@ function    ShopsNearByYou() {
     // cacheTime: 0,
   });
 
-  // useEffect(() => {
-  //   if (currentLocation) {
-  //     refetch();
-  //   }
-  // }, []);  
+  
   return (
     <section className="w-full py-2 md:py-16 lg:py-2 bg-gray-100 dark:bg-gray-800">
       <div className="container px-4 md:px-6">
