@@ -58,7 +58,8 @@ type TShop = {
     createdAt: string;
     bio: string;
     distance:string;
-    
+    storeProviding:'serviceBased' | 'productBased';
+    productCategories?: TProductCategories;
   };
   productCategories?: TProductCategories;
 };
@@ -121,5 +122,21 @@ type TUser = {
   phone:string;
   password:string;
   token?:string;
-  
+}
+
+type TSlot = {
+  date:string;
+  startTime:string;
+  endTime:string;
+  token:string;
+  _id:string;
+}
+
+interface StoreData {
+  createdAt: string;
+  slots: Slot[];
+  storeId: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
 }

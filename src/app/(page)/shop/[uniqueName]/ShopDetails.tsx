@@ -4,8 +4,12 @@ import Image from "next/image";
 import CartModal from "@/components/cart-modal";
 import { TShop } from "@/app/type";
 import { getDirectionUrl } from "@/lib/utils";
+import { AvailableTimeSlots } from "@/components/available-time-slots/AvailableTimeSlotsModal";
+import { useAuth } from "@/utils/AuthContext";
 
 export default function ShopDetails({ store }: { store: TShop }) {
+  const { user } = useAuth();
+
   return (
     <div className="w-full ">
       <section className="bg-gray-100 sm:p-20 dark:bg-gray-800 py-2 md:py-4">
@@ -63,19 +67,20 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   {/* TODO: need to update the phone with whatsapp, once added */}
                 </div>
                 <div className="hidden sm:flex">
-                  <CartModal
-                    storeId={store?.store?._id}
-                    storeWhatsapp={store?.store?.phone}
-                  />
+                { store?.store?.storeProviding === "serviceBased" ? <AvailableTimeSlots storeId={store?.store?._id} /> : <CartModal
+              storeId={store?.store?._id}
+              storeWhatsapp={store?.store?.phone}
+            />}
                 </div>
               </div>
             </div>
           </div>
           <div className="sm:hidden">
-            <CartModal
+            
+            { store?.store?.storeProviding === "serviceBased" ? <AvailableTimeSlots storeId={store?.store?._id}/> : <CartModal
               storeId={store?.store?._id}
               storeWhatsapp={store?.store?.phone}
-            />
+            />}
           </div>
         </div>
       </section>
