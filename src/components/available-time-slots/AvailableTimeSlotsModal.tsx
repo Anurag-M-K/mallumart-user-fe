@@ -16,6 +16,7 @@ import { convertTo12HourFormat } from "@/utils/commonFunctions";
 import { useState } from "react";
 import { CheckIcon } from "lucide-react";
 import { toast } from "../ui/use-toast";
+import { Spinner } from "flowbite-react";
 
 type TslotData = {
   slotId: string;
@@ -38,9 +39,14 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
     queryFn: () => fetchTimeSlots(storeId, token),
   });
 
+  
   const mutation = useMutation({
-    mutationFn: (newBooking: any) => slotBooking(slotSelection, token, storeId),
+    mutationFn: async (newBooking: any) => {
+      setLoading(true);
+      return slotBooking(slotSelection, token, storeId);
+    },
     onSuccess: (data: any) => {
+      setLoading(false);
       setSlotSelection(null)
       queryClient.invalidateQueries({ queryKey: ["time-slots", token] });
       setOpen(false);
@@ -81,7 +87,6 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
       setErr("Please select a slot");
     }
   };
-
   const handleDialogTriggerClick = () => {
     if (!user) {
       router.push("/auth/login");
@@ -154,7 +159,7 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
             variant="outline"
             className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto  hover:text-white text-white"
           >
-            Book Now
+           {loading ? <Spinner/> : "Book Now"}
           </Button>
         </div>
       </DialogContent>
