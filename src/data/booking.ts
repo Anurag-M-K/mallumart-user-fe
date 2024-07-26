@@ -2,6 +2,7 @@ import { clientFetch } from "@/lib/api";
 import { headers } from "next/headers";
 
 export const fetchTimeSlots = async (storeId:string,token:string) => {
+  console.log("in api ========= storeid, token ",storeId,token)
     if (!storeId) {
       return [];
     }

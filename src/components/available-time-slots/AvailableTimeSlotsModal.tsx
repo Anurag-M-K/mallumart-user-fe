@@ -8,10 +8,9 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/utils/AuthContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchTimeSlots, slotBooking } from "@/data/booking";
-import { StoreData, TSlot } from "@/app/type";
+import { TSlot } from "@/app/type";
 import { convertTo12HourFormat } from "@/utils/commonFunctions";
 import { useState } from "react";
 import { CheckIcon } from "lucide-react";
@@ -26,20 +25,20 @@ type TslotData = {
 };
 export function AvailableTimeSlots({ storeId }: { storeId: string }) {
   const router = useRouter();
-  const { user } = useAuth();
-  const token: string = user?.token;
   const queryClient = useQueryClient();
   const [slotSelection, setSlotSelection] = useState<TslotData | null>(null);
   const [err, setErr] = useState("");
   const [open, setOpen] = useState<boolean>(false);
-  const [ loading,setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false);
+  const user: any = localStorage.getItem("user");
+  const parsedUser: any = JSON.parse(user);
+  const token: string = parsedUser?.token;
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["time-slots", token],
     queryFn: () => fetchTimeSlots(storeId, token),
   });
 
-  
   const mutation = useMutation({
     mutationFn: async (newBooking: any) => {
       setLoading(true);
@@ -47,7 +46,7 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
     },
     onSuccess: (data: any) => {
       setLoading(false);
-      setSlotSelection(null)
+      setSlotSelection(null);
       queryClient.invalidateQueries({ queryKey: ["time-slots", token] });
       setOpen(false);
       toast({
@@ -58,7 +57,7 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
             <span className="first-letter:capitalize">{data?.message}</span>
           </div>
         ),
-        duration: 3000,
+        duration: 4000,
       });
     },
     onError: () => {
@@ -78,12 +77,12 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
   });
 
   const handleBookNow = () => {
-    setLoading(true)
+    setLoading(true);
     if (slotSelection) {
       mutation.mutate({ slotSelection, token });
-      setLoading(false)
+      setLoading(false);
     } else {
-      setLoading(false)
+      setLoading(false);
       setErr("Please select a slot");
     }
   };
@@ -97,12 +96,7 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
-        onClick={() => {
-          if (!user) router.push("/auth/login");
-        }}
-        asChild
-      >
+      <DialogTrigger asChild>
         <Button
           size="lg"
           onClick={handleDialogTriggerClick}
@@ -144,9 +138,13 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
                   }}
                   variant="outline"
                   size="sm"
-                  className={slotSelection?.slotId === item?._id ? "bg-gray-500 hover:bg-gray-500 hover:text-white text-white" : "bgo-gray-200"}
+                  className={
+                    slotSelection?.slotId === item?._id
+                      ? "bg-gray-500 hover:bg-gray-500 hover:text-white text-white"
+                      : "bgo-gray-200"
+                  }
                 >
-                  {slotSelection?.slotId === item?._id ? "Selected":"Select"}
+                  {slotSelection?.slotId === item?._id ? "Selected" : "Select"}
                 </Button>
               </div>
             ))}
@@ -159,7 +157,7 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
             variant="outline"
             className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto  hover:text-white text-white"
           >
-           {loading ? <Spinner/> : "Book Now"}
+            {loading ? <Spinner /> : "Book Now"}
           </Button>
         </div>
       </DialogContent>
