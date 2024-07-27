@@ -7,7 +7,6 @@
 
 import { useEffect, useState } from "react";
 
-import placeholder from "/public/placeholder.svg";
 import Image from "next/image";
 import {
   Dialog,
@@ -80,21 +79,24 @@ export default function CartModal({
     const cartItems = cart
       .map((item) => `*${item.productId.name}* - Quantity: ${item.quantity}`)
       .join("\n");
+
     const total = cart.reduce(
       (acc, item) =>
         acc +
-        (item.productId.offerPrice ?? item.productId.price) * item.quantity,
+        (item.productId.offerPrice || item.productId.price) * item.quantity,
       0
     );
-   
+
     const message = `Hello, I would like to order following products:\n\n${cartItems}\n\nTotal: ₹${total.toFixed(
       2
     )}`;
 
     const encodedMessage = encodeURIComponent(message);
 
+    const storeWhatsappWithCountryCode = `+91${storeWhatsapp}`;
+
     window.open(
-      `https://wa.me/${storeWhatsapp}?text=${encodedMessage}`
+      `https://wa.me/${storeWhatsappWithCountryCode}?text=${encodedMessage}`
     );
 
     await removeCartByStoreId(storeId);
@@ -107,7 +109,11 @@ export default function CartModal({
         }}
         asChild
       >
-        <Button size="lg" variant="outline" className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto  hover:text-white text-white">
+        <Button
+          size="lg"
+          variant="outline"
+          className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto  hover:text-white text-white"
+        >
           <ShoppingCartIcon className="w-4 h-4 mr-2" />
           Checkout
         </Button>
@@ -188,11 +194,13 @@ export default function CartModal({
             </div>
           )}
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={handleBuyNow}>
-            Buy Now
-          </Button>
-        </DialogFooter>
+        {cart.length > 0 && (
+          <DialogFooter>
+            <Button variant="outline" onClick={handleBuyNow}>
+              Buy Now
+            </Button>
+          </DialogFooter>
+        )}
       </DialogContent>
     </Dialog>
   );

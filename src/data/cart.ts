@@ -11,7 +11,6 @@ export const addToCart = async (productId: string, quantity: number = 1) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("helloworld");
     return res;
   } catch (err) {
     console.log(err);
