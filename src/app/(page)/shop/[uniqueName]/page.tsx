@@ -13,9 +13,9 @@ export default async function Page({ params }: TPageProps) {
   return (
     <div>
       <ShopDetails store={store} />
-      {store?.store?.storeProviding !== "serviceBased" && (
+      {/* {store?.store?.storeProviding !== "serviceBased" && ( */}
         <ProductsListing store={store} />
-      )}
+      {/* )} */}
     </div>
   );
 }

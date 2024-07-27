@@ -67,20 +67,22 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   {/* TODO: need to update the phone with whatsapp, once added */}
                 </div>
                 <div className="hidden sm:flex">
-                { store?.store?.storeProviding === "serviceBased" ? <AvailableTimeSlots storeId={store?.store?._id} /> : <CartModal
+                { store?.store?.storeProviding === "serviceBased" && <AvailableTimeSlots storeId={store?.store?._id} />  }
+                <CartModal
               storeId={store?.store?._id}
               storeWhatsapp={store?.store?.phone}
-            />}
+            />
                 </div>
               </div>
             </div>
           </div>
           <div className="sm:hidden">
             
-            { store?.store?.storeProviding === "serviceBased" ? <AvailableTimeSlots storeId={store?.store?._id}/> : <CartModal
+            { store?.store?.storeProviding === "serviceBased" && <AvailableTimeSlots storeId={store?.store?._id}/> }
+            <CartModal
               storeId={store?.store?._id}
               storeWhatsapp={store?.store?.phone}
-            />}
+            />
           </div>
         </div>
       </section>
