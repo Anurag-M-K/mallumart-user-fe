@@ -105,7 +105,6 @@ function ProductsListing({ store }: { store: TShop }) {
       queryKey: ["cart", store.store._id],
     });
   }
-  console.log("product ", products);
 
   return (
     <div>

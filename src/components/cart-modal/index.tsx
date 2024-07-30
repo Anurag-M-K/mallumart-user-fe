@@ -32,7 +32,7 @@ export default function CartModal({
   storeWhatsapp: any;
 }) {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user,setUser } = useAuth();
   const [cart, setCart] = useState<
     {
       productId: {
@@ -59,7 +59,11 @@ export default function CartModal({
     queryKey: ["cart", storeId],
     queryFn: () => fetchCartByStoreId(storeId),
   });
-
+  if(data?.tokenExpired){
+    localStorage.clear()
+    setUser(null)
+  }
+  console.log("data ",data)
   useEffect(() => {
     if (!isPending && data) {
       setCart(data);
