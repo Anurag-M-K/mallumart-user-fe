@@ -210,15 +210,13 @@ function ProductsListing({ store }: { store: TShop }) {
                     <Image
                       src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${product?.images[0]}`}
                       alt={product?.name}
-                      style={{ objectFit: "cover" }}
+                      style={{ objectFit: "contain" }}
                       fill
-                      // layout="contain"
-                      // objectFit="contain"
-                      // height={300}
-                      // width={300}
+                   
+                      priority={false}
+
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
-                      // className="hover:scale-105 object-cover sm:object-cover mt-2 transition-transform duration-300"
                     />
                   </div>
                 </Link>

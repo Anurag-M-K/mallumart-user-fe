@@ -9,6 +9,7 @@ import { useAuth } from "@/utils/AuthContext";
 
 export default function ShopDetails({ store }: { store: TShop }) {
   const { user } = useAuth();
+  console.log("stiore ",store)
 
   return (
     <div className="w-full ">
@@ -76,7 +77,7 @@ export default function ShopDetails({ store }: { store: TShop }) {
                 { store?.store?.storeProviding === "serviceBased" && <AvailableTimeSlots storeId={store?.store?._id} />  }
                 <CartModal
               storeId={store?.store?._id}
-              storeWhatsapp={store?.store?.phone}
+              storeWhatsapp={store?.store?.whatsapp}
             />
                 </div>
               </div>
@@ -87,7 +88,7 @@ export default function ShopDetails({ store }: { store: TShop }) {
             { store?.store?.storeProviding === "serviceBased" && <AvailableTimeSlots storeId={store?.store?._id}/> }
             <CartModal
               storeId={store?.store?._id}
-              storeWhatsapp={store?.store?.phone}
+              storeWhatsapp={store?.store?.whatsapp}
             />
           </div>
         </div>

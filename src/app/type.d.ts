@@ -42,6 +42,7 @@ type TShop = {
     storeOwnerName: string;
     address: string;
     phone: string;
+    whatsapp:string;
     email: string;
     shopImgUrl: string;
     subscriptinPlan: "basic" | "premium" | "noPlanTaken";
