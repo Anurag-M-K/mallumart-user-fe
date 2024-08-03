@@ -19,6 +19,7 @@ export const addToCart = async (productId: string, quantity: number = 1) => {
 
 export const fetchCartByStoreId = async (shopId: string) => {
   let token = localStorage.getItem("accessToken");
+  if(!token) return [];
   return await clientFetch(`user/cart/${shopId}`, {
     headers: {
       Authorization: `Bearer ${token}`,

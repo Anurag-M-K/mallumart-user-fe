@@ -8,8 +8,6 @@ import { AvailableTimeSlots } from "@/components/available-time-slots/AvailableT
 import { useAuth } from "@/utils/AuthContext";
 
 export default function ShopDetails({ store }: { store: TShop }) {
-  const { user } = useAuth();
-  console.log("stiore ",store)
 
   return (
     <div className="w-full ">
@@ -20,6 +18,7 @@ export default function ShopDetails({ store }: { store: TShop }) {
               <Image
                 src={`${process.env.NEXT_PUBLIC_S3_STORAGE_BASE_URL}/${store?.store?.shopImgUrl}`}
                 alt="helo"
+                style={{objectFit:"contain"}}
                 width={400}
                 height={300}
                 className="h-auto sm:h-1/2 overflow-hidden   object-cover group-hover:scale-105 transition-transform duration-300"

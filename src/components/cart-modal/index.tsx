@@ -63,7 +63,6 @@ export default function CartModal({
     localStorage.clear()
     setUser(null)
   }
-  console.log("data ",data)
   useEffect(() => {
     if (!isPending && data) {
       setCart(data);
