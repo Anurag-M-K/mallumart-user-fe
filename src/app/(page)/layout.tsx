@@ -4,8 +4,10 @@ import "../globals.css";
 import Footer from "@/components/footer";
 import HeaderNew from "@/components/header-new";
 import Provider from "@/utils/Provider";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
 import ClientLayout from "../ClientLayout";
+import { Suspense } from "react";
+import Loading from "./Loading";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -34,7 +36,7 @@ export default function RootLayout({
         <ClientLayout>
           <Provider>
             <HeaderNew />
-            {children}
+            <Suspense fallback={<Loading/>}>{children}</Suspense>
             <Footer />
             <Toaster />
           </Provider>
