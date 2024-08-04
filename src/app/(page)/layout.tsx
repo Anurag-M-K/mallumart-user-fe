@@ -7,7 +7,7 @@ import Provider from "@/utils/Provider";
 import { Toaster } from "@/components/ui/toaster";
 import ClientLayout from "../ClientLayout";
 import { Suspense } from "react";
-import Loading from "./Loading";
+import Loading from "./loading";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
