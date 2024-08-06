@@ -247,13 +247,14 @@ function ProductsListing({ store }: { store: TShop }) {
                       )}
                     </span>
                     <div className="text-start">
-                      <Button
+                    
+                    {product?.stock ?   <Button
                         size="sm"
                         onClick={() => addToCartHandler(product?._id)}
                         className=" text-white bg-blue-600 hover:bg-blue-700 sm:w-auto"
                       >
                         Add to Cart
-                      </Button>
+                      </Button> : <span className="p-2 bg-yellow-300 rounded-full text-white">Out of stock</span>}
                     </div>
                   </div>
                 </div>

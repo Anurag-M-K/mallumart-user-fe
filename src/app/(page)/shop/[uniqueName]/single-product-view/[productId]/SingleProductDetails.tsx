@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { TProduct } from "@/app/type";
 import { PiCurrencyInrBold } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
@@ -9,18 +9,18 @@ import { useAuth } from "@/utils/AuthContext";
 import { useToast } from "@/components/ui/use-toast";
 
 function SingleProductDetails({ product }: { product: TProduct }) {
-  const { user } = useAuth()
-  const router = useRouter()
-  const { toast } = useToast()
+  const { user } = useAuth();
+  const router = useRouter();
+  const { toast } = useToast();
 
   const [currentImage, setCurrentImage] = useState(product.images[0]);
 
   async function addToCartHandler() {
-    if(!user) return router.push('/auth/login')
-    await addToCart(product._id)
+    if (!user) return router.push("/auth/login");
+    await addToCart(product._id);
     toast({
       description: "Product added to cart.",
-    })
+    });
   }
   return (
     <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
@@ -62,8 +62,10 @@ function SingleProductDetails({ product }: { product: TProduct }) {
           <p>{product?.description}.</p>{" "}
           <div className="flex my-4 items-center">
             <PiCurrencyInrBold size={20} />
-            <h2 className="text-xl font-bold">{product?.offerPrice === 0 ? product?.price : product?.offerPrice}</h2>
-            {product?.offerPrice !==0 && (
+            <h2 className="text-xl font-bold">
+              {product?.offerPrice === 0 ? product?.price : product?.offerPrice}
+            </h2>
+            {product?.offerPrice !== 0 && (
               <span className="flex items-center text-sm text-red-500 hover:text-gray-100 line-through ml-2">
                 <PiCurrencyInrBold size={14} />
                 {product?.offerPrice === 0 ? null : product?.price}
@@ -73,9 +75,17 @@ function SingleProductDetails({ product }: { product: TProduct }) {
         </div>
         <div className="text-sm leading-loose text-gray-500 dark:text-gray-400"></div>
         <div className="flex gap-x-2">
-          <Button size="lg" onClick={addToCartHandler} className=" bg-blue-600 hover:bg-blue-700 w-full">
-            Add to Cart
-          </Button>
+          {product?.stock ? (
+            <Button
+              size="lg"
+              onClick={addToCartHandler}
+              className=" bg-blue-600 hover:bg-blue-700 w-full"
+            >
+              Add to Cart
+            </Button>
+          ) : (
+            <span className="text-xl font-medium">Out of stock</span>
+          )}
         </div>
       </div>
     </div>

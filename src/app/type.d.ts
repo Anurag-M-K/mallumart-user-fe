@@ -72,6 +72,7 @@ type TFilters = {
 }
 
 type TProduct = {
+  stock:boolean;
   _id:string;
   name:string;
   images:string[];
