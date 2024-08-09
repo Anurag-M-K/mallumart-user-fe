@@ -12,7 +12,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchTimeSlots, slotBooking } from "@/data/booking";
 import { TSlot } from "@/app/type";
 import { convertTo12HourFormat } from "@/utils/commonFunctions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckIcon } from "lucide-react";
 import { toast } from "../ui/use-toast";
 import { Spinner } from "flowbite-react";
@@ -30,9 +30,15 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
   const [err, setErr] = useState("");
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const user: any = localStorage.getItem("user");
-  const parsedUser: any = JSON.parse(user);
-  const token: string = parsedUser?.token;
+  const [userData ,setUserData] = useState<any>(null)
+  const token: string = userData?.token;
+  
+  
+  useEffect(()=>{
+    const user: any = localStorage.getItem("user");
+    setUserData(JSON.parse(user));
+
+  },[])
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["time-slots", token],
@@ -87,12 +93,15 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
     }
   };
   const handleDialogTriggerClick = () => {
-    if (!user) {
+    if (!userData) {
       router.push("/auth/login");
     } else {
       setOpen(true);
     }
   };
+  if (isLoading) return <Spinner />;
+  if (error || !data) return <div>No slot</div>;
+  const timeSlots = data || [];
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -110,12 +119,14 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
         <DialogHeader>
           <DialogTitle>Available Time Slot</DialogTitle>
           <DialogDescription>
-            Select an available time slot to book your session.
+            {!timeSlots?.length
+              ? "There is no slot available"
+              : "Select an available time slot to book your session."}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-2 gap-4">
-            {data?.[0]?.slots?.map((item: TSlot, index: any) => (
+            {timeSlots?.map((item: any, index: any) => (
               <div className="bg-muted rounded-md p-4 flex flex-col gap-2">
                 <div>
                   {" "}
@@ -151,14 +162,17 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
           </div>
 
           {err !== "" && <p className="text-red-500 text-center">{err}</p>}
-          <Button
-            onClick={handleBookNow}
-            size="lg"
-            variant="outline"
-            className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto  hover:text-white text-white"
-          >
-            {loading ? <Spinner /> : "Book Now"}
-          </Button>
+
+          {timeSlots.length ? (
+            <Button
+              onClick={handleBookNow}
+              size="lg"
+              variant="outline"
+              className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto  hover:text-white text-white"
+            >
+              {loading ? <Spinner /> : "Book Now"}
+            </Button>
+          ) : null}
         </div>
       </DialogContent>
     </Dialog>
