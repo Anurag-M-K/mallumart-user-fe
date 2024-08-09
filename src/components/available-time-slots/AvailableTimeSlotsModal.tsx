@@ -100,9 +100,10 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
     }
   };
   if (isLoading) return <Spinner />;
-  if (error || !data) return <div>No slot</div>;
-  const timeSlots = data || [];
+  if (error || !data) return <div className="mx-4"></div>;
+  const timeSlots = Array.isArray(data) ? data : [];
 
+  console.log("Data ",data)
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
