@@ -142,3 +142,25 @@ interface StoreData {
   __v: number;
   _id: string;
 }
+
+type TDoctors = {
+  _id:string;
+  availableTime:string;
+  imageUrl : string;
+  isAvailable:boolean;
+  name:string;
+  noOfToken:number;
+  offDays:[string];
+  specialisation:string;
+  specialisationDetails:{
+    _id:string;
+    name:string;
+  };
+  storeId:string;
+}
+
+type TSpecialisation = {
+  _id:string;
+  name:string;
+  storeId:string;
+}

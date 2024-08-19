@@ -37,7 +37,6 @@ export function AvailableTimeSlots({ storeId }: { storeId: string }) {
   useEffect(()=>{
     const user: any = localStorage.getItem("user");
     setUserData(JSON.parse(user));
-
   },[])
 
   const { data, isLoading, error } = useQuery({

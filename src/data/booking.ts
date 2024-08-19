@@ -2,7 +2,6 @@ import { clientFetch } from "@/lib/api";
 import { headers } from "next/headers";
 
 export const fetchTimeSlots = async (storeId:string,token:string) => {
-  console.log("in api ========= storeid, token ",storeId,token)
     if (!storeId) {
       return [];
     }
@@ -33,6 +32,23 @@ export const fetchTimeSlots = async (storeId:string,token:string) => {
             Authorization:`Bearer ${token}`
           },
           body:{slotId:slotData.slotId,date:slotData?.date,startTime:slotData?.startTime,endTime:slotData?.endTime,storeId:storeId}
+        }
+      )
+      return res;
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  export const drBooking = async(doctorId:string,token:string,userData:any) => {
+    try {
+      const res = await clientFetch(
+        `user/dr-booking`, {
+          method:"POST",
+          headers:{
+            Authorization:`Bearer ${token}`
+          },
+          body:{doctorId,userData}
         }
       )
       return res;

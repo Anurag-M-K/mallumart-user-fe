@@ -7,6 +7,7 @@ import { getDirectionUrl } from "@/lib/utils";
 import { AvailableTimeSlots } from "@/components/available-time-slots/AvailableTimeSlotsModal";
 
 export default function ShopDetails({ store }: { store: TShop }) {
+
   return (
     <div className="w-full ">
       <section className="bg-gray-100 sm:p-20 dark:bg-gray-800 py-2 md:py-4">
@@ -67,27 +68,38 @@ export default function ShopDetails({ store }: { store: TShop }) {
                   <span className="text-gray-500 dark:text-gray-400"></span>
                   {/* TODO: need to update the phone with whatsapp, once added */}
                 </div>
-                <div className="hidden sm:flex">
-                  {store?.store?.storeProviding === "serviceBased" && (
-                    <AvailableTimeSlots storeId={store?.store?._id} />
-                  )}
-                  <CartModal
-                    storeId={store?.store?._id}
-                    storeWhatsapp={store?.store?.whatsapp}
-                  />
-                </div>
+                {
+                  store?.store?.category?.name !=="Hospital" && (
+
+                    <div className="hidden sm:flex">
+                    {store?.store?.storeProviding === "serviceBased" && (
+                      <AvailableTimeSlots storeId={store?.store?._id} />
+                    )}
+                    <CartModal
+                      storeId={store?.store?._id}
+                      storeWhatsapp={store?.store?.whatsapp}
+                    />
+                  </div>
+                  )
+                }
+
               </div>
             </div>
           </div>
-          <div className="sm:hidden">
-            {store?.store?.storeProviding === "serviceBased" && (
-              <AvailableTimeSlots storeId={store?.store?._id} />
-            )}
-            <CartModal
-              storeId={store?.store?._id}
-              storeWhatsapp={store?.store?.whatsapp}
-            />
-          </div>
+          {
+            store?.store?.category?.name !=="Hospital" && (
+              <div className="sm:hidden">
+              {store?.store?.storeProviding === "serviceBased" && (
+                <AvailableTimeSlots storeId={store?.store?._id} />
+              )}
+              <CartModal
+                storeId={store?.store?._id}
+                storeWhatsapp={store?.store?.whatsapp}
+              />
+            </div>
+            )
+          }
+         
         </div>
       </section>
     </div>
