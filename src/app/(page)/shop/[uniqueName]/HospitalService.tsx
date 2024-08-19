@@ -26,6 +26,22 @@ function HospitalService({ doctors, specialisations }: THospitalServiceProps) {
           } border-gray-400`}
         >
           <div className="flex ">
+          <button
+              onClick={() => setSelector("doctors")}
+              className={`mx-2 gap-x-2 flex border-b p-2   ${
+                selector === "doctors" ? "border-blue-500" : ""
+              }`}
+            >
+              <FaUserDoctor className="text-blue-500 w-8  h-8 sm:w-12 sm:h-12"   />
+              <div className="flex flex-col">
+                <span className="text-start text-sm ">Doctors</span>
+                <span className="text-start text-sm ">
+                  {availableDoctors?.length > 0
+                    ? availableDoctors?.length + " Doctors found"
+                    : "No Doctors available"}{" "}
+                </span>
+              </div>
+            </button>
             <button
               onClick={() => setSelector("departments")}
               className={`gap-x-2 flex border-b p-2 ${
@@ -42,22 +58,7 @@ function HospitalService({ doctors, specialisations }: THospitalServiceProps) {
                 </span>
               </div>
             </button>
-            <button
-              onClick={() => setSelector("doctors")}
-              className={`mx-2 gap-x-2 flex border-b p-2   ${
-                selector === "doctors" ? "border-blue-500" : ""
-              }`}
-            >
-              <FaUserDoctor className="text-blue-500 w-8  h-8 sm:w-12 sm:h-12"   />
-              <div className="flex flex-col">
-                <span className="text-start text-sm ">Doctors</span>
-                <span className="text-start text-sm ">
-                  {availableDoctors?.length > 0
-                    ? availableDoctors?.length + " Doctors found"
-                    : "No Doctors available"}{" "}
-                </span>
-              </div>
-            </button>
+         
           </div>
           {/* <div>
             <input className="border border-black" type="search" />
