@@ -71,7 +71,7 @@ function HospitalService({ doctors, specialisations }: THospitalServiceProps) {
           <Specialisations specialisation={specialisations} />
         ) : selector === "doctors" ? (
           <DoctorsCard doctors={availableDoctors} />
-        ) : null}
+        ) : <DoctorsCard doctors={availableDoctors} />}
       </div>
     </div>
   );
