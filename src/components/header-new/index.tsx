@@ -57,7 +57,7 @@ export default function HeaderNew() {
     try {
       const res = await searchStoreByProductName(searchTerm);
       dispatch({ type: "SET_STORES", payload: res });
-      dispatch({ type: "SET_IS_SEARCH", payload: true }); 
+      dispatch({ type: "SET_IS_SEARCH", payload: true });
       // if(res)
 
       if (res.length > 0) {
@@ -87,7 +87,7 @@ export default function HeaderNew() {
         >
           <Button className="flex items-center border-gray-600 border hover:bg-transparent  bg-transparent  text-sm rounded text-black  px-2 ">
             <LiaStoreAltSolid className="me-2" />
-            Store Login
+            Business Login
           </Button>
         </Link>
         {!user && (
